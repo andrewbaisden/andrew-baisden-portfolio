@@ -1,303 +1,279 @@
-.social-media-carousel-slide-light-theme {
-  border: 0.5rem solid var(--main-font-color);
-  border-radius: 2rem;
-  background: var(--brand-color-blue-main);
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.social-card {
   display: flex;
-  flex-flow: row nowrap;
-  height: 25rem;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-
-.social-media-carousel-slide-dark-theme {
-  border: 0.5rem solid #ffffff;
-  border-radius: 2rem;
-  background: var(--brand-color-blue-main);
-  display: flex;
-  flex-flow: row nowrap;
-  height: 25rem;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-
-.social-media-carousel-slide-logo {
-  flex: 1;
-  height: 5rem;
-  width: 5rem;
-}
-
-.social-media-carousel-slide-content {
-  text-align: left;
-  color: var(--brand-color-white);
-  flex: 1;
-  padding: 2rem;
-}
-
-.social-media-carousel-slide-content h1 {
-  font-size: 2rem;
-}
-
-.social-media-carousel-slide-content p {
-  margin: 2rem auto;
-  font-size: 1.5rem;
-}
-
-.social-media-carousel-slide-graphic {
-  flex: 1;
-  /* background: url(../../img/carousel-graphic-bg.svg) no-repeat; */
-  background-size: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #2f2f3a;
-  border-radius: 1rem;
-}
-
-.carousel-button-light-theme {
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: 500;
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--brand-color-blue-main);
-  background: var(--brand-color-grey);
-  padding: 1rem 1rem 2rem 1rem;
-  border-radius: 5rem;
-  box-shadow: 0rem 0.1rem 0.313rem 0rem rgb(158, 158, 158);
-  cursor: pointer;
-  width: 15rem;
-  height: 2.5rem;
-  transition: 0.5s background linear;
-  display: inline-block;
-}
-
-.carousel-button-light-theme:hover {
+  flex-direction: column;
+  min-height: 100%;
+  padding: 1.35rem 1.4rem 1.5rem;
   background: #ffffff;
-}
-
-.carousel-button-dark-theme {
-  text-transform: uppercase;
+  color: var(--main-font-color);
+  text-align: left;
   text-decoration: none;
-  font-weight: 500;
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--brand-color-white);
-  background: var(--main-font-color);
-  padding: 1rem 1rem 2rem 1rem;
-  border-radius: 5rem;
-  box-shadow: 0rem 0.1rem 0.313rem 0rem rgb(51, 51, 51);
-  cursor: pointer;
-  width: 15rem;
-  height: 2.5rem;
-  transition: 0.5s background linear;
-  display: inline-block;
+  border: 1px solid rgba(47, 47, 58, 0.06);
+  border-radius: 1.25rem;
+  box-shadow: 0 0.75rem 2rem rgba(47, 47, 58, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.carousel-button-dark-theme:hover {
-  background: #1f1f1f;
+.social-card:hover {
+  transform: translateY(-0.15rem);
+  border-color: rgba(113, 72, 252, 0.22);
+  box-shadow: 0 1rem 2.25rem rgba(47, 47, 58, 0.12);
 }
 
-.carousel-root {
+.social-card:hover .social-card-external {
+  color: #7148fc;
+}
+
+.social-card-featured {
+  min-height: 28rem;
+}
+
+.social-card-top {
   display: flex;
-  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.carousel .thumbs-wrapper {
+.social-card-identity {
   display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.social-card-icon {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+  border-radius: 0.7rem;
+  color: #ffffff;
 }
 
-.carousel .thumb {
-  border-radius: 1rem;
-  background-color: rgb(255, 255, 255);
+.social-card-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
-.carousel .thumb:hover {
-  border: 0.3rem solid var(--brand-color-blue-main);
+.social-card-category {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #5b6170;
 }
 
-.carousel .thumb.selected {
-  border: 0.3rem solid var(--brand-color-blue-main);
+.social-card-top h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--main-font-color);
 }
 
-.selected {
-  /* border: 0.2rem solid var(--brand-color-blue-main) !important; */
-  border-radius: 2.2rem;
+.social-card-external {
+  width: 1.45rem;
+  height: 1.45rem;
+  flex-shrink: 0;
+  color: #5b6170;
+  transition: color 0.2s ease;
 }
 
-.thumbs-wrapper {
-  border-radius: 1rem;
+.social-card-copy {
+  margin: 0.9rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #4b5160;
 }
 
-.thumbs {
+.social-card-copy strong {
+  color: var(--main-font-color);
+  font-weight: 700;
+}
+
+.social-visual {
   display: flex;
-  flex-flow: row wrap;
-  cursor: pointer;
+  flex: 1;
+  margin-top: 1.25rem;
+  min-height: 12.5rem;
+  padding: 1rem;
+  background: #f6f8fc;
+  border-radius: 0.9rem;
+  overflow: hidden;
 }
 
-/* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
-
-@media (min-width: 1281px) {
-  /* CSS */
+.social-visual-window {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(47, 47, 58, 0.06);
+  border-radius: 0.8rem;
 }
 
-/* 
-	##Device = Laptops, Desktops
-	##Screen = B/w 1025px to 1280px
-  */
+.social-visual-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
 
-@media (min-width: 1025px) and (max-width: 1280px) {
-  /* CSS */
-  .social-media-carousel-slide-light-theme,
-  .social-media-carousel-slide-dark-theme {
-    flex-flow: column nowrap;
-    height: 40rem;
-    padding: 2rem;
+.social-visual-chrome span {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: #d8dee8;
+}
+
+.social-visual-chrome span:nth-child(1) {
+  background: #ef2f4c;
+}
+
+.social-visual-chrome span:nth-child(2) {
+  background: #ffca04;
+}
+
+.social-visual-chrome span:nth-child(3) {
+  background: #11ef75;
+}
+
+.social-visual-chrome p {
+  margin: 0 0 0 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.social-visual-repo {
+  padding: 0.7rem 0.8rem;
+  background: #f6f8fc;
+  border-radius: 0.65rem;
+}
+
+.social-visual-repo p {
+  margin: 0 0 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.social-visual-repo span,
+.social-visual-profile span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5b6170;
+}
+
+.social-visual-github {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(113, 72, 252, 0.14), transparent 40%),
+    #f6f8fc;
+}
+
+.social-visual-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.social-visual-profile img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.social-visual-profile p {
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.social-visual-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.social-visual-pills span {
+  display: inline-flex;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(10, 102, 194, 0.1);
+  color: #0a66c2;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+body[data-theme='dark'] .social-card {
+  background: #3a3a48;
+  color: var(--brand-color-white);
+  border-color: rgba(250, 250, 250, 0.06);
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.28);
+}
+
+body[data-theme='dark'] .social-card-top h2,
+body[data-theme='dark'] .social-card-copy strong,
+body[data-theme='dark'] .social-visual-repo p,
+body[data-theme='dark'] .social-visual-profile p {
+  color: var(--brand-color-white);
+}
+
+body[data-theme='dark'] .social-card-category,
+body[data-theme='dark'] .social-card-copy,
+body[data-theme='dark'] .social-visual-chrome p,
+body[data-theme='dark'] .social-visual-repo span,
+body[data-theme='dark'] .social-visual-profile span {
+  color: #c5c9d4;
+}
+
+body[data-theme='dark'] .social-card-external {
+  color: #a8adb8;
+}
+
+body[data-theme='dark'] .social-visual,
+body[data-theme='dark'] .social-visual-linkedin {
+  background: #323240;
+}
+
+body[data-theme='dark'] .social-visual-window,
+body[data-theme='dark'] .social-visual-repo {
+  background: #2c2c38;
+  border-color: rgba(250, 250, 250, 0.08);
+}
+
+@media (max-width: 767px) {
+  .social-grid {
+    grid-template-columns: 1fr;
   }
 
-  .social-media-carousel-slide-graphic {
-    width: 100%;
-    padding: 2rem;
+  .social-card-featured {
+    min-height: auto;
+  }
+
+  .social-card-top h2 {
+    font-size: 1.2rem;
+  }
+
+  .social-visual {
+    min-height: 11rem;
   }
 }
 
-/* 
-	##Device = Tablets, Ipads (portrait)
-	##Screen = B/w 768px to 1024px
-  */
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  /* CSS */
-  .social-media-carousel-slide-light-theme,
-  .social-media-carousel-slide-dark-theme {
-    flex-flow: column nowrap;
-    height: 40rem;
-    padding: 2rem;
-  }
-
-  .social-media-carousel-slide-graphic {
-    width: 100%;
-    padding: 2rem;
-  }
-  .control-arrow,
-  .thumbs {
-    display: none;
-  }
-}
-
-/* 
-	##Device = Tablets, Ipads (landscape)
-	##Screen = B/w 768px to 1024px
-  */
-
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  /* CSS */
-  .social-media-carousel-slide-light-theme,
-  .social-media-carousel-slide-dark-theme {
-    flex-flow: column nowrap;
-    height: 40rem;
-    padding: 2rem;
-  }
-  .social-media-carousel-slide-graphic {
-    width: 100%;
-    padding: 2rem;
-  }
-  .control-arrow,
-  .thumbs {
-    display: none;
-  }
-}
-
-/* 
-	##Device = Low Resolution Tablets, Mobiles (Landscape)
-	##Screen = B/w 481px to 767px
-  */
-
-@media (min-width: 481px) and (max-width: 767px) {
-  /* CSS */
-  .social-media-carousel-slide-light-theme,
-  .social-media-carousel-slide-dark-theme {
-    flex-flow: column nowrap;
-    height: 60rem;
-    padding: 2rem;
-  }
-
-  .social-media-carousel-slide-graphic {
-    width: 100%;
-    padding: 2rem;
-  }
-  .social-media-carousel-slide-content {
-    text-align: center;
-  }
-  .social-media-carousel-slide-content p {
-    font-size: 1rem;
-    padding: 1rem;
-  }
-  .carousel-button-light-theme,
-  .carousel-button-dark-theme {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 15rem;
-    height: 3.5rem;
-    padding: 1rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  .carousel .slide img {
-    display: none;
-  }
-  .control-arrow,
-  .thumbs {
-    display: none;
-  }
-}
-
-/* 
-	##Device = Most of the Smartphones Mobiles (Portrait)
-	##Screen = B/w 320px to 479px
-  */
-
-@media (max-width: 480px) {
-  /* CSS */
-  .social-media-carousel-slide-light-theme,
-  .social-media-carousel-slide-dark-theme {
-    flex-flow: column nowrap;
-    height: 60rem;
-    padding: 2rem;
-  }
-
-  .social-media-carousel-slide-graphic {
-    width: 100%;
-    padding: 2rem;
-  }
-  .social-media-carousel-slide-content {
-    text-align: center;
-  }
-  .social-media-carousel-slide-content p {
-    font-size: 1rem;
-    padding: 1rem;
-  }
-  .carousel-button-light-theme,
-  .carousel-button-dark-theme {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 15rem;
-    height: 3.5rem;
-    padding: 1rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  .carousel .slide img {
-    display: none;
-  }
-  .control-arrow,
-  .thumbs {
-    display: none;
+@media (prefers-reduced-motion: reduce) {
+  .social-card {
+    transition: none;
   }
 }

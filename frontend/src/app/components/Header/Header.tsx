@@ -76,7 +76,7 @@ export const Header = ({
                   handleScroll(scoialMediaRef.current);
                 }}
               >
-                Social Media
+                Developer Network
               </a>
               <a
                 href="#skills"
@@ -85,7 +85,7 @@ export const Header = ({
                   handleScroll(skillsRef.current);
                 }}
               >
-                Skills
+                Tech Stack
               </a>
               <a
                 href="#contact"
@@ -182,7 +182,7 @@ export const Header = ({
                     handleScroll(scoialMediaRef.current);
                   }}
                 >
-                  Social Media
+                  Developer Network
                 </a>
               </li>
               <li>
@@ -193,7 +193,7 @@ export const Header = ({
                     handleScroll(skillsRef.current);
                   }}
                 >
-                  Skills
+                  Tech Stack
                 </a>
               </li>
               <li>

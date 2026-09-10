@@ -78,6 +78,13 @@ main {
   align-items: center;
 }
 
+#about,
+#socialmedia,
+#skills,
+#contact {
+  scroll-margin-top: 5.5rem;
+}
+
 .header-section {
   text-align: center;
   margin: 2rem 0 2rem 0;
@@ -99,9 +106,8 @@ main {
   color: var(--brand-color-white);
 }
 
-.skills-section {
-  display: flex;
-  justify-content: center;
+.tech-stack-section {
+  max-width: 100%;
 }
 
 .logo-container {
@@ -116,8 +122,13 @@ main {
 }
 
 .contact-section {
-  display: flex;
-  justify-content: center;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.social-media-section {
+  max-width: 100%;
 }
 
 .footer-light-theme {

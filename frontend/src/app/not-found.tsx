@@ -49,8 +49,8 @@ export default function NotFound() {
             <nav className="not-found-nav">
               <a href="/#home">Home</a>
               <a href="/#about">About</a>
-              <a href="/#socialmedia">Social Media</a>
-              <a href="/#skills">Skills</a>
+              <a href="/#socialmedia">Developer Network</a>
+              <a href="/#skills">Tech Stack</a>
               <a href="/#contact">Contact</a>
             </nav>
             <ThemeToggle />

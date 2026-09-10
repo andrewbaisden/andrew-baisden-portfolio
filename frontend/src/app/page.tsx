@@ -5,10 +5,9 @@ import Hero from './components/Hero/Hero';
 import Header from './components/Header/Header';
 import HeroProfile from './components/HeroProfile/HeroProfile';
 import AboutProfileText from './components/AboutProfileText/AboutProfileText';
-import AboutProfileImage from './components/AboutProfileImage/AboutProfileImage';
 import SocialMediaCarousel from './components/SocialMediaCarousel/SocialMediaCarousel';
-import SkillGroupIcons from './components/SkillGroupIcons/SkillGroupIcons';
-import ContactText from './components/ContactText/ContactText';
+import TechStack from './components/TechStack/TechStack';
+import ContactSection from './components/Contact/ContactSection';
 import FooterText from './components/FooterText/FooterText';
 
 import { useTheme } from './context/ThemeContext';
@@ -42,7 +41,7 @@ const Home = () => {
             </div>
           </div>
           <main>
-            <div ref={aboutRef}>
+            <div ref={aboutRef} id="about">
               <section className="header-section">
                 <a
                   href="/#about"
@@ -56,16 +55,11 @@ const Home = () => {
                   About
                 </a>
               </section>
-              <section>
-                <div>
-                  <AboutProfileText />
-                </div>
-                <div>
-                  <AboutProfileImage />
-                </div>
+              <section className="about-cards-section">
+                <AboutProfileText />
               </section>
             </div>
-            <div ref={scoialMediaRef}>
+            <div ref={scoialMediaRef} id="socialmedia">
               <section className="header-section">
                 <a
                   href="/#socialmedia"
@@ -76,14 +70,14 @@ const Home = () => {
                       : 'header-title-dark'
                   }
                 >
-                  Social Media
+                  Developer Network
                 </a>
               </section>
-              <section>
+              <section className="social-media-section">
                 <SocialMediaCarousel />
               </section>
             </div>
-            <div ref={skillsRef}>
+            <div ref={skillsRef} id="skills">
               <section className="header-section">
                 <a
                   href="/#skills"
@@ -94,29 +88,16 @@ const Home = () => {
                       : 'header-title-dark'
                   }
                 >
-                  Skills
+                  Tech Stack
                 </a>
               </section>
-              <section className="skills-section">
-                <SkillGroupIcons />
+              <section className="tech-stack-section">
+                <TechStack />
               </section>
             </div>
-            <div ref={contactRef}>
-              <section className="header-section">
-                <a
-                  href="/#contact"
-                  rel="noopener noreferrer"
-                  className={
-                    activeTheme === 'light'
-                      ? 'header-title-light'
-                      : 'header-title-dark'
-                  }
-                >
-                  Contact
-                </a>
-              </section>
+            <div ref={contactRef} id="contact">
               <section className="contact-section">
-                <ContactText />
+                <ContactSection />
               </section>
             </div>
           </main>

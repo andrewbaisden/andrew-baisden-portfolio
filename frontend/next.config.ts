@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
   },
   trailingSlash: false,
   skipTrailingSlashRedirect: true,
+  async rewrites() {
+    return [
+      {
+        source: "/.netlify/functions/contact",
+        destination: "/api/contact",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
