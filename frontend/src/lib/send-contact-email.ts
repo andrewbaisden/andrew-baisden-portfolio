@@ -1,4 +1,4 @@
-import { ServerClient } from 'postmark';
+import { Resend } from 'resend';
 import {
   getReasonLabel,
   type ContactFormValues,
@@ -53,33 +53,36 @@ function buildHtmlBody(input: {
 export async function sendContactEmail(
   values: Omit<ContactFormValues, 'website'>,
 ): Promise<void> {
-  const token = process.env.POSTMARK_SERVER_TOKEN;
+  const apiKey = process.env.RESEND_API_KEY;
 
-  if (!token) {
-    throw new Error('Missing POSTMARK_SERVER_TOKEN');
+  if (!apiKey) {
+    throw new Error('Missing RESEND_API_KEY');
   }
 
   const reasonLabel = getReasonLabel(values.reason as ContactReason);
-  const client = new ServerClient(token);
+  const resend = new Resend(apiKey);
 
-  await client.sendEmail({
-    From: 'Portfolio <website@andrewbaisden.com>',
-    To: 'info@andrewbaisden.com',
-    ReplyTo: values.email,
-    Subject: `[Portfolio] ${reasonLabel} — ${values.name}`,
-    TextBody: buildTextBody({
+  const { error } = await resend.emails.send({
+    from: 'Portfolio <info@andrewbaisden.com>',
+    to: ['info@andrewbaisden.com'],
+    replyTo: values.email,
+    subject: `[Portfolio] ${reasonLabel} — ${values.name}`,
+    text: buildTextBody({
       name: values.name,
       email: values.email,
       reasonLabel,
       message: values.message,
     }),
-    HtmlBody: buildHtmlBody({
+    html: buildHtmlBody({
       name: values.name,
       email: values.email,
       reasonLabel,
       message: values.message,
     }),
-    Tag: 'portfolio-contact',
-    MessageStream: 'outbound',
+    tags: [{ name: 'category', value: 'portfolio-contact' }],
   });
+
+  if (error) {
+    throw new Error(error.message || 'Resend email send failed');
+  }
 }
