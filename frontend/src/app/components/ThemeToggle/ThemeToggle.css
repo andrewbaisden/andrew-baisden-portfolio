@@ -15,14 +15,18 @@
 	transition: background 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 }
 
-.theme-toggle-button :focus {
-	outline-offset: 5px;
+.theme-toggle-button:focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: 3px;
 }
-.theme-toggle-button :focus:not(:focus-visible) {
-	outline: none;
+
+.theme-toggle-button:hover {
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
 }
-.theme-toggle-button :hover {
-	box-shadow: 0 0 5px 2px var(--color-bg-toggle);
+
+.theme-toggle-button svg {
+	width: 0.85em;
+	height: 0.85em;
 }
 
 .theme-toggle-thumb {
@@ -34,4 +38,17 @@
 	border-radius: 50%;
 	background: white;
 	transition: transform 0.25s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+	.theme-toggle-button {
+		font-size: 1.05rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.theme-toggle-button,
+	.theme-toggle-thumb {
+		transition: none;
+	}
 }

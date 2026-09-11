@@ -1,5 +1,5 @@
 .hero-bg-light-theme {
-  fill: #0384c8;
+  fill: #1578b5;
 }
 
 .hero-bg-dark-theme {
@@ -14,7 +14,7 @@
 
 @media (max-width: 767px) {
   .hero-container {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
   }
 

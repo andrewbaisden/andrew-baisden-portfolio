@@ -1,228 +1,191 @@
 .hero-profile-container {
   color: #ffffff;
+  width: 100%;
 }
 
 .hero-profile {
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   text-align: center;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.hero-profile p {
-  font-size: 1.25rem;
-  font-weight: 500;
+.hero-profile-intro {
+  margin: 0 0 0.55rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0.12rem 0.7rem rgba(15, 23, 42, 0.28);
 }
 
 .hero-profile h1 {
-  font-size: 2.5rem;
+  margin: 0;
+  font-size: clamp(2.15rem, 4.6vw, 3.5rem);
   font-weight: 700;
-  margin: 0rem 0 1rem 0;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  text-shadow: 0 0.16rem 0.9rem rgba(15, 23, 42, 0.28);
 }
 
-.hero-profile span {
-  font-size: 1.563rem;
-  font-weight: 500;
-  margin: 1rem 0 1rem 0;
+.hero-profile-typewriter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16rem;
+  min-height: 2.1rem;
+  margin: 0.7rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 0.12rem 0.7rem rgba(15, 23, 42, 0.28);
 }
 
-.hero-profile img {
-  width: 6.25rem;
-  border-radius: 100%;
-  margin-bottom: 1rem;
+.hero-profile-typewriter span {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
 }
 
 .hero-profile-tagline {
-  margin: 1rem 0 2rem 0;
-  background-color: rgba(11, 11, 11, 0.7);
-  padding: 0.5rem;
-  border-radius: 1rem;
-}
-
-.hero-profile-button-light-theme {
-  text-transform: uppercase;
-  text-decoration: none;
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  font-size: 1.08rem;
   font-weight: 500;
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--brand-color-blue-main);
-  background: var(--brand-color-grey);
-  padding: 1rem 1rem 2rem 1rem;
-  border-radius: 5rem;
-  box-shadow: 0rem 0.1rem 0.313rem 0rem rgb(158, 158, 158);
-  cursor: pointer;
-  width: 15rem;
-  height: 2.5rem;
-  transition: 0.5s background linear;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  background: none;
+  border-radius: 0;
+  text-shadow: 0 0.14rem 0.8rem rgba(15, 23, 42, 0.32);
 }
 
-.hero-profile-button-light-theme:hover {
-  background: #ffffff;
+.hero-profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
 }
 
-.hero-profile-button-dark-theme {
-  text-transform: uppercase;
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
   text-decoration: none;
-  font-weight: 500;
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--brand-color-white);
-  background: var(--main-font-color);
-  padding: 1rem 1rem 2rem 1rem;
-  border-radius: 5rem;
-  box-shadow: 0rem 0.1rem 0.313rem 0rem rgb(255, 255, 255);
+  text-transform: none;
   cursor: pointer;
-  width: 15rem;
-  height: 2.5rem;
-  transition: 0.5s background linear;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
 }
 
-.hero-profile-button-dark-theme:hover {
-  background: #1f1f1f;
+.hero-cta-primary {
+  color: #ffffff;
+  background: #7148fc;
+  border: 1px solid #7148fc;
+  box-shadow: 0 0.5rem 1.25rem rgba(47, 47, 58, 0.18);
 }
 
-/* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
-
-@media (min-width: 1281px) {
-  /* CSS */
+.hero-cta-primary:hover {
+  background: #5f38e8;
+  border-color: #5f38e8;
+  transform: translateY(-0.08rem);
 }
 
-/* 
-	##Device = Laptops, Desktops
-	##Screen = B/w 1025px to 1280px
-  */
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  /* CSS */
+.hero-cta-secondary {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0.4rem 1rem rgba(15, 23, 42, 0.12);
 }
 
-/* 
-	##Device = Tablets, Ipads (portrait)
-	##Screen = B/w 768px to 1024px
-  */
+.hero-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-0.08rem);
+}
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  /* CSS */
-  .hero-profile img {
-    display: block;
+.hero-cta:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+  .hero-profile {
+    padding: 0 1.25rem;
   }
-  .hero-profile p {
-    display: none;
+
+  .hero-profile-intro {
+    font-size: 1.02rem;
   }
+
   .hero-profile h1 {
-    font-size: 1.5rem;
-  }
-  .hero-profile-tagline {
-    display: none;
-  }
-  .hero-profile-button-light-theme,
-  .hero-profile-button-dark-theme {
-    margin-top: 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 15rem;
-    height: 3.5rem;
-    padding: 1rem 1.5rem;
-    font-size: 0.9rem;
-    left: 0;
+    font-size: clamp(1.85rem, 7vw, 2.5rem);
   }
 
-  .hero-profile span {
+  .hero-profile-typewriter {
+    min-height: 1.8rem;
     font-size: 1rem;
-    background: var(--main-font-color);
-    display: inline-block;
-    padding: 0.5rem;
   }
-}
 
-/* 
-	##Device = Tablets, Ipads (landscape)
-	##Screen = B/w 768px to 1024px
-  */
-
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  /* CSS */
-}
-
-/* 
-	##Device = Low Resolution Tablets, Mobiles (Landscape)
-	##Screen = B/w 481px to 767px
-  */
-
-@media (min-width: 481px) and (max-width: 767px) {
-  /* CSS */
-  .hero-profile img {
-    display: none;
-  }
-  .hero-profile p {
-    display: none;
-  }
-  .hero-profile h1 {
-    font-size: 1.5rem;
-  }
   .hero-profile-tagline {
-    display: none;
-  }
-  .hero-profile-button-light-theme,
-  .hero-profile-button-dark-theme {
-    margin-top: 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 15rem;
-    height: 3.5rem;
-    padding: 1rem 1.5rem;
-    font-size: 0.9rem;
-    left: 0;
+    font-size: 0.98rem;
+    margin-top: 0.85rem;
   }
 
-  .hero-profile span {
-    font-size: 1rem;
-    background: var(--main-font-color);
-    display: inline-block;
-    padding: 0.5rem;
+  .hero-profile-actions {
+    margin-top: 1.25rem;
   }
 }
 
-/* 
-	##Device = Most of the Smartphones Mobiles (Portrait)
-	##Screen = B/w 320px to 479px
-  */
+@media (max-width: 767px) {
+  .hero-cta {
+    min-height: 2.85rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.92rem;
+  }
+
+  .hero-profile-typewriter {
+    min-width: 0;
+    min-height: 1.7rem;
+    font-size: 0.95rem;
+  }
+}
 
 @media (max-width: 480px) {
-  /* CSS */
-  .hero-profile img {
-    display: none;
-  }
-  .hero-profile p {
-    display: none;
-  }
-  .hero-profile h1 {
-    font-size: 1.5rem;
-  }
   .hero-profile-tagline {
-    display: none;
-  }
-  .hero-profile-button-light-theme,
-  .hero-profile-button-dark-theme {
-    margin-top: 1rem;
-    font-size: 0.5rem;
-    height: 1rem;
-    width: 10rem;
-    padding: 0.5rem 0.5rem 1rem 0.5rem;
-    left: 0;
+    font-size: 0.92rem;
   }
 
-  .hero-profile span {
-    font-size: 1rem;
-    background: var(--main-font-color);
-    padding: 0.2rem;
-    display: inline-block;
-    padding: 0.2rem;
+  .hero-cta {
+    min-height: 2.7rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-profile-typewriter {
+    display: none;
+  }
+
+  .hero-cta,
+  .hero-cta-primary:hover,
+  .hero-cta-secondary:hover {
+    transition: none;
+    transform: none;
   }
 }

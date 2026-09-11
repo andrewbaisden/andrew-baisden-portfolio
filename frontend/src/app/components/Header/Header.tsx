@@ -26,7 +26,6 @@ export const Header = ({
       left: 0,
       behavior: 'smooth',
     });
-    console.log('change page');
   };
 
   return (
@@ -36,6 +35,7 @@ export const Header = ({
           <div>
             <a
               href="#home"
+              aria-label="Home"
               rel="noopener noreferrer"
               onClick={() => {
                 handleScroll(homeRef.current);
@@ -50,7 +50,7 @@ export const Header = ({
             </a>
           </div>
           <div className="navigation">
-            <nav>
+            <nav aria-label="Primary">
               <a
                 href="#home"
                 rel="noopener noreferrer"
@@ -107,6 +107,7 @@ export const Header = ({
         <div className="logo-theme-toggle">
           <a
             href="#home"
+            aria-label="Home"
             rel="noopener noreferrer"
             onClick={() => {
               handleScroll(homeRef.current);

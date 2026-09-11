@@ -1,57 +1,49 @@
+'use client';
+
 import Typewriter from 'typewriter-effect';
-import profilePictureHero from '../../img/profile-picture.png';
 import './HeroProfile.css';
-import Image from 'next/image';
 
-import { useTheme } from '../../context/ThemeContext';
+const typewriterPhrases = [
+  'Full-Stack Engineer',
+  'TypeScript Developer',
+  'Product Engineer',
+  'AI Engineer',
+];
 
-interface HeroProfileprops {}
-
-export const HeroProfile = ({ ...props }: HeroProfileprops) => {
-  const { activeTheme } = useTheme();
+export const HeroProfile = () => {
   return (
-    <>
-      <div className="hero-profile-container">
-        <div className="hero-profile">
-          <Image
-            src={profilePictureHero}
-            alt="Andrew Baisden Profile"
-            width={100}
-            height={100}
-          />
-          <p>Hey there I'm,</p>
-          <h1>Andrew Baisden</h1>
+    <div className="hero-profile-container">
+      <div className="hero-profile">
+        <p className="hero-profile-intro">Hey, I&apos;m Andrew.</p>
+        <h1>Full-Stack Engineer</h1>
+        <div className="hero-profile-typewriter" aria-hidden="true">
           <Typewriter
             options={{
-              strings: [
-                'Full Stack Engineer',
-                'Software Engineer and Builder',
-                'React and Next.js Developer',
-                'Building Production Ready Software',
-              ],
+              strings: typewriterPhrases,
               autoStart: true,
               loop: true,
             }}
           />
-          <p className="hero-profile-tagline">
-            I enjoy creating software, websites, apps, and working with AI
-          </p>
+        </div>
+        <p className="hero-profile-tagline">
+          I build modern web applications, developer tools and AI-powered
+          products.
+        </p>
+        <div className="hero-profile-actions">
           <a
-            href="https://linktr.ee/andrewbaisden"
+            className="hero-cta hero-cta-primary"
+            href="https://github.com/andrewbaisden"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ fontWeight: 'bold' }}
-            className={
-              activeTheme === 'light'
-                ? 'hero-profile-button-light-theme'
-                : 'hero-profile-button-dark-theme'
-            }
           >
-            Find me on social media
+            View Projects →
+          </a>
+          <a className="hero-cta hero-cta-secondary" href="/#contact">
+            Contact Me
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

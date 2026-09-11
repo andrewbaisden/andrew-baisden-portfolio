@@ -25,7 +25,7 @@ const Home = () => {
     <>
       <div className="container">
         <div>
-          <div className="hero-container" ref={homeRef}>
+          <div className="hero-container" id="home" ref={homeRef}>
             <Hero />
             <div className="hero-header-container">
               <Header

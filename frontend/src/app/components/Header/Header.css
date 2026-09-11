@@ -2,25 +2,57 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  padding: 2rem;
+  align-items: center;
+  padding: 1.5rem 2rem;
 }
 
 .header-desktop section .navigation {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .header-desktop section nav {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
-  width: 30rem;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.65rem;
+  width: auto;
 }
 
 .header-desktop section nav a {
   color: var(--brand-color-white);
   text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0.08rem 0.45rem rgba(15, 23, 42, 0.28);
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.header-desktop section nav a:hover {
+  color: #e4dcff;
+}
+
+.header-desktop section nav a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+  border-radius: 0.2rem;
+}
+
+.header-desktop .theme-toggle-button,
+.header-mobile-no-menu .theme-toggle-button {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+}
+
+.header-desktop .theme-toggle-button:hover,
+.header-mobile-no-menu .theme-toggle-button:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    0 0 0 3px rgba(255, 255, 255, 0.12);
 }
 
 /*Responsive Burger Menu */
@@ -141,20 +173,30 @@ header input:checked ~ nav > ul > li {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  padding: 0.5rem;
-  width: 10rem;
+  padding: 0;
+  width: auto;
 }
 
 .header-mobile-no-menu {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 0.2rem;
-  background: #7148FC;
+  padding: 0.55rem 1rem;
+  background: #7148fc;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 50;
+  --toggle-width: 3.55rem;
+  --toggle-height: 1.9rem;
+  --toggle-padding: 0.18rem;
+}
+
+.header-mobile-no-menu img {
+  width: 2.35rem;
+  height: 2.35rem;
 }
 
 /* 
