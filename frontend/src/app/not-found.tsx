@@ -71,9 +71,7 @@ export default function NotFound() {
         </section>
       </main>
 
-      <footer className="footer-light-theme">
-        <FooterText />
-      </footer>
+      <FooterText />
     </div>
   );
 }

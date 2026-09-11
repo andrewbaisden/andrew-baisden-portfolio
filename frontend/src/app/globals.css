@@ -131,19 +131,6 @@ main {
   max-width: 100%;
 }
 
-.footer-light-theme {
-  background: var(--main-font-color);
-  padding: 2rem;
-  color: var(--brand-color-white);
-  text-align: center;
-}
-
-.footer-dark-theme {
-  background: var(--brand-color-grey);
-  padding: 2rem;
-  color: var(--main-font-color);
-  text-align: center;
-}
 
 /* 
   ##Device = Desktops

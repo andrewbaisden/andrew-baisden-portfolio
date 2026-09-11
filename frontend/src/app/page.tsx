@@ -101,16 +101,7 @@ const Home = () => {
               </section>
             </div>
           </main>
-          {/* <footer className={activeTheme === 'light' ? 'footer-light-theme' : 'footer-dark-theme'}> */}
-          <footer
-            className={
-              activeTheme === 'light'
-                ? 'footer-light-theme'
-                : 'footer-light-theme'
-            }
-          >
-            <FooterText />
-          </footer>
+          <FooterText />
         </div>
       </div>
     </>
