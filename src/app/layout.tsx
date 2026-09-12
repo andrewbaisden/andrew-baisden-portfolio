@@ -87,8 +87,16 @@ export default function RootLayout({
               }
               try {
                 var savedScene = localStorage.getItem('portfolio-hero-scene');
+                var allowedScenes = {
+                  london: 1,
+                  mountain: 1,
+                  beach: 1,
+                  space: 1,
+                };
                 document.documentElement.dataset.heroScene =
-                  savedScene === 'mountain' ? 'mountain' : 'london';
+                  savedScene && allowedScenes[savedScene]
+                    ? savedScene
+                    : 'london';
               } catch (_) {
                 document.documentElement.dataset.heroScene = 'london';
               }

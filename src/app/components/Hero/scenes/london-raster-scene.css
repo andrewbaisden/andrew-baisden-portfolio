@@ -240,7 +240,7 @@ html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-imag
   position: fixed;
   right: 12px;
   bottom: 12px;
-  z-index: 60;
+  z-index: 10000;
   pointer-events: auto;
   max-width: min(340px, calc(100vw - 24px));
   font: 12px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;

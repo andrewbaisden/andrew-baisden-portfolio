@@ -1,0 +1,68 @@
+/* Shared Beach scene canvas — background + overlays share one cover crop. */
+
+.beach-scene {
+  --beach-scene-w: 2048;
+  --beach-scene-h: 1152;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+  container-name: beach-scene;
+  z-index: 0;
+}
+
+.beach-scene__canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, calc(100cqh * 2048 / 1152));
+  height: max(100%, calc(100cqw * 1152 / 2048));
+  transform: translate(-50%, -50%);
+}
+
+.beach-scene__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/hero/beach/beach-day-master.webp');
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+html[data-theme='dark'] .beach-scene__background {
+  background-image: url('/hero/beach/beach-night-master.webp');
+  background-color: #071018;
+}
+
+.beach-scene__image {
+  object-fit: fill;
+  object-position: center center;
+  transition: opacity 600ms ease-in-out;
+}
+
+.beach-scene__image--day {
+  opacity: 1;
+}
+
+.beach-scene__image--night {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .beach-scene__image--day {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .beach-scene__image--night {
+  opacity: 1;
+}
+
+.beach-scene__guides {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

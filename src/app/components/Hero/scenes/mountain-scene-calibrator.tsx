@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { HeroDevPortal } from '../dev/hero-dev-portal';
 import type { MountainYachtOverrides } from '../vehicles/mountain-yacht';
 import {
   MOUNTAIN_SCENE,
@@ -81,28 +82,29 @@ export function MountainSceneCalibrator({
   const v = { ...defaults(), ...overrides };
 
   return (
-    <aside
-      className="mountain-calibrator"
-      data-ready={ready ? 'true' : 'false'}
-    >
-      <header className="mountain-calibrator__header">
-        <strong>Mountain yacht</strong>
-        <label className="mountain-calibrator__check">
-          <input
-            type="checkbox"
-            checked={showGuides}
-            onChange={(e) => onShowGuidesChange(e.target.checked)}
-          />
-          Guides
-        </label>
-        <button
-          type="button"
-          className="mountain-calibrator__reset"
-          onClick={() => onChange(defaults())}
-        >
-          Reset
-        </button>
-      </header>
+    <HeroDevPortal>
+      <aside
+        className="mountain-calibrator"
+        data-ready={ready ? 'true' : 'false'}
+      >
+        <header className="mountain-calibrator__header">
+          <strong>Mountain yacht</strong>
+          <label className="mountain-calibrator__check">
+            <input
+              type="checkbox"
+              checked={showGuides}
+              onChange={(e) => onShowGuidesChange(e.target.checked)}
+            />
+            Guides
+          </label>
+          <button
+            type="button"
+            className="mountain-calibrator__reset"
+            onClick={() => onChange(defaults())}
+          >
+            Reset
+          </button>
+        </header>
 
       <label>
         Scale {v.scale?.toFixed(2)}
@@ -175,7 +177,8 @@ export function MountainSceneCalibrator({
         Scene {MOUNTAIN_SCENE.width}×{MOUNTAIN_SCENE.height} · lake Y{' '}
         {mountainLakeTrack.y} · round-trip {(v.durationSec ?? 32) * 2}s
       </p>
-    </aside>
+      </aside>
+    </HeroDevPortal>
   );
 }
 

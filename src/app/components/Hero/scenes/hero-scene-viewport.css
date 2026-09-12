@@ -26,12 +26,18 @@
   z-index: 0;
 }
 
-/* Pre-hydration: honour inline-script scene hint to avoid London→Mountain flash */
+/* Pre-hydration: honour inline-script scene hint to avoid London flash */
 .hero-scene-viewport[data-prefs-ready='false'] .hero-scene-layer--london {
   opacity: 1;
 }
 
 html[data-hero-scene='mountain']
+  .hero-scene-viewport[data-prefs-ready='false']
+  .hero-scene-layer--london,
+html[data-hero-scene='beach']
+  .hero-scene-viewport[data-prefs-ready='false']
+  .hero-scene-layer--london,
+html[data-hero-scene='space']
   .hero-scene-viewport[data-prefs-ready='false']
   .hero-scene-layer--london {
   opacity: 0;
@@ -43,8 +49,19 @@ html[data-hero-scene='mountain']
   opacity: 1;
 }
 
-/* Keep Mountain paint available after prefs hydrate (not only pre-hydration).
-   The scene layer also carries a CSS fallback under next/image. */
+html[data-hero-scene='beach']
+  .hero-scene-viewport[data-prefs-ready='false']
+  .hero-scene-layer--beach {
+  opacity: 1;
+}
+
+html[data-hero-scene='space']
+  .hero-scene-viewport[data-prefs-ready='false']
+  .hero-scene-layer--space {
+  opacity: 1;
+}
+
+/* CSS fallback masters for lazy scenes (paint before next/image hydrates). */
 html[data-hero-scene='mountain'] .hero-scene-viewport {
   background-image: url('/hero/mountain/mountain-day-master.webp');
 }
@@ -53,16 +70,20 @@ html[data-theme='dark'][data-hero-scene='mountain'] .hero-scene-viewport {
   background-image: url('/hero/mountain/mountain-night-master.webp');
 }
 
-/* The Mountain component is client-lazy; paint its public master immediately
-   when the inline preference script selected it, avoiding a blank hero. */
-html[data-hero-scene='mountain']
-  .hero-scene-viewport[data-prefs-ready='false'] {
-  background-image: url('/hero/mountain/mountain-day-master.webp');
+html[data-hero-scene='beach'] .hero-scene-viewport {
+  background-image: url('/hero/beach/beach-day-master.webp');
 }
 
-html[data-theme='dark'][data-hero-scene='mountain']
-  .hero-scene-viewport[data-prefs-ready='false'] {
-  background-image: url('/hero/mountain/mountain-night-master.webp');
+html[data-theme='dark'][data-hero-scene='beach'] .hero-scene-viewport {
+  background-image: url('/hero/beach/beach-night-master.webp');
+}
+
+html[data-hero-scene='space'] .hero-scene-viewport {
+  background-image: url('/hero/space/space-day-master.webp');
+}
+
+html[data-theme='dark'][data-hero-scene='space'] .hero-scene-viewport {
+  background-image: url('/hero/space/space-night-master.webp');
 }
 
 @media (prefers-reduced-motion: reduce) {

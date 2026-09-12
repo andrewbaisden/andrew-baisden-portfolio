@@ -20,14 +20,14 @@ export const heroSceneDefinitions: readonly HeroSceneDefinition[] = [
   {
     id: 'beach',
     label: 'Beach',
-    enabled: false,
-    notes: 'Placeholder — not implemented in Phase 5.',
+    enabled: true,
+    notes: 'Day + night raster masters (6688×3764) + sailboat.',
   },
   {
     id: 'space',
     label: 'Space',
-    enabled: false,
-    notes: 'Placeholder — not implemented in Phase 5.',
+    enabled: true,
+    notes: 'Day + night raster masters (6688×3764) + spacecraft.',
   },
 ] as const;
 
@@ -56,3 +56,25 @@ export function getHeroSceneDefinition(
 ): HeroSceneDefinition | undefined {
   return heroSceneDefinitions.find((scene) => scene.id === id);
 }
+
+/** Public CSS-fallback / idle-preload masters (2560px). */
+export const heroScenePublicMasters: Record<
+  Exclude<HeroSceneId, 'london'>,
+  { light: string; dark: string; preloadKey: string }
+> = {
+  mountain: {
+    light: '/hero/mountain/mountain-day-master.webp',
+    dark: '/hero/mountain/mountain-night-master.webp',
+    preloadKey: 'mountain',
+  },
+  beach: {
+    light: '/hero/beach/beach-day-master.webp',
+    dark: '/hero/beach/beach-night-master.webp',
+    preloadKey: 'beach',
+  },
+  space: {
+    light: '/hero/space/space-day-master.webp',
+    dark: '/hero/space/space-night-master.webp',
+    preloadKey: 'space',
+  },
+};

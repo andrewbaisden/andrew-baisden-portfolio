@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../../../context/ThemeContext';
 import {
+  useHeroSceneIdlePreload,
   useHeroScenePreferences,
-  useMountainIdlePreload,
 } from '../hooks/use-hero-scene-preferences';
 import { resolveHeroSceneId } from './hero-scene-registry';
 import { LondonRasterScene } from './london-raster-scene';
@@ -17,6 +17,22 @@ const MountainRasterScene = dynamic(
     import('./mountain-raster-scene').then((mod) => mod.MountainRasterScene),
   { ssr: false },
 );
+
+const BeachRasterScene = dynamic(
+  () => import('./beach-raster-scene').then((mod) => mod.BeachRasterScene),
+  { ssr: false },
+);
+
+const SpaceRasterScene = dynamic(
+  () => import('./space-raster-scene').then((mod) => mod.SpaceRasterScene),
+  { ssr: false },
+);
+
+const LAZY_SCENES: readonly HeroSceneId[] = [
+  'mountain',
+  'beach',
+  'space',
+];
 
 function readEagerScene(): HeroSceneId {
   if (typeof document === 'undefined') {
@@ -41,15 +57,15 @@ export function HeroSceneViewport() {
   const prevSceneRef = useRef<HeroSceneId>('london');
   const didInitRef = useRef(false);
 
-  useMountainIdlePreload(scene);
+  useHeroSceneIdlePreload(scene);
 
-  // Eager-mount Mountain when the inline script already selected it (avoids flash).
+  // Eager-mount lazy scenes when the inline script already selected them.
   useEffect(() => {
     const eager = readEagerScene();
-    if (eager === 'mountain') {
-      setMountedScenes((prev) => new Set(prev).add('mountain'));
-      setVisibleScene('mountain');
-      prevSceneRef.current = 'mountain';
+    if (LAZY_SCENES.includes(eager)) {
+      setMountedScenes((prev) => new Set(prev).add(eager));
+      setVisibleScene(eager);
+      prevSceneRef.current = eager;
     }
   }, []);
 
@@ -95,8 +111,12 @@ export function HeroSceneViewport() {
 
   const londonMounted = mountedScenes.has('london');
   const mountainMounted = mountedScenes.has('mountain');
+  const beachMounted = mountedScenes.has('beach');
+  const spaceMounted = mountedScenes.has('space');
   const londonActive = visibleScene === 'london';
   const mountainActive = visibleScene === 'mountain';
+  const beachActive = visibleScene === 'beach';
+  const spaceActive = visibleScene === 'space';
 
   return (
     <div
@@ -134,6 +154,40 @@ export function HeroSceneViewport() {
           <MountainRasterScene
             motionEnabled={motionEnabled}
             isActive={mountainActive}
+            theme={theme}
+          />
+        </div>
+      ) : null}
+
+      {beachMounted ? (
+        <div
+          className={[
+            'hero-scene-layer',
+            'hero-scene-layer--beach',
+            beachActive ? 'is-active' : 'is-inactive',
+          ].join(' ')}
+          data-scene-layer="beach"
+        >
+          <BeachRasterScene
+            motionEnabled={motionEnabled}
+            isActive={beachActive}
+            theme={theme}
+          />
+        </div>
+      ) : null}
+
+      {spaceMounted ? (
+        <div
+          className={[
+            'hero-scene-layer',
+            'hero-scene-layer--space',
+            spaceActive ? 'is-active' : 'is-inactive',
+          ].join(' ')}
+          data-scene-layer="space"
+        >
+          <SpaceRasterScene
+            motionEnabled={motionEnabled}
+            isActive={spaceActive}
             theme={theme}
           />
         </div>

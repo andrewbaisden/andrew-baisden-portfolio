@@ -14,6 +14,7 @@ import {
 import { useReducedMotion } from '../animations/use-reduced-motion';
 import {
   enabledHeroScenes,
+  heroScenePublicMasters,
   resolveHeroSceneId,
 } from '../scenes/hero-scene-registry';
 import {
@@ -165,26 +166,34 @@ export function useHeroScenePreferences(): HeroScenePreferencesValue {
   return ctx;
 }
 
-/** Idle-time preload for Mountain day/night masters (skips if already selected). */
-export function useMountainIdlePreload(activeScene: HeroSceneId) {
+/**
+ * Idle-time preload for the next likely raster scene (one master only).
+ * Does not preload all day/night pairs — protects LCP.
+ */
+export function useHeroSceneIdlePreload(activeScene: HeroSceneId) {
   useEffect(() => {
-    if (activeScene === 'mountain') {
+    const order: HeroSceneId[] = ['london', 'mountain', 'beach', 'space'];
+    const idx = order.indexOf(activeScene);
+    const next = order[(idx + 1) % order.length];
+    if (!next || next === 'london' || next === activeScene) {
+      return;
+    }
+
+    const masters = heroScenePublicMasters[next];
+    if (!masters) {
       return;
     }
 
     const theme =
       document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-    const href =
-      theme === 'dark'
-        ? '/hero/mountain/mountain-night-master.webp'
-        : '/hero/mountain/mountain-day-master.webp';
+    const href = theme === 'dark' ? masters.dark : masters.light;
     let cancelled = false;
     let idleId: number | undefined;
     let timeoutId: number | undefined;
 
     const preload = () => {
       if (cancelled) return;
-      const key = theme === 'dark' ? 'mountain-night' : 'mountain-day';
+      const key = `${masters.preloadKey}-${theme}`;
       const existing = document.querySelector(
         `link[data-hero-preload="${key}"]`,
       );
@@ -224,3 +233,6 @@ export function useMountainIdlePreload(activeScene: HeroSceneId) {
     };
   }, [activeScene]);
 }
+
+/** @deprecated Prefer useHeroSceneIdlePreload */
+export const useMountainIdlePreload = useHeroSceneIdlePreload;

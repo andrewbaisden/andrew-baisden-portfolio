@@ -1,0 +1,299 @@
+/* Space ambient environment — tranquil / atmospheric, not arcade. */
+
+.space-env {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  color: rgba(230, 240, 255, 0.85);
+}
+
+.space-env__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.space-env__svg--sky {
+  z-index: 1;
+}
+
+/* ——— Sparse star twinkle (opacity only) ——— */
+.space-env__stars {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.space-env__star {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: space-star-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: opacity;
+}
+
+.space-env__star--a {
+  animation-duration: 5.5s;
+}
+
+.space-env__star--b {
+  animation-duration: 7.8s;
+  animation-delay: -2.2s;
+}
+
+.space-env__star--c {
+  animation-duration: 9.4s;
+  animation-delay: -4.1s;
+}
+
+@keyframes space-star-twinkle {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 0.85;
+  }
+}
+
+/* ——— Occasional shooting star ——— */
+.space-env__shooting-star {
+  color: rgba(220, 235, 255, 0.9);
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-name: space-shooting-star;
+  animation-duration: 120s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes space-shooting-star {
+  0%,
+  72% {
+    opacity: 0;
+    transform: translate(1480px, 80px);
+  }
+  73% {
+    opacity: 0.9;
+  }
+  76% {
+    opacity: 0.15;
+    transform: translate(1180px, 160px);
+  }
+  77%,
+  100% {
+    opacity: 0;
+    transform: translate(1120px, 175px);
+  }
+}
+
+/* ——— Spacecraft ——— */
+.space-spacecraft {
+  --craft-scale: 1;
+  --engine-glow: 0.55;
+  position: absolute;
+  z-index: 3;
+  line-height: 0;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.space-spacecraft--animated {
+  left: 0;
+  top: 0;
+  will-change: transform, opacity;
+}
+
+.space-spacecraft__image {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 40, 80, 0.2));
+}
+
+.space-spacecraft__engine-glow {
+  position: absolute;
+  z-index: 1;
+  left: -2%;
+  top: 42%;
+  width: 14%;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(80, 220, 255, calc(var(--engine-glow) * 0.85)) 0%,
+    rgba(40, 160, 230, calc(var(--engine-glow) * 0.35)) 45%,
+    rgba(40, 160, 230, 0) 72%
+  );
+  filter: blur(2px);
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.space-spacecraft__nav {
+  position: absolute;
+  z-index: 3;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation-name: space-nav-pulse;
+  animation-duration: 3.6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.space-spacecraft__nav--cyan {
+  right: 22%;
+  top: 38%;
+  background: rgba(120, 230, 255, 0.9);
+  box-shadow: 0 0 4px 1px rgba(80, 210, 255, 0.45);
+}
+
+.space-spacecraft__nav--amber {
+  left: 38%;
+  bottom: 28%;
+  background: rgba(255, 170, 80, 0.85);
+  box-shadow: 0 0 3px 1px rgba(255, 150, 60, 0.35);
+  animation-delay: -1.4s;
+}
+
+@keyframes space-nav-pulse {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 0.95;
+  }
+}
+
+html[data-theme='dark'] .space-env__stars {
+  color: rgba(220, 235, 255, 0.95);
+  opacity: 1.15;
+}
+
+html[data-theme='dark'] .space-spacecraft__image {
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5)) brightness(0.96);
+}
+
+html[data-theme='dark'] .space-spacecraft__engine-glow {
+  opacity: 1;
+}
+
+.space-env__dark-veil {
+  display: none;
+}
+
+.space-scene[data-ambient-motion='paused'] .space-env__star,
+.space-scene[data-ambient-motion='paused'] .space-env__shooting-star,
+.space-scene[data-ambient-motion='paused'] .space-spacecraft__nav,
+.space-env[data-motion='off'] .space-env__star,
+.space-env[data-motion='off'] .space-env__shooting-star,
+.space-env[data-motion='off'] .space-spacecraft__nav {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .space-env__star,
+  .space-env__shooting-star,
+  .space-spacecraft__nav {
+    animation: none !important;
+  }
+
+  .space-env__star {
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 900px) {
+  .space-spacecraft {
+    width: 11% !important;
+  }
+
+  .space-env__shooting-star {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .space-spacecraft {
+    width: 14% !important;
+  }
+
+  .space-env__stars {
+    opacity: 0.65;
+  }
+}
+
+/* Dev calibrator */
+.space-calibrator {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 10000;
+  width: min(280px, calc(100vw - 24px));
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(12, 18, 28, 0.88);
+  color: #e8eef5;
+  font: 12px/1.35 ui-sans-serif, system-ui, sans-serif;
+  pointer-events: auto;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.space-calibrator__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.space-calibrator__header strong {
+  flex: 1;
+  font-size: 12px;
+}
+
+.space-calibrator__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.space-calibrator__reset {
+  appearance: none;
+  border: 0;
+  border-radius: 6px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.space-calibrator label {
+  display: grid;
+  gap: 2px;
+  margin: 0 0 6px;
+}
+
+.space-calibrator input[type='range'] {
+  width: 100%;
+}
+
+.space-calibrator__meta {
+  margin: 6px 0 0;
+  opacity: 0.7;
+  font-size: 11px;
+}

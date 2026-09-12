@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { HeroDevPortal } from '../dev/hero-dev-portal';
 import {
   LONDON_TRANSPORT_CYCLE_SEC,
   resolveAllTransportPaths,
@@ -156,25 +157,23 @@ export function LondonSceneCalibrator({
   }
 
   return (
-    <aside
-      className="london-scene-calibrator"
-      style={{ '--calibrator-z': 40 } as CSSProperties}
-    >
-      <button
-        type="button"
-        className="london-scene-calibrator__toggle"
-        onClick={() => setOpen((v) => !v)}
-      >
-        {open ? 'Hide' : 'Show'} London vehicle calibration
-      </button>
+    <HeroDevPortal>
+      <aside className="london-scene-calibrator">
+        <button
+          type="button"
+          className="london-scene-calibrator__toggle"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? 'Hide' : 'Show'} London vehicle calibration
+        </button>
 
-      {open ? (
-        <div className="london-scene-calibrator__panel">
-          <p className="london-scene-calibrator__hint">
-            Dev-only · cycle {LONDON_TRANSPORT_CYCLE_SEC}s · scale {SCALE_MIN}–
-            {SCALE_MAX}.
-            {reducedMotion ? ' Reduced motion: static composition.' : ''}
-          </p>
+        {open ? (
+          <div className="london-scene-calibrator__panel">
+            <p className="london-scene-calibrator__hint">
+              Dev-only · cycle {LONDON_TRANSPORT_CYCLE_SEC}s · scale {SCALE_MIN}–
+              {SCALE_MAX}.
+              {reducedMotion ? ' Reduced motion: static composition.' : ''}
+            </p>
 
           <fieldset className="london-scene-calibrator__group">
             <legend>Traffic debug</legend>
@@ -424,7 +423,8 @@ export function LondonSceneCalibrator({
           <p className="london-scene-calibrator__summary">{summary}</p>
         </div>
       ) : null}
-    </aside>
+      </aside>
+    </HeroDevPortal>
   );
 }
 

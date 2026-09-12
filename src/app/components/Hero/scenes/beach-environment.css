@@ -1,0 +1,422 @@
+/* Beach ambient environment — breezy / tropical, restrained. */
+
+.beach-env {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.beach-env__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.beach-env__svg--sky {
+  z-index: 1;
+}
+
+/* ——— Clouds (70–140s) ——— */
+.beach-env__clouds {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.beach-env__cloud {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.beach-env__cloud--far {
+  animation-name: beach-cloud-drift-far;
+  animation-duration: 128s;
+  opacity: 0.45;
+}
+
+.beach-env__cloud--mid {
+  animation-name: beach-cloud-drift-mid;
+  animation-duration: 96s;
+  opacity: 0.4;
+}
+
+.beach-env__cloud--near {
+  animation-name: beach-cloud-drift-near;
+  animation-duration: 78s;
+  opacity: 0.5;
+}
+
+@keyframes beach-cloud-drift-far {
+  from {
+    transform: translateX(-4%);
+  }
+  to {
+    transform: translateX(5%);
+  }
+}
+
+@keyframes beach-cloud-drift-mid {
+  from {
+    transform: translateX(5%);
+  }
+  to {
+    transform: translateX(-6%);
+  }
+}
+
+@keyframes beach-cloud-drift-near {
+  from {
+    transform: translateX(3%);
+  }
+  to {
+    transform: translateX(-5%);
+  }
+}
+
+/* ——— Birds (occasional) ——— */
+.beach-env__birds {
+  color: #3a4a58;
+}
+
+.beach-env__bird-flock {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.beach-env__bird-flock--a {
+  animation-name: beach-bird-cross;
+  animation-duration: 110s;
+}
+
+@keyframes beach-bird-cross {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translate(1700px, 200px);
+  }
+  14% {
+    opacity: 0.7;
+  }
+  28% {
+    opacity: 0.7;
+    transform: translate(980px, 150px);
+  }
+  32%,
+  100% {
+    opacity: 0;
+    transform: translate(620px, 120px);
+  }
+}
+
+/* ——— Ocean highlight overlays ——— */
+.beach-env__ocean {
+  --ocean-opacity: 0.14;
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 48% / 36%;
+  mask-image: radial-gradient(
+    ellipse 75% 60% at 50% 45%,
+    #000 15%,
+    transparent 78%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 60% at 50% 45%,
+    #000 15%,
+    transparent 78%
+  );
+  pointer-events: none;
+  opacity: var(--ocean-opacity);
+}
+
+.beach-env__ocean-wave {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    95deg,
+    transparent 15%,
+    rgba(255, 255, 255, 0.55) 48%,
+    transparent 78%
+  );
+  background-size: 240% 100%;
+  animation-name: beach-ocean-wave;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: background-position, opacity;
+}
+
+.beach-env__ocean-wave--a {
+  animation-duration: 18s;
+  opacity: 0.55;
+}
+
+.beach-env__ocean-wave--b {
+  animation-duration: 26s;
+  animation-delay: -9s;
+  opacity: 0.35;
+  transform: scaleY(-1) translateY(8%);
+}
+
+.beach-env__ocean-wave--c {
+  animation-duration: 34s;
+  animation-delay: -14s;
+  opacity: 0.25;
+}
+
+@keyframes beach-ocean-wave {
+  0%,
+  100% {
+    background-position: 8% 0;
+    opacity: 0.35;
+  }
+  50% {
+    background-position: 88% 0;
+    opacity: 0.65;
+  }
+}
+
+/* ——— Shore foam ——— */
+.beach-env__foam {
+  position: absolute;
+  z-index: 2;
+  border-radius: 50% / 70%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.22) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0.35;
+  animation-name: beach-foam-breathe;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+@keyframes beach-foam-breathe {
+  from {
+    opacity: 0.22;
+    transform: translateX(-0.4%) translateY(0);
+  }
+  to {
+    opacity: 0.4;
+    transform: translateX(0.5%) translateY(4%);
+  }
+}
+
+/* ——— Sailboat ——— */
+.beach-sailboat {
+  --sailboat-scale: 1;
+  --wake-opacity: 0.22;
+  position: absolute;
+  z-index: 3;
+  line-height: 0;
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+
+.beach-sailboat--animated {
+  left: 0;
+  will-change: transform, opacity;
+}
+
+.beach-sailboat__image {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 5px rgba(20, 50, 70, 0.16));
+}
+
+.beach-sailboat__wake {
+  position: absolute;
+  z-index: 1;
+  right: 78%;
+  bottom: 1%;
+  width: 48%;
+  height: 12%;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(200, 230, 240, calc(var(--wake-opacity) * 0.5)) 40%,
+    rgba(255, 255, 255, var(--wake-opacity)) 72%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(1.2px);
+  transform: scaleX(1.2) scaleY(0.45);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* Tiny night nav light — only visible in dark theme */
+.beach-sailboat__nav-light {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  right: 18%;
+  top: 58%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 210, 140, 0.85);
+  box-shadow: 0 0 4px 1px rgba(255, 190, 100, 0.45);
+  pointer-events: none;
+}
+
+html[data-theme='dark'] .beach-sailboat__nav-light {
+  display: block;
+  opacity: 0.7;
+}
+
+html[data-theme='dark'] .beach-env__clouds {
+  color: rgba(180, 200, 230, 0.35);
+  opacity: 0.45;
+}
+
+html[data-theme='dark'] .beach-env__birds {
+  color: rgba(170, 190, 210, 0.45);
+}
+
+html[data-theme='dark'] .beach-env__ocean {
+  opacity: calc(var(--ocean-opacity) * 0.55);
+}
+
+html[data-theme='dark'] .beach-env__foam {
+  opacity: 0.18;
+}
+
+html[data-theme='dark'] .beach-sailboat__image {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45)) brightness(0.94)
+    saturate(0.92);
+}
+
+html[data-theme='dark'] .beach-sailboat__wake {
+  opacity: 0.4;
+}
+
+.beach-env__dark-veil {
+  display: none;
+}
+
+.beach-scene[data-ambient-motion='paused'] .beach-env__cloud,
+.beach-scene[data-ambient-motion='paused'] .beach-env__bird-flock,
+.beach-scene[data-ambient-motion='paused'] .beach-env__ocean-wave,
+.beach-scene[data-ambient-motion='paused'] .beach-env__foam,
+.beach-env[data-motion='off'] .beach-env__cloud,
+.beach-env[data-motion='off'] .beach-env__bird-flock,
+.beach-env[data-motion='off'] .beach-env__ocean-wave,
+.beach-env[data-motion='off'] .beach-env__foam {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beach-env__cloud,
+  .beach-env__bird-flock,
+  .beach-env__ocean-wave,
+  .beach-env__foam {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .beach-sailboat {
+    width: 9% !important;
+  }
+
+  .beach-env__birds {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .beach-sailboat {
+    width: 12% !important;
+  }
+
+  .beach-env__clouds {
+    opacity: 0.45;
+  }
+
+  .beach-env__ocean {
+    opacity: calc(var(--ocean-opacity) * 0.7);
+  }
+}
+
+/* Dev calibrator */
+.beach-calibrator {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 10000;
+  width: min(280px, calc(100vw - 24px));
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(12, 18, 28, 0.88);
+  color: #e8eef5;
+  font: 12px/1.35 ui-sans-serif, system-ui, sans-serif;
+  pointer-events: auto;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.beach-calibrator__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.beach-calibrator__header strong {
+  flex: 1;
+  font-size: 12px;
+}
+
+.beach-calibrator__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.beach-calibrator__reset {
+  appearance: none;
+  border: 0;
+  border-radius: 6px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.beach-calibrator label {
+  display: grid;
+  gap: 2px;
+  margin: 0 0 6px;
+}
+
+.beach-calibrator input[type='range'] {
+  width: 100%;
+}
+
+.beach-calibrator__meta {
+  margin: 6px 0 0;
+  opacity: 0.7;
+  font-size: 11px;
+}
