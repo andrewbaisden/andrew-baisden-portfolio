@@ -1,13 +1,17 @@
 # Portfolio website
 
-![Portfolio Website](./img/portfolio.png 'Portfolio Website')
+The new and improved hero section is fully animated, moving vehicles, ambient lighting, and day/night themes bring the London scene to life
+
+![London hero — day](./img/london-hero-day.png 'London hero — day')
+
+![London hero — night](./img/london-hero-night.png 'London hero — night')
 
 ## Getting Started
 
-1. Download/clone this repo
+1. Download/clone/fork this repo
 2. Install the dependencies with your package manager of choice:
 
-```bash
+```shell
 npm install
 # or
 pnpm install
@@ -19,7 +23,7 @@ bun install
 
 3. Run the development server:
 
-```bash
+```shell
 npm run dev
 # or
 pnpm dev
@@ -30,3 +34,7 @@ bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Previous hero design
+
+![Previous hero design](./img/portfolio-old-hero-design.png 'Previous hero design')

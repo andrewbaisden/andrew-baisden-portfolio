@@ -24,7 +24,16 @@
 	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
 }
 
+/* Icon wrappers: kill inline baseline gap that pushes glyphs toward the top */
+.theme-toggle-button > span[aria-hidden='true'] {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 0;
+}
+
 .theme-toggle-button svg {
+	display: block;
 	width: 0.85em;
 	height: 0.85em;
 }

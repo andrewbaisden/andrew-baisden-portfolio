@@ -1,0 +1,226 @@
+.preview {
+  min-height: 100vh;
+  padding: clamp(2rem, 5vw, 5rem);
+  color: #18222a;
+  background: #e8edf0;
+}
+
+.header,
+.section {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.header h1,
+.section h2,
+.scaleCard h3,
+.surface h3 {
+  margin: 0;
+}
+
+.header h1 {
+  margin-block: 0.35rem 0.75rem;
+  font-size: clamp(2.4rem, 6vw, 5.4rem);
+  line-height: 0.95;
+}
+
+.header p {
+  max-width: 68ch;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.eyebrow {
+  color: #3b6d76;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.scaleGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.scaleCard,
+.surface {
+  overflow: hidden;
+  border: 1px solid rgba(28, 44, 55, 0.14);
+  border-radius: 1rem;
+  background: #f8faf9;
+  box-shadow: 0 12px 30px rgba(31, 45, 53, 0.08);
+}
+
+.scaleCard h3,
+.surface h3 {
+  padding: 0.8rem 1rem;
+  color: #59707b;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scaleStage {
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.scaleFleet {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  align-items: end;
+  gap: calc(2rem * var(--preview-scale));
+}
+
+.scaleFleet figure {
+  display: grid;
+  width: calc(13.125rem * var(--preview-scale));
+  min-width: calc(6rem * var(--preview-scale));
+  margin: 0;
+  place-items: end center;
+}
+
+.scaleFleet figure:first-child {
+  width: calc(26.25rem * var(--preview-scale));
+}
+
+.scaleFleet svg {
+  transform: scale(var(--preview-scale));
+  transform-origin: bottom center;
+}
+
+.scaleFleet figcaption {
+  margin-top: calc(0.7rem * var(--preview-scale));
+  color: #657680;
+  font-size: max(0.55rem, calc(0.72rem * var(--preview-scale)));
+}
+
+.scaleFleet figure > span {
+  display: none;
+}
+
+.surfaceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.surface {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.surface h3 {
+  grid-column: 1 / -1;
+  padding: 0 0 0.5rem;
+}
+
+.surface :global(.vehicle-asset--double-decker-bus) {
+  grid-column: span 2;
+}
+
+.surface :global(.vehicle-asset--tube-train) {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+}
+
+.surfaceLight {
+  background: #f9faf7;
+}
+
+.surfaceDark {
+  color: #e8eef1;
+  background: #162431;
+}
+
+.surfaceDark h3 {
+  color: #9eb1bd;
+}
+
+.londonStage {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(28, 44, 55, 0.14);
+  border-radius: 1rem;
+  background: #9fc8d5;
+  box-shadow: 0 18px 40px rgba(31, 45, 53, 0.14);
+}
+
+.londonImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.sceneVehicle {
+  position: absolute;
+  z-index: 2;
+  filter: saturate(0.92);
+}
+
+.sceneBus {
+  top: 58%;
+  left: 8%;
+  width: 19%;
+}
+
+.sceneCab {
+  top: 62%;
+  left: 50%;
+  width: 10.5%;
+}
+
+.sceneCarOne {
+  top: 66%;
+  left: 66%;
+  width: 9%;
+}
+
+.sceneCarTwo {
+  top: 60%;
+  left: 78%;
+  width: 10%;
+  transform: scaleX(-1);
+}
+
+.sceneTrain {
+  bottom: 5%;
+  left: 12%;
+  width: 75%;
+}
+
+@media (max-width: 760px) {
+  .preview {
+    padding: 1.5rem;
+  }
+
+  .surfaceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .londonStage {
+    aspect-ratio: 4 / 3;
+  }
+
+  .londonImage {
+    object-position: 52% center;
+  }
+}

@@ -1,0 +1,149 @@
+/* Night-only vehicle light overlays — inherit vehicle transform. */
+
+.vehicle-light-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease-in-out;
+  z-index: 2;
+}
+
+html[data-theme='dark'] .vehicle-light-overlay,
+.london-scene[data-force-night='true'] .vehicle-light-overlay {
+  opacity: 1;
+}
+
+.vehicle-light {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  opacity: calc(var(--light-intensity, 0.7) * 1);
+  transform: translate(-50%, -50%);
+}
+
+.vehicle-light--ellipse {
+  border-radius: 50%;
+}
+
+.vehicle-light--rect {
+  border-radius: 2px;
+}
+
+.vehicle-light--strip {
+  border-radius: 999px;
+}
+
+.vehicle-light--headlight {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 250, 230, 0.95) 0%,
+    rgba(255, 235, 180, 0.55) 40%,
+    rgba(255, 220, 140, 0.15) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(255, 240, 200, 0.35);
+  mix-blend-mode: screen;
+}
+
+.vehicle-light--taillight {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 90, 70, 0.85) 0%,
+    rgba(220, 40, 40, 0.75) 55%,
+    rgba(180, 20, 30, 0.55) 100%
+  );
+  box-shadow: 0 0 4px rgba(255, 60, 50, 0.35);
+  mix-blend-mode: screen;
+}
+
+.vehicle-light--interior,
+.vehicle-light--window {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 230, 170, 0.35) 0%,
+    rgba(255, 210, 130, 0.18) 60%,
+    rgba(255, 200, 110, 0.08) 100%
+  );
+  border-radius: 2px;
+  mix-blend-mode: soft-light;
+  transform: none;
+}
+
+.vehicle-light--roof {
+  background: rgba(255, 180, 70, 0.7);
+  border-radius: 2px;
+  box-shadow: 0 0 3px rgba(255, 170, 60, 0.35);
+  mix-blend-mode: screen;
+}
+
+.vehicle-light--sensor {
+  background: radial-gradient(
+    circle,
+    rgba(90, 150, 220, 0.35) 0%,
+    rgba(60, 120, 200, 0.12) 55%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+}
+
+.vehicle-light--running {
+  background: rgba(255, 245, 210, 0.75);
+  border-radius: 2px;
+  box-shadow: 0 0 3px rgba(255, 230, 160, 0.3);
+  mix-blend-mode: screen;
+}
+
+/* Extremely subtle road interaction under headlights / tails */
+.vehicle-light--road-front {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 245, 210, 0.35) 0%,
+    rgba(255, 230, 170, 0.1) 45%,
+    transparent 75%
+  );
+  mix-blend-mode: soft-light;
+  filter: none;
+}
+
+.vehicle-light--road-rear {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 70, 60, 0.22) 0%,
+    rgba(200, 30, 30, 0.08) 45%,
+    transparent 75%
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* Tube: slightly stronger windows at night; body stays darker via image filter */
+.vehicle-light-overlay--tube .vehicle-light--window {
+  opacity: calc(var(--light-intensity, 0.35) * 1.05);
+}
+
+.vehicle-light-overlay--tube .vehicle-light--road-front {
+  /* faint platform reflection under train */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 220, 150, 0.2) 0%,
+    rgba(200, 180, 120, 0.06) 50%,
+    transparent 75%
+  );
+}
+
+/* Dev anchors */
+.vehicle-light-overlay--debug .vehicle-light {
+  outline: 1px solid rgba(0, 255, 200, 0.85);
+  outline-offset: 1px;
+  opacity: 1 !important;
+}
+
+.vehicle-light-overlay--debug {
+  opacity: 1 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vehicle-light-overlay {
+    transition-duration: 0.01ms;
+  }
+}

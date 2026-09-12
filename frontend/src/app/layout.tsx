@@ -73,7 +73,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var savedTheme = localStorage.getItem('theme');
+                document.documentElement.dataset.theme =
+                  savedTheme === 'dark' ? 'dark' : 'light';
+              } catch (_) {
+                document.documentElement.dataset.theme = 'light';
+              }
+            `,
+          }}
+        />
+      </head>
       <body suppressHydrationWarning>
         <ThemeContextProvider>{children}</ThemeContextProvider>
       </body>

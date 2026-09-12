@@ -1,0 +1,551 @@
+/* London ambient environment — secondary to transport motion. */
+
+.london-env {
+  --ambient-rate: 1;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.london-env__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.london-env__svg--sky {
+  z-index: 1;
+}
+
+/* ——— Clouds ——— */
+.london-env__clouds {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+html[data-theme='dark'] .london-env__clouds {
+  color: rgba(160, 185, 210, 0.28);
+}
+
+.london-env__cloud {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: calc(90s / var(--ambient-rate, 1));
+}
+
+.london-env__cloud--far {
+  animation-name: london-cloud-drift-far;
+  animation-duration: calc(110s / var(--ambient-rate, 1));
+  opacity: 0.55;
+}
+
+.london-env__cloud--near {
+  animation-name: london-cloud-drift-near;
+  animation-duration: calc(72s / var(--ambient-rate, 1));
+  opacity: 0.7;
+}
+
+@keyframes london-cloud-drift-far {
+  from {
+    transform: translateX(-4%);
+  }
+  to {
+    transform: translateX(8%);
+  }
+}
+
+@keyframes london-cloud-drift-near {
+  from {
+    transform: translateX(6%);
+  }
+  to {
+    transform: translateX(-10%);
+  }
+}
+
+/* ——— Birds (rare crossings) ——— */
+.london-env__birds {
+  color: #5d7d92;
+}
+
+html[data-theme='dark'] .london-env__birds {
+  color: #8aa3b4;
+}
+
+.london-env__bird-flock {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.london-env__bird-flock--a {
+  animation-name: london-bird-cross-a;
+  animation-duration: calc(96s / var(--ambient-rate, 1));
+}
+
+.london-env__bird-flock--b {
+  animation-name: london-bird-cross-b;
+  animation-duration: calc(118s / var(--ambient-rate, 1));
+  animation-delay: calc(-40s / var(--ambient-rate, 1));
+}
+
+@keyframes london-bird-cross-a {
+  0%,
+  78% {
+    transform: translate(2100px, 200px);
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.55;
+  }
+  92% {
+    opacity: 0.5;
+    transform: translate(900px, 170px) translateY(-6px);
+  }
+  96%,
+  100% {
+    transform: translate(400px, 190px);
+    opacity: 0;
+  }
+}
+
+@keyframes london-bird-cross-b {
+  0%,
+  82% {
+    transform: translate(-80px, 230px);
+    opacity: 0;
+  }
+  84% {
+    opacity: 0.45;
+  }
+  94% {
+    opacity: 0.4;
+    transform: translate(900px, 210px) translateY(5px);
+  }
+  98%,
+  100% {
+    transform: translate(1700px, 240px);
+    opacity: 0;
+  }
+}
+
+/* ——— Foliage ——— */
+.london-env__foliage {
+  color: #3f7a3a;
+}
+
+html[data-theme='dark'] .london-env__foliage {
+  color: #2a5230;
+  opacity: 0.55;
+}
+
+.london-env__foliage-sway {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: london-foliage-sway calc(6.5s / var(--ambient-rate, 1)) ease-in-out
+    infinite alternate;
+}
+
+.london-env__foliage-sway--right {
+  animation-duration: calc(7.8s / var(--ambient-rate, 1));
+  animation-delay: -2s;
+  transform-origin: 40% 100%;
+}
+
+@keyframes london-foliage-sway {
+  from {
+    transform: rotate(-1.1deg) scale(1);
+  }
+  to {
+    transform: rotate(1.2deg) scale(1.01);
+  }
+}
+
+/* ——— River ——— */
+.london-env__river {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.london-env__river-shimmer {
+  position: absolute;
+  inset: 18% 0 auto;
+  height: 28%;
+  opacity: 0.14;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 230, 240, 0.45) 22%,
+    transparent 40%,
+    rgba(180, 220, 235, 0.35) 62%,
+    transparent 82%,
+    rgba(210, 235, 245, 0.3) 100%
+  );
+  background-size: 220% 100%;
+  animation: london-river-shimmer calc(28s / var(--ambient-rate, 1)) linear
+    infinite;
+  mix-blend-mode: soft-light;
+}
+
+.london-env__river-shimmer--b {
+  inset: 42% 0 auto;
+  height: 22%;
+  opacity: 0.1;
+  animation-duration: calc(36s / var(--ambient-rate, 1));
+  animation-direction: reverse;
+}
+
+.london-env__river-shimmer--c {
+  inset: 58% 0 auto;
+  height: 16%;
+  opacity: 0.08;
+  animation-duration: calc(44s / var(--ambient-rate, 1));
+}
+
+html[data-theme='dark'] .london-env__river-shimmer {
+  opacity: 0.08;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(120, 160, 190, 0.35) 28%,
+    transparent 48%,
+    rgba(90, 130, 170, 0.28) 70%,
+    transparent 100%
+  );
+}
+
+@keyframes london-river-shimmer {
+  from {
+    background-position: 0% 0;
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.16;
+  }
+  to {
+    background-position: 100% 0;
+    opacity: 0.1;
+  }
+}
+
+.london-env__river-night {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 600ms ease-in-out;
+}
+
+html[data-theme='dark'] .london-env__river-night,
+.london-env--force-night .london-env__river-night {
+  opacity: 1;
+}
+
+.london-env__river-reflection {
+  position: absolute;
+  top: 12%;
+  width: 0.35%;
+  height: 70%;
+  border-radius: 40%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 220, 140, 0.35) 0%,
+    rgba(255, 200, 100, 0.12) 55%,
+    transparent 100%
+  );
+  opacity: 0.45;
+  animation: london-reflection-drift calc(18s / var(--ambient-rate, 1))
+    ease-in-out infinite alternate;
+}
+
+.london-env__river-reflection--1 {
+  left: 42%;
+}
+.london-env__river-reflection--2 {
+  left: 48%;
+  animation-delay: -4s;
+  opacity: 0.35;
+}
+.london-env__river-reflection--3 {
+  left: 55%;
+  animation-delay: -9s;
+  height: 55%;
+}
+.london-env__river-reflection--4 {
+  left: 61%;
+  animation-delay: -2s;
+  opacity: 0.3;
+  width: 0.28%;
+}
+
+.london-env__river-reflection--city {
+  left: 70%;
+  width: 8%;
+  height: 45%;
+  top: 30%;
+  background: linear-gradient(
+    180deg,
+    rgba(120, 160, 210, 0.18) 0%,
+    rgba(80, 120, 170, 0.06) 70%,
+    transparent 100%
+  );
+  filter: none;
+  opacity: 0.4;
+  animation-duration: calc(26s / var(--ambient-rate, 1));
+}
+
+@keyframes london-reflection-drift {
+  from {
+    transform: translateX(-2px) scaleY(0.96);
+    opacity: 0.32;
+  }
+  to {
+    transform: translateX(3px) scaleY(1.04);
+    opacity: 0.5;
+  }
+}
+
+/* ——— Night layers ——— */
+.london-env__night {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 600ms ease-in-out;
+  z-index: 2;
+}
+
+html[data-theme='dark'] .london-env__night,
+.london-env--force-night .london-env__night {
+  opacity: 1;
+}
+
+.london-env__lamp-glow {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 150, 0.42) 0%,
+    rgba(255, 200, 110, 0.16) 38%,
+    rgba(255, 180, 80, 0.04) 62%,
+    transparent 72%
+  );
+  opacity: 0.55;
+  animation: london-lamp-breathe calc(8s / var(--ambient-rate, 1)) ease-in-out
+    infinite alternate;
+  mix-blend-mode: screen;
+}
+
+.london-env__lamp-glow:nth-child(2) {
+  animation-delay: -2.5s;
+}
+.london-env__lamp-glow:nth-child(3) {
+  animation-delay: -5s;
+}
+.london-env__lamp-glow:nth-child(4) {
+  animation-delay: -1.5s;
+}
+.london-env__lamp-glow:nth-child(5) {
+  animation-delay: -3.5s;
+}
+
+@keyframes london-lamp-breathe {
+  from {
+    opacity: 0.42;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  to {
+    opacity: 0.62;
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+.london-env__window {
+  position: absolute;
+  border-radius: 1px;
+  background: rgba(255, 220, 140, 0.38);
+  box-shadow: 0 0 4px rgba(255, 200, 100, 0.15);
+  opacity: 0.55;
+}
+
+.london-env__window--soft {
+  animation: london-window-soft calc(48s / var(--ambient-rate, 1)) ease-in-out
+    infinite;
+}
+
+@keyframes london-window-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.62;
+  }
+}
+
+.london-env__shelter-glow {
+  position: absolute;
+  border-radius: 4px;
+  background: linear-gradient(
+    180deg,
+    rgba(180, 210, 230, 0.12) 0%,
+    rgba(255, 220, 140, 0.08) 55%,
+    transparent 100%
+  );
+  opacity: 0.65;
+  animation: london-shelter-pulse calc(7s / var(--ambient-rate, 1)) ease-in-out
+    infinite alternate;
+}
+
+@keyframes london-shelter-pulse {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+.london-env__platform-pool {
+  position: absolute;
+  width: 4.2%;
+  height: 2.2%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 230, 170, 0.28) 0%,
+    rgba(255, 210, 130, 0.08) 55%,
+    transparent 75%
+  );
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+}
+
+html[data-theme='dark'] .london-env__platform-pool {
+  opacity: 0.85;
+}
+
+.london-env__tunnel-shade {
+  position: absolute;
+  top: 78%;
+  width: 8%;
+  height: 18%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 20%,
+    rgba(8, 12, 18, 0.35) 70%,
+    rgba(4, 6, 10, 0.55) 100%
+  );
+  opacity: 0;
+  transition: opacity 600ms ease-in-out;
+}
+
+html[data-theme='dark'] .london-env__tunnel-shade {
+  opacity: 0.7;
+}
+
+.london-env__tunnel-shade--left {
+  left: 0;
+}
+.london-env__tunnel-shade--right {
+  right: 0;
+}
+
+/* Debug hide toggles */
+.london-env--hide-clouds .london-env__clouds {
+  visibility: hidden;
+}
+.london-env--hide-water .london-env__river {
+  visibility: hidden;
+}
+.london-env--hide-birds .london-env__birds {
+  visibility: hidden;
+}
+.london-env--hide-foliage .london-env__foliage {
+  visibility: hidden;
+}
+.london-env--hide-lamps .london-env__lamps {
+  visibility: hidden;
+}
+
+/* Pause ambient when hero offscreen / tab hidden / reduced motion / debug */
+.london-scene[data-ambient-motion='paused'] .london-env__cloud,
+.london-scene[data-ambient-motion='paused'] .london-env__bird-flock,
+.london-scene[data-ambient-motion='paused'] .london-env__foliage-sway,
+.london-scene[data-ambient-motion='paused'] .london-env__river-shimmer,
+.london-scene[data-ambient-motion='paused'] .london-env__river-reflection,
+.london-scene[data-ambient-motion='paused'] .london-env__lamp-glow,
+.london-scene[data-ambient-motion='paused'] .london-env__window--soft,
+.london-scene[data-ambient-motion='paused'] .london-env__shelter-glow {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .london-env__cloud,
+  .london-env__bird-flock,
+  .london-env__foliage-sway,
+  .london-env__river-shimmer,
+  .london-env__river-reflection,
+  .london-env__lamp-glow,
+  .london-env__window--soft,
+  .london-env__shelter-glow {
+    animation: none !important;
+  }
+
+  .london-env__bird-flock {
+    opacity: 0 !important;
+  }
+
+  .london-env__lamp-glow {
+    opacity: 0.5;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Mobile: keep lighting + water; drop birds/clouds/foliage motion clutter */
+@media (max-width: 767px) {
+  .london-env__birds,
+  .london-env__foliage {
+    display: none;
+  }
+
+  .london-env__cloud--near {
+    display: none;
+  }
+
+  .london-env__cloud--far {
+    opacity: 0.35;
+    animation-duration: calc(140s / var(--ambient-rate, 1));
+  }
+
+  .london-env__river-shimmer--c {
+    display: none;
+  }
+
+  .london-env__windows {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .london-env__clouds {
+    display: none;
+  }
+
+  .london-env__river-shimmer--b {
+    display: none;
+  }
+}

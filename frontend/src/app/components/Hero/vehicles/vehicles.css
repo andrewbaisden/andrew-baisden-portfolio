@@ -1,0 +1,100 @@
+.vehicle-asset {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.vehicle-contact-shadow {
+  fill: #121820;
+  opacity: 0.16;
+}
+
+.vehicle-glass {
+  fill: var(--vehicle-glass);
+}
+
+.vehicle-glass-highlight {
+  fill: var(--vehicle-glass-highlight);
+  opacity: 0.5;
+}
+
+.vehicle-trim {
+  fill: var(--vehicle-trim);
+}
+
+.vehicle-wheel__tyre {
+  fill: var(--vehicle-tyre);
+}
+
+.vehicle-wheel__rim {
+  fill: var(--vehicle-rim);
+}
+
+.vehicle-wheel__hub {
+  fill: var(--vehicle-hub);
+}
+
+.vehicle-wheel__spokes {
+  fill: none;
+  stroke: #56616a;
+  stroke-width: 1.4;
+}
+
+.vehicle-headlight {
+  fill: var(--vehicle-headlight);
+}
+
+.vehicle-tail-light {
+  fill: var(--vehicle-tail-light);
+}
+
+.vehicle-light-glow {
+  fill: var(--vehicle-headlight);
+  opacity: 0;
+}
+
+.vehicle-interior-light {
+  fill: #ecd99d;
+  opacity: 0;
+}
+
+.vehicle-outline {
+  fill: none;
+  stroke: rgba(27, 34, 40, 0.45);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.vehicle-asset[data-vehicle-theme='dark'] {
+  --vehicle-glass: #334656;
+  --vehicle-glass-highlight: #7f9bad;
+  --vehicle-rim: #66747d;
+}
+
+.tube-body {
+  fill: var(--tube-body);
+}
+
+.tube-body__lower {
+  fill: var(--tube-body-lower);
+}
+
+.tube-accent--red {
+  fill: #b63c42;
+}
+
+.tube-accent--blue {
+  fill: #334f70;
+}
+
+.tube-door__panel {
+  fill: #c5c8c7;
+  stroke: #8e9799;
+  stroke-width: 1;
+}
+
+.tube-door__seam {
+  stroke: #858e91;
+  stroke-width: 1;
+}

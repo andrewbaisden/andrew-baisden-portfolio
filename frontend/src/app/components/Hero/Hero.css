@@ -1,15 +1,9 @@
-.hero-bg-light-theme {
-  fill: #1578b5;
-}
-
-.hero-bg-dark-theme {
-  fill: rgb(26, 26, 26);
-}
-
-.hero-artwork {
+.hero-artwork-wrap {
+  position: relative;
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
@@ -18,8 +12,9 @@
     overflow: hidden;
   }
 
-  .hero-artwork {
+  .hero-artwork-wrap {
     width: 100%;
     height: 100%;
+    aspect-ratio: auto;
   }
 }

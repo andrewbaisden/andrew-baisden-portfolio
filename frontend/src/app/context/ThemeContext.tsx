@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createContext, useContext, useEffect } from 'react';
+import { useState, createContext, useContext, useEffect, useRef } from 'react';
 
 interface ThemeContextProps {
 	activeTheme: string;
@@ -15,17 +15,23 @@ export const useTheme = () => useContext(ThemeContext);
 function ThemeContextProvider(props: any): any {
 	const [activeTheme, setActiveTheme] = useState('light');
 	const inactiveTheme = activeTheme === 'light' ? 'dark' : 'light';
+	const didHydrate = useRef(false);
 
 	useEffect(() => {
-		document.body.dataset.theme = activeTheme;
-	}, [activeTheme]);
+		if (!didHydrate.current) {
+			didHydrate.current = true;
+			const savedTheme = window.localStorage.getItem('theme');
 
-	useEffect(() => {
-		const savedTheme = window.localStorage.getItem('theme');
-		savedTheme && setActiveTheme(savedTheme);
-	}, []);
+			if (
+				(savedTheme === 'light' || savedTheme === 'dark') &&
+				savedTheme !== activeTheme
+			) {
+				setActiveTheme(savedTheme);
+				return;
+			}
+		}
 
-	useEffect(() => {
+		document.documentElement.dataset.theme = activeTheme;
 		document.body.dataset.theme = activeTheme;
 		window.localStorage.setItem('theme', activeTheme);
 	}, [activeTheme]);

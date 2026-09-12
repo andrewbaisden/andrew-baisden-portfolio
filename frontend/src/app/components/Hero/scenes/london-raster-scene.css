@@ -1,0 +1,360 @@
+/* Shared London scene canvas — background + vehicle overlays share one cover crop. */
+
+.london-scene {
+  --london-scene-w: 2048;
+  --london-scene-h: 1152;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+  container-name: london-scene;
+  z-index: 0;
+}
+
+.london-scene__canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Match object-fit: cover for both background and overlays */
+  width: max(100%, calc(100cqh * 2048 / 1152));
+  height: max(100%, calc(100cqw * 1152 / 2048));
+  transform: translate(-50%, -50%);
+}
+
+.london-scene__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.london-scene__image {
+  /* Canvas is already cover-scaled to 2048×1152 — fill it exactly */
+  object-fit: fill;
+  object-position: center center;
+  transition: opacity 600ms ease-in-out;
+}
+
+.london-scene__image--day {
+  opacity: 1;
+}
+
+.london-scene__image--night {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .london-scene__image--day {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .london-scene__image--night {
+  opacity: 1;
+}
+
+.london-scene[data-force-night='true'] .london-scene__image--day {
+  opacity: 0;
+}
+
+.london-scene[data-force-night='true'] .london-scene__image--night {
+  opacity: 1;
+}
+
+.london-scene__layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.london-scene__layer--road {
+  z-index: 2;
+}
+
+.london-scene__layer--underground {
+  z-index: 3;
+}
+
+.london-scene__vehicle {
+  --vehicle-flip: 1;
+  --vehicle-mobile-scale: 1;
+  position: absolute;
+  line-height: 0;
+  transform-origin: center bottom;
+  transform: translate(-50%, -100%) scaleX(var(--vehicle-flip))
+    scale(var(--vehicle-mobile-scale));
+}
+
+.london-scene__vehicle--animated {
+  /* X is driven by WAAPI translate3d(px); keep will-change only while animating */
+  will-change: transform;
+  left: 0;
+}
+
+.london-scene__vehicle[data-transport-active='false'] {
+  visibility: hidden;
+}
+
+.london-scene__vehicle-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Subtle Tube integration — keep accents readable, soften against station */
+.london-scene__vehicle--tube .london-scene__vehicle-image {
+  filter: brightness(0.93) contrast(0.96) saturate(0.96);
+}
+
+html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-image,
+.london-scene[data-force-night='true']
+  .london-scene__vehicle--tube
+  .london-scene__vehicle-image {
+  filter: brightness(0.82) contrast(0.94) saturate(0.92);
+}
+
+/* Dev guides — only mounted in development */
+.london-scene__guides {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.london-scene__guide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px dashed rgba(0, 255, 180, 0.85);
+}
+
+.london-scene__guide::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 8px;
+  top: 2px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #9fffe0;
+  font: 600 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.london-scene__guide--roadFar {
+  border-top-color: rgba(80, 200, 255, 0.9);
+}
+
+.london-scene__guide--roadNear {
+  border-top-color: rgba(80, 255, 120, 0.9);
+}
+
+.london-scene__guide--underground {
+  border-top-color: rgba(255, 80, 220, 0.9);
+}
+
+.london-scene__guide--tube-corridor {
+  right: auto;
+  height: auto;
+  border: 1px solid rgba(255, 160, 40, 0.85);
+  background: rgba(255, 160, 40, 0.06);
+  box-sizing: border-box;
+}
+
+.london-scene__guide--tube-corridor::after {
+  color: #ffd59a;
+}
+
+.london-scene__guide--scene-bounds {
+  inset: 0;
+  height: auto;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  border-top-style: dashed;
+}
+
+.london-scene__guide--scene-bounds::after {
+  color: #dde3ea;
+}
+
+.london-scene__path {
+  position: absolute;
+  height: 0;
+  border-top: 2px solid rgba(255, 220, 80, 0.75);
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+.london-scene__path::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  transform: translateX(-50%);
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffe08a;
+  font: 600 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: nowrap;
+}
+
+.london-scene__path-spawn,
+.london-scene__path-despawn {
+  position: absolute;
+  top: -14px;
+  padding: 1px 4px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #9fe8ff;
+  font: 600 9px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.london-scene__path-spawn {
+  left: 0;
+}
+
+.london-scene__path-despawn {
+  right: 0;
+}
+
+.london-scene__path--bus {
+  border-top-color: rgba(255, 90, 90, 0.85);
+}
+
+.london-scene__path--cab {
+  border-top-color: rgba(120, 200, 255, 0.85);
+}
+
+.london-scene__path--waymo {
+  border-top-color: rgba(220, 220, 220, 0.85);
+}
+
+.london-scene__path--tube {
+  border-top-color: rgba(255, 80, 200, 0.85);
+}
+
+/* Dev calibrator panel */
+.london-scene-calibrator {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 60;
+  pointer-events: auto;
+  max-width: min(340px, calc(100vw - 24px));
+  font: 12px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  color: #e8eef5;
+}
+
+.london-scene-calibrator__toggle,
+.london-scene-calibrator__reset {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(12, 18, 28, 0.88);
+  color: inherit;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.london-scene-calibrator__panel {
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(10, 14, 22, 0.92);
+  backdrop-filter: blur(10px);
+  max-height: min(70vh, 640px);
+  overflow: auto;
+}
+
+.london-scene-calibrator__hint,
+.london-scene-calibrator__summary {
+  margin: 0 0 10px;
+  opacity: 0.75;
+  word-break: break-word;
+}
+
+.london-scene-calibrator__row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.london-scene-calibrator__group {
+  margin: 0 0 10px;
+  padding: 8px 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.london-scene-calibrator__group legend {
+  padding: 0 4px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.london-scene-calibrator__group label {
+  display: grid;
+  grid-template-columns: 64px 1fr 42px;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.london-scene-calibrator__group input[type='range'] {
+  width: 100%;
+}
+
+.london-scene-calibrator__reset {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.london-scene-calibrator__speeds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.london-scene-calibrator__speed {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.london-scene-calibrator__speed--active {
+  background: rgba(120, 160, 255, 0.28);
+  border-color: rgba(160, 190, 255, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .london-scene__image {
+    transition-duration: 0.01ms;
+  }
+}
+
+/*
+ * Mobile: square hero crop keeps the London scene first.
+ * Slight proportional scale-down preserves hierarchy without miniature look.
+ * Far-lane cab soft-hidden on the narrowest crops.
+ */
+@media (max-width: 767px) {
+  .london-scene__vehicle--bus,
+  .london-scene__vehicle--waymo,
+  .london-scene__vehicle--cab {
+    --vehicle-mobile-scale: 0.92;
+  }
+}
+
+@media (max-width: 480px) {
+  .london-scene__vehicle--bus {
+    --vehicle-mobile-scale: 0.88;
+  }
+}

@@ -1,0 +1,31 @@
+.london-scene {
+  --scene-sky: #5eade6;
+  --scene-sky-mid: #7ec0ec;
+  --scene-sky-horizon: #c5e3f6;
+  --scene-cloud: #ffffff;
+  --scene-cloud-shade: #e4f2fb;
+  --scene-skyline: #96b3c6;
+  --scene-skyline-far: #b4cad7;
+  --scene-skyline-accent: #c8d6de;
+  --scene-building: #eedfcc;
+  --scene-building-warm: #f3e8d8;
+  --scene-building-brick: #c15c4c;
+  --scene-building-brick-dark: #a24b3e;
+  --scene-building-slate: #6d7784;
+  --scene-tree: #4e8f44;
+  --scene-tree-shadow: #2f6a34;
+  --scene-tree-highlight: #6eaa52;
+  --scene-road: #3b3e47;
+  --scene-road-line: #d7d8dc;
+  --scene-river: #6499b4;
+  --scene-river-deep: #4e82a0;
+  --scene-underground: #d5d0c6;
+  --scene-underground-deep: #1c2430;
+  --scene-light: #f4e8b5;
+  --scene-railing: #1b1b1f;
+  --scene-pavement: #d6d2c9;
+  --scene-kerb: #c2473e;
+  display: block;
+  width: 100%;
+  height: auto;
+}
