@@ -1,6 +1,6 @@
 # Portfolio website
 
-The new and improved hero section is fully animated, moving vehicles, ambient lighting, and day/night themes bring the London scene to life
+The hero is a switchable scene engine, fully animated, with moving vehicles, ambient lighting, and day/night themes
 
 ![London hero — day](./img/london-hero-day.png 'London hero — day')
 
