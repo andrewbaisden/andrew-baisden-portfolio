@@ -1,0 +1,462 @@
+/* Mountain ambient environment — calmer than London. */
+
+.mountain-env {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mountain-env__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mountain-env__svg--sky {
+  z-index: 1;
+}
+
+/* ——— Clouds (60–120s) ——— */
+.mountain-env__clouds {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mountain-env__cloud {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.mountain-env__cloud--far {
+  animation-name: mountain-cloud-drift-far;
+  animation-duration: 110s;
+  opacity: 0.5;
+}
+
+.mountain-env__cloud--mid {
+  animation-name: mountain-cloud-drift-mid;
+  animation-duration: 88s;
+  opacity: 0.45;
+}
+
+.mountain-env__cloud--near {
+  animation-name: mountain-cloud-drift-near;
+  animation-duration: 72s;
+  opacity: 0.55;
+}
+
+@keyframes mountain-cloud-drift-far {
+  from {
+    transform: translateX(-3%);
+  }
+  to {
+    transform: translateX(6%);
+  }
+}
+
+@keyframes mountain-cloud-drift-mid {
+  from {
+    transform: translateX(4%);
+  }
+  to {
+    transform: translateX(-7%);
+  }
+}
+
+@keyframes mountain-cloud-drift-near {
+  from {
+    transform: translateX(5%);
+  }
+  to {
+    transform: translateX(-5%);
+  }
+}
+
+/* ——— Birds (rare) ——— */
+.mountain-env__birds {
+  color: #4a5f70;
+}
+
+.mountain-env__bird-flock {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.mountain-env__bird-flock--a {
+  animation-name: mountain-bird-cross;
+  animation-duration: 96s;
+}
+
+@keyframes mountain-bird-cross {
+  0%,
+  8% {
+    opacity: 0;
+    transform: translate(1580px, 150px);
+  }
+  10% {
+    opacity: 0.75;
+  }
+  28% {
+    opacity: 0.75;
+    transform: translate(980px, 110px);
+  }
+  32%,
+  100% {
+    opacity: 0;
+    transform: translate(820px, 95px);
+  }
+}
+
+/* ——— Foliage (max ~1–2°) ——— */
+.mountain-env__foliage {
+  color: #2f6b3a;
+}
+
+.mountain-env__foliage-sway {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation-name: mountain-foliage-sway;
+  animation-duration: 9s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.mountain-env__foliage-sway--right {
+  animation-delay: -3.5s;
+  animation-duration: 11s;
+}
+
+@keyframes mountain-foliage-sway {
+  from {
+    transform: rotate(-1.2deg);
+  }
+  to {
+    transform: rotate(1.2deg);
+  }
+}
+
+/* ——— Yacht (primary motion) ——— */
+.mountain-yacht {
+  --yacht-scale: 1;
+  --wake-opacity: 0.32;
+  position: absolute;
+  z-index: 3;
+  line-height: 0;
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+
+.mountain-yacht--animated {
+  left: 0;
+  will-change: transform;
+}
+
+.mountain-yacht--static {
+  /* transform set inline for scale + anchor */
+}
+
+.mountain-yacht__image {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(20, 40, 60, 0.18));
+}
+
+/* Soft wake — trails behind the stern (left) while moving right */
+.mountain-yacht__wake {
+  position: absolute;
+  z-index: 1;
+  right: 72%;
+  bottom: 2%;
+  width: 55%;
+  height: 18%;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(210, 235, 245, calc(var(--wake-opacity) * 0.55)) 35%,
+    rgba(255, 255, 255, var(--wake-opacity)) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(1.5px);
+  transform: scaleX(1.35) scaleY(0.55);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.mountain-yacht__reflection {
+  position: absolute;
+  z-index: 0;
+  left: 2%;
+  width: 96%;
+  height: auto;
+  top: 94%;
+  opacity: 0.12;
+  transform: scaleY(-0.55);
+  transform-origin: top center;
+  filter: blur(1.5px);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ——— Waterfall ——— */
+.mountain-env__waterfall {
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 40% / 8%;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  opacity: 0.55;
+}
+
+.mountain-env__waterfall-flow {
+  position: absolute;
+  inset: -50% 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0px,
+    rgba(255, 255, 255, 0.35) 6px,
+    rgba(200, 230, 255, 0.2) 12px,
+    rgba(255, 255, 255, 0) 20px
+  );
+  animation-name: mountain-waterfall-flow;
+  animation-duration: 1.8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes mountain-waterfall-flow {
+  from {
+    transform: translateY(-20%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+/* ——— Lake shimmer ——— */
+.mountain-env__lake {
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 42% / 28%;
+  mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 45%,
+    #000 20%,
+    transparent 75%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 45%,
+    #000 20%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
+.mountain-env__lake-shimmer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.45) 48%,
+    transparent 72%
+  );
+  background-size: 220% 100%;
+  animation-name: mountain-lake-shimmer;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: background-position, opacity;
+}
+
+.mountain-env__lake-shimmer--a {
+  animation-duration: 14s;
+}
+
+.mountain-env__lake-shimmer--b {
+  animation-duration: 22s;
+  animation-delay: -8s;
+  opacity: 0.08;
+  transform: scaleY(-1);
+}
+
+@keyframes mountain-lake-shimmer {
+  0%,
+  100% {
+    background-position: 10% 0;
+    opacity: 0.08;
+  }
+  50% {
+    background-position: 90% 0;
+    opacity: 0.16;
+  }
+}
+
+/* ——— Dark-mode ambient tweaks (night raster carries the look) ——— */
+.mountain-env__dark-veil {
+  /* Kept in DOM for structure; unused now that a night master exists. */
+  display: none;
+}
+
+html[data-theme='dark'] .mountain-env__clouds {
+  color: rgba(180, 200, 240, 0.4);
+  opacity: 0.5;
+}
+
+html[data-theme='dark'] .mountain-env__birds {
+  color: rgba(160, 180, 210, 0.5);
+}
+
+html[data-theme='dark'] .mountain-env__waterfall {
+  opacity: 0.4;
+}
+
+html[data-theme='dark'] .mountain-env__lake-shimmer {
+  opacity: 0.07;
+}
+
+html[data-theme='dark'] .mountain-yacht__image {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4)) brightness(0.92)
+    saturate(0.9);
+}
+
+html[data-theme='dark'] .mountain-yacht__wake {
+  opacity: 0.5;
+}
+
+html[data-theme='dark'] .mountain-yacht__reflection {
+  opacity: 0.07;
+}
+
+/* Pause CSS ambient motion when scene is inactive or motion is off.
+   Yacht WAAPI pause is handled in useMountainYachtAnimation. */
+.mountain-scene[data-ambient-motion='paused'] .mountain-env__cloud,
+.mountain-scene[data-ambient-motion='paused'] .mountain-env__bird-flock,
+.mountain-scene[data-ambient-motion='paused'] .mountain-env__foliage-sway,
+.mountain-scene[data-ambient-motion='paused'] .mountain-env__waterfall-flow,
+.mountain-scene[data-ambient-motion='paused'] .mountain-env__lake-shimmer,
+.mountain-env[data-motion='off'] .mountain-env__cloud,
+.mountain-env[data-motion='off'] .mountain-env__bird-flock,
+.mountain-env[data-motion='off'] .mountain-env__foliage-sway,
+.mountain-env[data-motion='off'] .mountain-env__waterfall-flow,
+.mountain-env[data-motion='off'] .mountain-env__lake-shimmer {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mountain-env__cloud,
+  .mountain-env__bird-flock,
+  .mountain-env__foliage-sway,
+  .mountain-env__waterfall-flow,
+  .mountain-env__lake-shimmer {
+    animation: none !important;
+  }
+}
+
+/* Soften yacht footprint on narrower viewports */
+@media (max-width: 900px) {
+  .mountain-yacht {
+    width: 11% !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .mountain-yacht {
+    width: 14% !important;
+  }
+}
+
+/* Dev calibrator */
+.mountain-calibrator {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 80;
+  width: min(280px, calc(100vw - 24px));
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(12, 18, 28, 0.88);
+  color: #e8eef5;
+  font: 12px/1.35 ui-sans-serif, system-ui, sans-serif;
+  pointer-events: auto;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.mountain-calibrator__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mountain-calibrator__header strong {
+  flex: 1;
+  font-size: 12px;
+}
+
+.mountain-calibrator__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.mountain-calibrator__reset {
+  appearance: none;
+  border: 0;
+  border-radius: 6px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.mountain-calibrator label {
+  display: grid;
+  gap: 2px;
+  margin: 0 0 6px;
+}
+
+.mountain-calibrator input[type='range'] {
+  width: 100%;
+}
+
+.mountain-calibrator__meta {
+  margin: 6px 0 0;
+  opacity: 0.7;
+  font-size: 11px;
+}

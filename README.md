@@ -34,7 +34,3 @@ bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Previous hero design
-
-![Previous hero design](./img/portfolio-old-hero-design.png 'Previous hero design')

@@ -1,0 +1,69 @@
+/* Shared Mountain scene canvas — background + overlays share one cover crop. */
+
+.mountain-scene {
+  --mountain-scene-w: 2048;
+  --mountain-scene-h: 1152;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+  container-name: mountain-scene;
+  z-index: 0;
+}
+
+.mountain-scene__canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, calc(100cqh * 2048 / 1152));
+  height: max(100%, calc(100cqw * 1152 / 2048));
+  transform: translate(-50%, -50%);
+}
+
+.mountain-scene__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Persistent CSS fallback under next/image (Brave paint safety). */
+  background-image: url('/hero/mountain/mountain-day-master.webp');
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+html[data-theme='dark'] .mountain-scene__background {
+  background-image: url('/hero/mountain/mountain-night-master.webp');
+  background-color: #0a1220;
+}
+
+.mountain-scene__image {
+  object-fit: fill;
+  object-position: center center;
+  transition: opacity 600ms ease-in-out;
+}
+
+.mountain-scene__image--day {
+  opacity: 1;
+}
+
+.mountain-scene__image--night {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .mountain-scene__image--day {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .mountain-scene__image--night {
+  opacity: 1;
+}
+
+.mountain-scene__guides {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
