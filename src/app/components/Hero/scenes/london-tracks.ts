@@ -97,55 +97,56 @@ export type LondonVehicleLayout = {
  *
  * Calibrator (dev-only) allows scale 0.25–5 and persists overrides in localStorage.
  */
-export const londonVehicleLayout: Record<LondonVehicleId, LondonVehicleLayout> = {
-  bus: {
-    id: 'bus',
-    track: 'roadNear',
-    src: '/hero/london/vehicles/london-bus.webp',
-    intrinsicWidth: 720,
-    intrinsicHeight: 279,
-    width: 360,
-    x: 792,
-    scale: 2.25,
-    flipX: false,
-  },
-  cab: {
-    id: 'cab',
-    track: 'roadFar',
-    src: '/hero/london/vehicles/black-cab.webp',
-    intrinsicWidth: 400,
-    intrinsicHeight: 169,
-    width: 188,
-    x: 262,
-    scale: 1.5,
-    flipX: false,
-  },
-  waymo: {
-    id: 'waymo',
-    track: 'roadNear',
-    src: '/hero/london/vehicles/waymo.webp',
-    intrinsicWidth: 420,
-    intrinsicHeight: 194,
-    width: 200,
-    x: 1450,
-    scale: 1.5,
-    flipX: true,
-  },
-  tube: {
-    id: 'tube',
-    track: 'underground',
-    src: '/hero/london/vehicles/tube-train.webp',
-    intrinsicWidth: 2160,
-    intrinsicHeight: 188,
-    /** At scale 1.15 → display ≈ 1840; with x=-208 spans ≈ [-1128…712]. */
-    width: 1600,
-    x: -208,
-    scale: 1.15,
-    flipX: false,
-    /** Keeps bogies on the rail band (1096+30=1126 < scene height 1152). */
-    baselineOffset: 30,
-  },
-};
+export const londonVehicleLayout: Record<LondonVehicleId, LondonVehicleLayout> =
+  {
+    bus: {
+      id: 'bus',
+      track: 'roadNear',
+      src: '/hero/london/vehicles/london-bus.webp',
+      intrinsicWidth: 720,
+      intrinsicHeight: 279,
+      width: 360,
+      x: 792,
+      scale: 2.25,
+      flipX: false,
+    },
+    cab: {
+      id: 'cab',
+      track: 'roadFar',
+      src: '/hero/london/vehicles/black-cab.webp',
+      intrinsicWidth: 400,
+      intrinsicHeight: 169,
+      width: 188,
+      x: 262,
+      scale: 1.5,
+      flipX: false,
+    },
+    waymo: {
+      id: 'waymo',
+      track: 'roadNear',
+      src: '/hero/london/vehicles/waymo.webp',
+      intrinsicWidth: 420,
+      intrinsicHeight: 194,
+      width: 200,
+      x: 1450,
+      scale: 1.5,
+      flipX: true,
+    },
+    tube: {
+      id: 'tube',
+      track: 'underground',
+      src: '/hero/london/vehicles/tube-train.webp',
+      intrinsicWidth: 2160,
+      intrinsicHeight: 188,
+      /** At scale 1.15 → display ≈ 1840; with x=-208 spans ≈ [-1128…712]. */
+      width: 1600,
+      x: -208,
+      scale: 1.15,
+      flipX: false,
+      /** Keeps bogies on the rail band (1096+30=1126 < scene height 1152). */
+      baselineOffset: 30,
+    },
+  };
 
 export function scenePercentX(x: number): string {
   return `${(x / LONDON_SCENE.width) * 100}%`;

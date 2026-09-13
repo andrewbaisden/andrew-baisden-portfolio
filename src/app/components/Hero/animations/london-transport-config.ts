@@ -1,9 +1,9 @@
 import {
   LONDON_SCENE,
-  londonVehicleLayout,
-  vehicleDisplayWidth,
   type LondonVehicleId,
   type LondonVehicleLayout,
+  londonVehicleLayout,
+  vehicleDisplayWidth,
 } from '../scenes/london-tracks';
 
 export type TransportDirection = 'ltr' | 'rtl';
@@ -111,7 +111,9 @@ export function resolveAllTransportPaths(
 }
 
 /** Desktop: all four. Narrow mobile: bus + tube (+ cab when room). */
-export function getActiveTransportIds(viewportWidth: number): LondonVehicleId[] {
+export function getActiveTransportIds(
+  viewportWidth: number,
+): LondonVehicleId[] {
   if (viewportWidth <= 480) {
     return ['bus', 'tube'];
   }

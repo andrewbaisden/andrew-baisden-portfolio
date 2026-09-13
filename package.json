@@ -2,13 +2,28 @@
   "name": "andrew-baisden-portfolio-nextjs",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "start:out": "serve -s out",
     "start": "next start",
     "start:ssr": "next start -p 3000",
-    "lint": "next lint"
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,json}": [
+      "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -23,11 +38,21 @@
   },
   "devDependencies": {
     "@netlify/functions": "^6.0.0",
+    "@playwright/test": "^1.55.0",
     "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20.19.43",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@biomejs/biome": "^2.3.11",
+    "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^16.1.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.2.4"
   }
 }

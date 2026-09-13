@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
 import { useRef } from 'react';
-import Hero from './components/Hero/Hero';
-import Header from './components/Header/Header';
-import HeroProfile from './components/HeroProfile/HeroProfile';
 import AboutProfileText from './components/AboutProfileText/AboutProfileText';
-import SocialMediaCarousel from './components/SocialMediaCarousel/SocialMediaCarousel';
-import TechStack from './components/TechStack/TechStack';
 import ContactSection from './components/Contact/ContactSection';
 import FooterText from './components/FooterText/FooterText';
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
 import { HeroScenePreferencesProvider } from './components/Hero/hooks/use-hero-scene-preferences';
+import HeroProfile from './components/HeroProfile/HeroProfile';
+import SocialMediaCarousel from './components/SocialMediaCarousel/SocialMediaCarousel';
+import TechStack from './components/TechStack/TechStack';
 
 import { useTheme } from './context/ThemeContext';
 

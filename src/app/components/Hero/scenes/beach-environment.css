@@ -280,34 +280,34 @@
   pointer-events: none;
 }
 
-html[data-theme='dark'] .beach-sailboat__nav-light {
+html[data-theme="dark"] .beach-sailboat__nav-light {
   display: block;
   opacity: 0.7;
 }
 
-html[data-theme='dark'] .beach-env__clouds {
+html[data-theme="dark"] .beach-env__clouds {
   color: rgba(180, 200, 230, 0.35);
   opacity: 0.45;
 }
 
-html[data-theme='dark'] .beach-env__birds {
+html[data-theme="dark"] .beach-env__birds {
   color: rgba(170, 190, 210, 0.45);
 }
 
-html[data-theme='dark'] .beach-env__ocean {
+html[data-theme="dark"] .beach-env__ocean {
   opacity: calc(var(--ocean-opacity) * 0.55);
 }
 
-html[data-theme='dark'] .beach-env__foam {
+html[data-theme="dark"] .beach-env__foam {
   opacity: 0.18;
 }
 
-html[data-theme='dark'] .beach-sailboat__image {
+html[data-theme="dark"] .beach-sailboat__image {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45)) brightness(0.94)
     saturate(0.92);
 }
 
-html[data-theme='dark'] .beach-sailboat__wake {
+html[data-theme="dark"] .beach-sailboat__wake {
   opacity: 0.4;
 }
 
@@ -315,14 +315,14 @@ html[data-theme='dark'] .beach-sailboat__wake {
   display: none;
 }
 
-.beach-scene[data-ambient-motion='paused'] .beach-env__cloud,
-.beach-scene[data-ambient-motion='paused'] .beach-env__bird-flock,
-.beach-scene[data-ambient-motion='paused'] .beach-env__ocean-wave,
-.beach-scene[data-ambient-motion='paused'] .beach-env__foam,
-.beach-env[data-motion='off'] .beach-env__cloud,
-.beach-env[data-motion='off'] .beach-env__bird-flock,
-.beach-env[data-motion='off'] .beach-env__ocean-wave,
-.beach-env[data-motion='off'] .beach-env__foam {
+.beach-scene[data-ambient-motion="paused"] .beach-env__cloud,
+.beach-scene[data-ambient-motion="paused"] .beach-env__bird-flock,
+.beach-scene[data-ambient-motion="paused"] .beach-env__ocean-wave,
+.beach-scene[data-ambient-motion="paused"] .beach-env__foam,
+.beach-env[data-motion="off"] .beach-env__cloud,
+.beach-env[data-motion="off"] .beach-env__bird-flock,
+.beach-env[data-motion="off"] .beach-env__ocean-wave,
+.beach-env[data-motion="off"] .beach-env__foam {
   animation-play-state: paused;
 }
 
@@ -370,7 +370,10 @@ html[data-theme='dark'] .beach-sailboat__wake {
   border-radius: 10px;
   background: rgba(12, 18, 28, 0.88);
   color: #e8eef5;
-  font: 12px/1.35 ui-sans-serif, system-ui, sans-serif;
+  font:
+    12px / 1.35 ui-sans-serif,
+    system-ui,
+    sans-serif;
   pointer-events: auto;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
@@ -411,7 +414,7 @@ html[data-theme='dark'] .beach-sailboat__wake {
   margin: 0 0 6px;
 }
 
-.beach-calibrator input[type='range'] {
+.beach-calibrator input[type="range"] {
   width: 100%;
 }
 

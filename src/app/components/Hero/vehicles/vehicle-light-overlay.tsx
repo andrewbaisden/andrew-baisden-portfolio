@@ -1,9 +1,9 @@
 import type { CSSProperties } from 'react';
-import type { LondonVehicleId } from '../scenes/london-tracks';
 import {
-  vehicleLightSpecs,
   type VehicleLightSpec,
+  vehicleLightSpecs,
 } from '../animations/vehicle-light-config';
+import type { LondonVehicleId } from '../scenes/london-tracks';
 
 type VehicleLightOverlayProps = {
   vehicleId: LondonVehicleId;
@@ -21,13 +21,7 @@ function lightStyle(spec: VehicleLightSpec): CSSProperties {
   };
 }
 
-function LightNode({
-  spec,
-  index,
-}: {
-  spec: VehicleLightSpec;
-  index: number;
-}) {
+function LightNode({ spec, index }: { spec: VehicleLightSpec; index: number }) {
   const shape = spec.shape ?? 'ellipse';
   return (
     <span

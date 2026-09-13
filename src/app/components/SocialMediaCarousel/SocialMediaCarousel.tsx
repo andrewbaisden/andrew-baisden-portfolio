@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import Image from 'next/image';
+import type { ReactNode } from 'react';
 import profilePicture from '../../img/profile-picture.png';
 import './SocialMediaCarousel.css';
 
@@ -16,7 +16,12 @@ type SocialProfile = {
 };
 
 const ExternalIcon = () => (
-  <svg className="social-card-external" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <svg
+    className="social-card-external"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+  >
     <rect
       x="6.5"
       y="6.5"
@@ -152,7 +157,7 @@ const profiles: SocialProfile[] = [
     name: 'GitHub',
     category: 'Code & Projects',
     href: 'https://github.com/andrewbaisden',
-    copy: 'Where I build in public and share the applications, experiments, and technical projects I\'m working on. Explore my latest repositories, production projects, open-source work, and the technologies I\'m currently using.',
+    copy: "Where I build in public and share the applications, experiments, and technical projects I'm working on. Explore my latest repositories, production projects, open-source work, and the technologies I'm currently using.",
     accent: '#2f2f3a',
     icon: <GitHubIcon />,
     visual: <GitHubVisual />,
@@ -163,7 +168,7 @@ const profiles: SocialProfile[] = [
     name: 'LinkedIn',
     category: 'Professional Network',
     href: 'https://www.linkedin.com/in/andrew-baisden/',
-    copy: 'My professional network for software engineering, career updates, technical insights, and industry conversations. I share projects I\'m building, articles I\'ve written, engineering lessons, and developments across web and AI engineering.',
+    copy: "My professional network for software engineering, career updates, technical insights, and industry conversations. I share projects I'm building, articles I've written, engineering lessons, and developments across web and AI engineering.",
     accent: '#0a66c2',
     icon: <LinkedInIcon />,
     visual: <LinkedInVisual />,
@@ -191,7 +196,7 @@ const profiles: SocialProfile[] = [
     name: 'Medium',
     category: 'Engineering & Technology',
     href: 'https://andrewbaisden.medium.com/',
-    copy: 'A collection of my technical writing covering modern web development, software engineering, developer tools, AI, and emerging technologies. It\'s also home to tutorials and collaborations I\'ve produced over the years.',
+    copy: "A collection of my technical writing covering modern web development, software engineering, developer tools, AI, and emerging technologies. It's also home to tutorials and collaborations I've produced over the years.",
     accent: '#2f2f3a',
     icon: <MediumIcon />,
   },
@@ -209,7 +214,7 @@ const profiles: SocialProfile[] = [
     name: 'X',
     category: 'Developer Community',
     href: 'https://twitter.com/andrewbaisden',
-    copy: 'Where I connect with the wider tech community, share what I\'m building, discuss software engineering and AI, and keep up with developers, tools, open-source projects, and emerging technology.',
+    copy: "Where I connect with the wider tech community, share what I'm building, discuss software engineering and AI, and keep up with developers, tools, open-source projects, and emerging technology.",
     accent: '#2f2f3a',
     icon: <XIcon />,
   },
@@ -218,7 +223,7 @@ const profiles: SocialProfile[] = [
     name: 'Threads',
     category: 'Building & Conversations',
     href: 'https://www.threads.net/@andrew.codes',
-    copy: 'A more conversational look at my developer journey. I share projects in progress, coding insights, technology discussions, and shorter updates from what I\'m learning and building.',
+    copy: "A more conversational look at my developer journey. I share projects in progress, coding insights, technology discussions, and shorter updates from what I'm learning and building.",
     accent: '#2f2f3a',
     icon: <ThreadsIcon />,
   },

@@ -8,7 +8,7 @@
   padding: 0 0.5rem;
 }
 
-.hero-scene-controls[data-prefs-ready='false'] {
+.hero-scene-controls[data-prefs-ready="false"] {
   visibility: hidden;
 }
 

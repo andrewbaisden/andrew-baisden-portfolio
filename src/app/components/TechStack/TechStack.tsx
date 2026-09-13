@@ -141,7 +141,14 @@ const TechIcon = ({ name }: { name: string }) => {
     ),
     postgresql: (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <ellipse cx="12" cy="6.5" rx="7" ry="2.8" stroke="currentColor" strokeWidth="1.7" />
+        <ellipse
+          cx="12"
+          cy="6.5"
+          rx="7"
+          ry="2.8"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
         <path
           d="M5 6.5v8c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8v-8"
           stroke="currentColor"
@@ -171,7 +178,13 @@ const TechIcon = ({ name }: { name: string }) => {
     ),
     tanstack: (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.7" />
+        <circle
+          cx="12"
+          cy="12"
+          r="8.5"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
         <path
           d="M8 14.5 12 7l4 7.5"
           stroke="currentColor"
@@ -282,9 +295,27 @@ const TechIcon = ({ name }: { name: string }) => {
     ),
     mcp: (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="6.5" cy="12" r="2.4" stroke="currentColor" strokeWidth="1.7" />
-        <circle cx="17.5" cy="7.5" r="2.4" stroke="currentColor" strokeWidth="1.7" />
-        <circle cx="17.5" cy="16.5" r="2.4" stroke="currentColor" strokeWidth="1.7" />
+        <circle
+          cx="6.5"
+          cy="12"
+          r="2.4"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <circle
+          cx="17.5"
+          cy="7.5"
+          r="2.4"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <circle
+          cx="17.5"
+          cy="16.5"
+          r="2.4"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
         <path
           d="M8.8 11.2 15.2 8.4M8.8 12.8l6.4 2.8"
           stroke="currentColor"
@@ -294,9 +325,27 @@ const TechIcon = ({ name }: { name: string }) => {
     ),
     agents: (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="6.5" r="2.2" stroke="currentColor" strokeWidth="1.7" />
-        <circle cx="6.5" cy="16.5" r="2.2" stroke="currentColor" strokeWidth="1.7" />
-        <circle cx="17.5" cy="16.5" r="2.2" stroke="currentColor" strokeWidth="1.7" />
+        <circle
+          cx="12"
+          cy="6.5"
+          r="2.2"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <circle
+          cx="6.5"
+          cy="16.5"
+          r="2.2"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <circle
+          cx="17.5"
+          cy="16.5"
+          r="2.2"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
         <path
           d="M10.3 8.2 7.8 14.3M13.7 8.2l2.5 6.1M8.8 16.5h6.4"
           stroke="currentColor"

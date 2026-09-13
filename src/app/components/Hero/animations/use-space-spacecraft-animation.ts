@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, type RefObject } from 'react';
+import { type RefObject, useEffect } from 'react';
 import { SPACE_SCENE } from '../scenes/space-tracks';
 
 type UseSpaceSpacecraftAnimationArgs = {
@@ -105,8 +105,7 @@ export function useSpaceSpacecraftAnimation({
       const end = sceneToPx(endX, endY, rect.width, rect.height);
       // Mid-path vertical drift for a shallow arc (slightly below linear lerp).
       const midX = start.x + (end.x - start.x) * 0.5;
-      const midY =
-        start.y + (end.y - start.y) * 0.5 - rect.height * 0.012;
+      const midY = start.y + (end.y - start.y) * 0.5 - rect.height * 0.012;
 
       animation = el.animate(
         [

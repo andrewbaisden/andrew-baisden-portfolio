@@ -3,11 +3,7 @@
 import { useEffect, useState } from 'react';
 import { HeroDevPortal } from '../dev/hero-dev-portal';
 import type { BeachSailboatOverrides } from '../vehicles/beach-sailboat';
-import {
-  BEACH_SCENE,
-  beachSailboatLayout,
-  beachTracks,
-} from './beach-tracks';
+import { BEACH_SCENE, beachSailboatLayout, beachTracks } from './beach-tracks';
 
 const STORAGE_KEY = 'beach-sailboat-calibration-v2';
 

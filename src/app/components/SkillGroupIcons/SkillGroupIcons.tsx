@@ -1,18 +1,18 @@
-import { useState, ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import './SkillGroupIcons.css';
-import HTML5Logo from '../HTML5Logo/HTML5Logo';
 import CSS3Logo from '../CSS3Logo/CSS3Logo';
-import JavaScriptLogo from '../JavaScriptLogo/JavaScriptLogo';
-import TypeScriptLogo from '../TypeScriptLogo/TypeScriptLogo';
-import ReactLogo from '../ReactLogo/ReactLogo';
-import PythonLogo from '../PythonLogo/PythonLogo';
-import NodeJSLogo from '../NodeJSLogo/NodeJSLogo';
-import MongoDBLogo from '../MongoDBLogo/MongoDBLogo';
-import SQLLogo from '../SQLLogo/SQLLogo';
-import DockerLogo from '../DockerLogo/DockerLogo'
+import DockerLogo from '../DockerLogo/DockerLogo';
 import FigmaLogo from '../FigmaLogo/FigmaLogo';
+import HTML5Logo from '../HTML5Logo/HTML5Logo';
+import JavaScriptLogo from '../JavaScriptLogo/JavaScriptLogo';
+import MongoDBLogo from '../MongoDBLogo/MongoDBLogo';
+import NodeJSLogo from '../NodeJSLogo/NodeJSLogo';
+import PythonLogo from '../PythonLogo/PythonLogo';
+import ReactLogo from '../ReactLogo/ReactLogo';
+import SQLLogo from '../SQLLogo/SQLLogo';
+import TypeScriptLogo from '../TypeScriptLogo/TypeScriptLogo';
 
-interface SkillGroupIconsProps {}
+type SkillGroupIconsProps = {};
 
 export const SkillGroupIcons = ({ ...props }: SkillGroupIconsProps) => {
   const [technicalStack] = useState<{ image: ReactNode }[]>([

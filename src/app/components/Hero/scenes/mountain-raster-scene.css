@@ -26,14 +26,14 @@
   inset: 0;
   z-index: 0;
   /* Persistent CSS fallback under next/image (Brave paint safety). */
-  background-image: url('/hero/mountain/mountain-day-master.webp');
+  background-image: url("/hero/mountain/mountain-day-master.webp");
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-html[data-theme='dark'] .mountain-scene__background {
-  background-image: url('/hero/mountain/mountain-night-master.webp');
+html[data-theme="dark"] .mountain-scene__background {
+  background-image: url("/hero/mountain/mountain-night-master.webp");
   background-color: #0a1220;
 }
 
@@ -51,11 +51,11 @@ html[data-theme='dark'] .mountain-scene__background {
   opacity: 0;
 }
 
-html[data-theme='dark'] .mountain-scene__image--day {
+html[data-theme="dark"] .mountain-scene__image--day {
   opacity: 0;
 }
 
-html[data-theme='dark'] .mountain-scene__image--night {
+html[data-theme="dark"] .mountain-scene__image--night {
   opacity: 1;
 }
 

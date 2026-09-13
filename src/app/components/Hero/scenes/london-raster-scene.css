@@ -43,19 +43,19 @@
   opacity: 0;
 }
 
-html[data-theme='dark'] .london-scene__image--day {
+html[data-theme="dark"] .london-scene__image--day {
   opacity: 0;
 }
 
-html[data-theme='dark'] .london-scene__image--night {
+html[data-theme="dark"] .london-scene__image--night {
   opacity: 1;
 }
 
-.london-scene[data-force-night='true'] .london-scene__image--day {
+.london-scene[data-force-night="true"] .london-scene__image--day {
   opacity: 0;
 }
 
-.london-scene[data-force-night='true'] .london-scene__image--night {
+.london-scene[data-force-night="true"] .london-scene__image--night {
   opacity: 1;
 }
 
@@ -89,7 +89,7 @@ html[data-theme='dark'] .london-scene__image--night {
   left: 0;
 }
 
-.london-scene__vehicle[data-transport-active='false'] {
+.london-scene__vehicle[data-transport-active="false"] {
   visibility: hidden;
 }
 
@@ -106,8 +106,10 @@ html[data-theme='dark'] .london-scene__image--night {
   filter: brightness(0.93) contrast(0.96) saturate(0.96);
 }
 
-html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-image,
-.london-scene[data-force-night='true']
+html[data-theme="dark"]
+  .london-scene__vehicle--tube
+  .london-scene__vehicle-image,
+.london-scene[data-force-night="true"]
   .london-scene__vehicle--tube
   .london-scene__vehicle-image {
   filter: brightness(0.82) contrast(0.94) saturate(0.92);
@@ -138,7 +140,11 @@ html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-imag
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.65);
   color: #9fffe0;
-  font: 600 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font:
+    600 10px / 1.2 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
   letter-spacing: 0.02em;
   text-transform: none;
 }
@@ -196,7 +202,11 @@ html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-imag
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.7);
   color: #ffe08a;
-  font: 600 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font:
+    600 10px / 1.2 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
   white-space: nowrap;
 }
 
@@ -208,7 +218,11 @@ html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-imag
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.75);
   color: #9fe8ff;
-  font: 600 9px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font:
+    600 9px / 1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
 }
 
 .london-scene__path-spawn {
@@ -243,7 +257,12 @@ html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-imag
   z-index: 10000;
   pointer-events: auto;
   max-width: min(340px, calc(100vw - 24px));
-  font: 12px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  font:
+    12px / 1.35 ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
   color: #e8eef5;
 }
 
@@ -303,7 +322,7 @@ html[data-theme='dark'] .london-scene__vehicle--tube .london-scene__vehicle-imag
   margin-top: 6px;
 }
 
-.london-scene-calibrator__group input[type='range'] {
+.london-scene-calibrator__group input[type="range"] {
   width: 100%;
 }
 

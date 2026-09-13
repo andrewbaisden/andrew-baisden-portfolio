@@ -331,48 +331,48 @@
   display: none;
 }
 
-html[data-theme='dark'] .mountain-env__clouds {
+html[data-theme="dark"] .mountain-env__clouds {
   color: rgba(180, 200, 240, 0.4);
   opacity: 0.5;
 }
 
-html[data-theme='dark'] .mountain-env__birds {
+html[data-theme="dark"] .mountain-env__birds {
   color: rgba(160, 180, 210, 0.5);
 }
 
-html[data-theme='dark'] .mountain-env__waterfall {
+html[data-theme="dark"] .mountain-env__waterfall {
   opacity: 0.4;
 }
 
-html[data-theme='dark'] .mountain-env__lake-shimmer {
+html[data-theme="dark"] .mountain-env__lake-shimmer {
   opacity: 0.07;
 }
 
-html[data-theme='dark'] .mountain-yacht__image {
+html[data-theme="dark"] .mountain-yacht__image {
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4)) brightness(0.92)
     saturate(0.9);
 }
 
-html[data-theme='dark'] .mountain-yacht__wake {
+html[data-theme="dark"] .mountain-yacht__wake {
   opacity: 0.5;
 }
 
-html[data-theme='dark'] .mountain-yacht__reflection {
+html[data-theme="dark"] .mountain-yacht__reflection {
   opacity: 0.07;
 }
 
 /* Pause CSS ambient motion when scene is inactive or motion is off.
    Yacht WAAPI pause is handled in useMountainYachtAnimation. */
-.mountain-scene[data-ambient-motion='paused'] .mountain-env__cloud,
-.mountain-scene[data-ambient-motion='paused'] .mountain-env__bird-flock,
-.mountain-scene[data-ambient-motion='paused'] .mountain-env__foliage-sway,
-.mountain-scene[data-ambient-motion='paused'] .mountain-env__waterfall-flow,
-.mountain-scene[data-ambient-motion='paused'] .mountain-env__lake-shimmer,
-.mountain-env[data-motion='off'] .mountain-env__cloud,
-.mountain-env[data-motion='off'] .mountain-env__bird-flock,
-.mountain-env[data-motion='off'] .mountain-env__foliage-sway,
-.mountain-env[data-motion='off'] .mountain-env__waterfall-flow,
-.mountain-env[data-motion='off'] .mountain-env__lake-shimmer {
+.mountain-scene[data-ambient-motion="paused"] .mountain-env__cloud,
+.mountain-scene[data-ambient-motion="paused"] .mountain-env__bird-flock,
+.mountain-scene[data-ambient-motion="paused"] .mountain-env__foliage-sway,
+.mountain-scene[data-ambient-motion="paused"] .mountain-env__waterfall-flow,
+.mountain-scene[data-ambient-motion="paused"] .mountain-env__lake-shimmer,
+.mountain-env[data-motion="off"] .mountain-env__cloud,
+.mountain-env[data-motion="off"] .mountain-env__bird-flock,
+.mountain-env[data-motion="off"] .mountain-env__foliage-sway,
+.mountain-env[data-motion="off"] .mountain-env__waterfall-flow,
+.mountain-env[data-motion="off"] .mountain-env__lake-shimmer {
   animation-play-state: paused;
 }
 
@@ -410,7 +410,10 @@ html[data-theme='dark'] .mountain-yacht__reflection {
   border-radius: 10px;
   background: rgba(12, 18, 28, 0.88);
   color: #e8eef5;
-  font: 12px/1.35 ui-sans-serif, system-ui, sans-serif;
+  font:
+    12px / 1.35 ui-sans-serif,
+    system-ui,
+    sans-serif;
   pointer-events: auto;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
@@ -451,7 +454,7 @@ html[data-theme='dark'] .mountain-yacht__reflection {
   margin: 0 0 6px;
 }
 
-.mountain-calibrator input[type='range'] {
+.mountain-calibrator input[type="range"] {
   width: 100%;
 }
 

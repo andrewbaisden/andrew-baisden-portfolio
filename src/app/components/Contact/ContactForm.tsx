@@ -1,12 +1,12 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import {
+  type ContactFormValues,
   contactReasons,
   contactSchema,
-  type ContactFormValues,
 } from '@/lib/contact-schema';
 
 type FormStatus = 'idle' | 'success' | 'error';
@@ -88,11 +88,7 @@ export const ContactForm = () => {
   }
 
   return (
-    <form
-      className="contact-form"
-      onSubmit={handleSubmit(onSubmit)}
-      noValidate
-    >
+    <form className="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className="contact-field">
         <label htmlFor="contact-name">Name</label>
         <input
@@ -104,7 +100,11 @@ export const ContactForm = () => {
           {...register('name')}
         />
         {errors.name ? (
-          <p id="contact-name-error" className="contact-field-error" role="alert">
+          <p
+            id="contact-name-error"
+            className="contact-field-error"
+            role="alert"
+          >
             {errors.name.message}
           </p>
         ) : null}

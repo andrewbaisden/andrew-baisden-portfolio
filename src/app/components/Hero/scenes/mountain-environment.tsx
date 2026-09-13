@@ -1,7 +1,10 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { MountainYacht, type MountainYachtOverrides } from '../vehicles/mountain-yacht';
+import {
+  MountainYacht,
+  type MountainYachtOverrides,
+} from '../vehicles/mountain-yacht';
 import {
   MOUNTAIN_LAKE,
   MOUNTAIN_SCENE,
@@ -150,10 +153,7 @@ export function MountainEnvironment({
         <div className="mountain-env__lake-shimmer mountain-env__lake-shimmer--b" />
       </div>
 
-      <MountainYacht
-        motionEnabled={motionEnabled}
-        overrides={yachtOverrides}
-      />
+      <MountainYacht motionEnabled={motionEnabled} overrides={yachtOverrides} />
 
       {/* Reserved — night look comes from mountain-night-master.webp */}
       <div className="mountain-env__dark-veil" />

@@ -86,26 +86,96 @@ export function LondonEnvironment({ debug }: LondonEnvironmentProps) {
 
         <g className="london-env__birds">
           <g className="london-env__bird-flock london-env__bird-flock--a">
-            <path d="M0 0 q8 7 16 0" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-            <path d="M34 -12 q7 6 14 0" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-            <path d="M66 6 q6 5 12 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M100 -18 q7 6 13 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path
+              d="M0 0 q8 7 16 0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+            />
+            <path
+              d="M34 -12 q7 6 14 0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+            <path
+              d="M66 6 q6 5 12 0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M100 -18 q7 6 13 0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
           </g>
           <g className="london-env__bird-flock london-env__bird-flock--b">
-            <path d="M0 0 q7 6 14 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M28 -8 q6 5 12 0" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-            <path d="M54 4 q6 5 11 0" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            <path
+              d="M0 0 q7 6 14 0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M28 -8 q6 5 12 0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+            />
+            <path
+              d="M54 4 q6 5 11 0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+            />
           </g>
         </g>
 
         <g className="london-env__foliage">
           <g className="london-env__foliage-sway london-env__foliage-sway--left">
-            <ellipse cx="80" cy="70" rx="48" ry="28" fill="currentColor" opacity="0.18" />
-            <ellipse cx="120" cy="48" rx="36" ry="22" fill="currentColor" opacity="0.14" />
+            <ellipse
+              cx="80"
+              cy="70"
+              rx="48"
+              ry="28"
+              fill="currentColor"
+              opacity="0.18"
+            />
+            <ellipse
+              cx="120"
+              cy="48"
+              rx="36"
+              ry="22"
+              fill="currentColor"
+              opacity="0.14"
+            />
           </g>
           <g className="london-env__foliage-sway london-env__foliage-sway--right">
-            <ellipse cx="1960" cy="72" rx="46" ry="26" fill="currentColor" opacity="0.16" />
-            <ellipse cx="2010" cy="52" rx="34" ry="20" fill="currentColor" opacity="0.12" />
+            <ellipse
+              cx="1960"
+              cy="72"
+              rx="46"
+              ry="26"
+              fill="currentColor"
+              opacity="0.16"
+            />
+            <ellipse
+              cx="2010"
+              cy="52"
+              rx="34"
+              ry="20"
+              fill="currentColor"
+              opacity="0.12"
+            />
           </g>
         </g>
       </svg>

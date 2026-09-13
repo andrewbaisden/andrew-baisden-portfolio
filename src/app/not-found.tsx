@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import Logo from './img/logo.svg';
-import ThemeToggle from './components/ThemeToggle/ThemeToggle';
+import { useEffect, useState } from 'react';
 import FooterText from './components/FooterText/FooterText';
+import ThemeToggle from './components/ThemeToggle/ThemeToggle';
+import Logo from './img/logo.svg';
 import './not-found.css';
 
 const REDIRECT_SECONDS = 60;

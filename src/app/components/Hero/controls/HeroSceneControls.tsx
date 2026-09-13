@@ -60,10 +60,10 @@ export function HeroSceneControls() {
           motionEnabled ? 'is-on' : 'is-off',
         ].join(' ')}
         aria-pressed={motionEnabled}
-        aria-label={
-          motionEnabled ? 'Ambient motion on' : 'Ambient motion off'
+        aria-label={motionEnabled ? 'Ambient motion on' : 'Ambient motion off'}
+        title={
+          motionEnabled ? 'Turn ambient motion off' : 'Turn ambient motion on'
         }
-        title={motionEnabled ? 'Turn ambient motion off' : 'Turn ambient motion on'}
         onClick={() => setMotionEnabled(!motionEnabled)}
       >
         <span className="hero-scene-controls__motion-label">Motion</span>

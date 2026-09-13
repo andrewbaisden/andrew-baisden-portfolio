@@ -1,20 +1,21 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { HeroDevPortal } from '../dev/hero-dev-portal';
 import {
   LONDON_TRANSPORT_CYCLE_SEC,
   resolveAllTransportPaths,
 } from '../animations/london-transport-config';
+import type { ArticulationDebugControls } from '../animations/vehicle-articulation-config';
+import { HeroDevPortal } from '../dev/hero-dev-portal';
 import type { AmbientDebugFlags } from './london-environment';
 import {
   LONDON_SCENE,
+  type LondonVehicleId,
+  type LondonVehicleLayout,
   londonTracks,
   londonTubeCorridor,
   londonVehicleLayout,
   vehicleDisplayWidth,
-  type LondonVehicleId,
-  type LondonVehicleLayout,
 } from './london-tracks';
 
 export type CalibrationVehicleValues = {
@@ -44,6 +45,8 @@ type LondonSceneCalibratorProps = {
   onAmbientChange: (next: AmbientDebugFlags) => void;
   showLightAnchors: boolean;
   onShowLightAnchorsChange: (value: boolean) => void;
+  articulation: ArticulationDebugControls;
+  onArticulationChange: (next: ArticulationDebugControls) => void;
 };
 
 const VEHICLE_IDS = Object.keys(londonVehicleLayout) as LondonVehicleId[];
@@ -51,6 +54,7 @@ const STORAGE_KEY = 'london-vehicle-calibration-v5';
 const SCALE_MIN = 0.25;
 const SCALE_MAX = 5;
 const SPEED_OPTIONS = [0.25, 0.5, 1, 2] as const;
+const WHEEL_SPEED_OPTIONS = [0.5, 1, 2] as const;
 
 function defaults(): Record<LondonVehicleId, CalibrationVehicleValues> {
   return Object.fromEntries(
@@ -117,6 +121,8 @@ export function LondonSceneCalibrator({
   onAmbientChange,
   showLightAnchors,
   onShowLightAnchorsChange,
+  articulation,
+  onArticulationChange,
 }: LondonSceneCalibratorProps) {
   const [values, setValues] =
     useState<Record<LondonVehicleId, CalibrationVehicleValues>>(defaults);
@@ -170,259 +176,348 @@ export function LondonSceneCalibrator({
         {open ? (
           <div className="london-scene-calibrator__panel">
             <p className="london-scene-calibrator__hint">
-              Dev-only · cycle {LONDON_TRANSPORT_CYCLE_SEC}s · scale {SCALE_MIN}–
-              {SCALE_MAX}.
+              Dev-only · cycle {LONDON_TRANSPORT_CYCLE_SEC}s · scale {SCALE_MIN}
+              –{SCALE_MAX}.
               {reducedMotion ? ' Reduced motion: static composition.' : ''}
             </p>
 
-          <fieldset className="london-scene-calibrator__group">
-            <legend>Traffic debug</legend>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={traffic.pause}
-                onChange={(e) =>
-                  onTrafficChange({ ...traffic, pause: e.target.checked })
-                }
-              />
-              Pause traffic
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={traffic.showPaths}
-                onChange={(e) =>
-                  onTrafficChange({ ...traffic, showPaths: e.target.checked })
-                }
-              />
-              Show paths / spawn bounds
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={showGuides}
-                onChange={(e) => onShowGuidesChange(e.target.checked)}
-              />
-              Show lane baselines
-            </label>
-            <div className="london-scene-calibrator__speeds">
-              <span>Speed</span>
-              {SPEED_OPTIONS.map((rate) => (
-                <button
-                  key={rate}
-                  type="button"
-                  className={
-                    traffic.playbackRate === rate
-                      ? 'london-scene-calibrator__speed london-scene-calibrator__speed--active'
-                      : 'london-scene-calibrator__speed'
+            <fieldset className="london-scene-calibrator__group">
+              <legend>Traffic debug</legend>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={traffic.pause}
+                  onChange={(e) =>
+                    onTrafficChange({ ...traffic, pause: e.target.checked })
                   }
-                  onClick={() =>
-                    onTrafficChange({ ...traffic, playbackRate: rate })
+                />
+                Pause traffic
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={traffic.showPaths}
+                  onChange={(e) =>
+                    onTrafficChange({ ...traffic, showPaths: e.target.checked })
                   }
-                >
-                  {rate}×
-                </button>
-              ))}
-            </div>
-          </fieldset>
-
-          <fieldset className="london-scene-calibrator__group">
-            <legend>Ambient / night polish</legend>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={ambient.showNightLighting}
-                onChange={(e) =>
-                  onAmbientChange({
-                    ...ambient,
-                    showNightLighting: e.target.checked,
-                  })
-                }
-              />
-              Force night lighting
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={showLightAnchors}
-                onChange={(e) => onShowLightAnchorsChange(e.target.checked)}
-              />
-              Show vehicle light anchors
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={ambient.showLampGlow}
-                onChange={(e) =>
-                  onAmbientChange({
-                    ...ambient,
-                    showLampGlow: e.target.checked,
-                  })
-                }
-              />
-              Show lamp glow
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={ambient.showClouds}
-                onChange={(e) =>
-                  onAmbientChange({ ...ambient, showClouds: e.target.checked })
-                }
-              />
-              Show cloud layers
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={ambient.showWater}
-                onChange={(e) =>
-                  onAmbientChange({ ...ambient, showWater: e.target.checked })
-                }
-              />
-              Show water overlays
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={ambient.showBirds}
-                onChange={(e) =>
-                  onAmbientChange({ ...ambient, showBirds: e.target.checked })
-                }
-              />
-              Show bird path
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={ambient.showFoliage}
-                onChange={(e) =>
-                  onAmbientChange({ ...ambient, showFoliage: e.target.checked })
-                }
-              />
-              Show foliage overlay
-            </label>
-            <label className="london-scene-calibrator__row">
-              <input
-                type="checkbox"
-                checked={ambient.pauseAmbient}
-                onChange={(e) =>
-                  onAmbientChange({
-                    ...ambient,
-                    pauseAmbient: e.target.checked,
-                  })
-                }
-              />
-              Pause all ambient motion
-            </label>
-            <div className="london-scene-calibrator__speeds">
-              <span>Ambient</span>
-              {SPEED_OPTIONS.map((rate) => (
-                <button
-                  key={`ambient-${rate}`}
-                  type="button"
-                  className={
-                    ambient.playbackRate === rate
-                      ? 'london-scene-calibrator__speed london-scene-calibrator__speed--active'
-                      : 'london-scene-calibrator__speed'
-                  }
-                  onClick={() =>
-                    onAmbientChange({ ...ambient, playbackRate: rate })
-                  }
-                >
-                  {rate}×
-                </button>
-              ))}
-            </div>
-          </fieldset>
-
-          {VEHICLE_IDS.map((id) => {
-            const v = values[id];
-            const layout = londonVehicleLayout[id];
-            const track = layout.track;
-            const display = vehicleDisplayWidth(layout, v.scale);
-            return (
-              <fieldset key={id} className="london-scene-calibrator__group">
-                <legend>
-                  {id} · {track} · w≈{Math.round(display)}
-                </legend>
-                <label>
-                  X
-                  <input
-                    type="range"
-                    min={-Math.round(LONDON_SCENE.width)}
-                    max={LONDON_SCENE.width * 2}
-                    step={2}
-                    value={v.x}
-                    onChange={(e) =>
-                      setValues((prev) => ({
-                        ...prev,
-                        [id]: { ...prev[id], x: Number(e.target.value) },
-                      }))
+                />
+                Show paths / spawn bounds
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={showGuides}
+                  onChange={(e) => onShowGuidesChange(e.target.checked)}
+                />
+                Show lane baselines
+              </label>
+              <div className="london-scene-calibrator__speeds">
+                <span>Speed</span>
+                {SPEED_OPTIONS.map((rate) => (
+                  <button
+                    key={rate}
+                    type="button"
+                    className={
+                      traffic.playbackRate === rate
+                        ? 'london-scene-calibrator__speed london-scene-calibrator__speed--active'
+                        : 'london-scene-calibrator__speed'
                     }
-                  />
-                  <span>{v.x}</span>
-                </label>
-                <label>
-                  Scale
-                  <input
-                    type="range"
-                    min={SCALE_MIN}
-                    max={SCALE_MAX}
-                    step={0.05}
-                    value={v.scale}
-                    onChange={(e) =>
-                      setValues((prev) => ({
-                        ...prev,
-                        [id]: { ...prev[id], scale: Number(e.target.value) },
-                      }))
+                    onClick={() =>
+                      onTrafficChange({ ...traffic, playbackRate: rate })
                     }
-                  />
-                  <span>{v.scale.toFixed(2)}</span>
-                </label>
-                <label>
-                  Y offset
-                  <input
-                    type="range"
-                    min={-80}
-                    max={80}
-                    step={1}
-                    value={v.baselineOffset}
-                    onChange={(e) =>
-                      setValues((prev) => ({
-                        ...prev,
-                        [id]: {
-                          ...prev[id],
-                          baselineOffset: Number(e.target.value),
-                        },
-                      }))
+                  >
+                    {rate}×
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset className="london-scene-calibrator__group">
+              <legend>Articulated actors</legend>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={articulation.articulated}
+                  onChange={(e) =>
+                    onArticulationChange({
+                      ...articulation,
+                      articulated: e.target.checked,
+                    })
+                  }
+                />
+                Articulated vehicles
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={articulation.wheelRotation}
+                  onChange={(e) =>
+                    onArticulationChange({
+                      ...articulation,
+                      wheelRotation: e.target.checked,
+                    })
+                  }
+                />
+                Wheel rotation
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={articulation.waymoLidar}
+                  disabled
+                  onChange={(e) =>
+                    onArticulationChange({
+                      ...articulation,
+                      waymoLidar: e.target.checked,
+                    })
+                  }
+                />
+                Waymo lidar (skipped — fidelity)
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={articulation.vehicleLighting}
+                  onChange={(e) =>
+                    onArticulationChange({
+                      ...articulation,
+                      vehicleLighting: e.target.checked,
+                    })
+                  }
+                />
+                Vehicle lighting
+              </label>
+              <div className="london-scene-calibrator__speeds">
+                <span>Wheel speed</span>
+                {WHEEL_SPEED_OPTIONS.map((rate) => (
+                  <button
+                    key={rate}
+                    type="button"
+                    className={
+                      articulation.wheelSpeed === rate
+                        ? 'london-scene-calibrator__speed london-scene-calibrator__speed--active'
+                        : 'london-scene-calibrator__speed'
                     }
-                  />
-                  <span>{v.baselineOffset}</span>
-                </label>
-              </fieldset>
-            );
-          })}
+                    onClick={() =>
+                      onArticulationChange({
+                        ...articulation,
+                        wheelSpeed: rate,
+                      })
+                    }
+                  >
+                    {rate}×
+                  </button>
+                ))}
+              </div>
+              <p className="london-scene-calibrator__hint">
+                Toggle Articulated off to A/B against the original single
+                raster. Pause traffic to compare stationary fidelity.
+              </p>
+            </fieldset>
 
-          <button
-            type="button"
-            className="london-scene-calibrator__reset"
-            onClick={() => {
-              const next = defaults();
-              setValues(next);
-              try {
-                window.localStorage.removeItem(STORAGE_KEY);
-              } catch {
-                // ignore
-              }
-            }}
-          >
-            Reset to code defaults
-          </button>
+            <fieldset className="london-scene-calibrator__group">
+              <legend>Ambient / night polish</legend>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={ambient.showNightLighting}
+                  onChange={(e) =>
+                    onAmbientChange({
+                      ...ambient,
+                      showNightLighting: e.target.checked,
+                    })
+                  }
+                />
+                Force night lighting
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={showLightAnchors}
+                  onChange={(e) => onShowLightAnchorsChange(e.target.checked)}
+                />
+                Show vehicle light anchors
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={ambient.showLampGlow}
+                  onChange={(e) =>
+                    onAmbientChange({
+                      ...ambient,
+                      showLampGlow: e.target.checked,
+                    })
+                  }
+                />
+                Show lamp glow
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={ambient.showClouds}
+                  onChange={(e) =>
+                    onAmbientChange({
+                      ...ambient,
+                      showClouds: e.target.checked,
+                    })
+                  }
+                />
+                Show cloud layers
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={ambient.showWater}
+                  onChange={(e) =>
+                    onAmbientChange({ ...ambient, showWater: e.target.checked })
+                  }
+                />
+                Show water overlays
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={ambient.showBirds}
+                  onChange={(e) =>
+                    onAmbientChange({ ...ambient, showBirds: e.target.checked })
+                  }
+                />
+                Show bird path
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={ambient.showFoliage}
+                  onChange={(e) =>
+                    onAmbientChange({
+                      ...ambient,
+                      showFoliage: e.target.checked,
+                    })
+                  }
+                />
+                Show foliage overlay
+              </label>
+              <label className="london-scene-calibrator__row">
+                <input
+                  type="checkbox"
+                  checked={ambient.pauseAmbient}
+                  onChange={(e) =>
+                    onAmbientChange({
+                      ...ambient,
+                      pauseAmbient: e.target.checked,
+                    })
+                  }
+                />
+                Pause all ambient motion
+              </label>
+              <div className="london-scene-calibrator__speeds">
+                <span>Ambient</span>
+                {SPEED_OPTIONS.map((rate) => (
+                  <button
+                    key={`ambient-${rate}`}
+                    type="button"
+                    className={
+                      ambient.playbackRate === rate
+                        ? 'london-scene-calibrator__speed london-scene-calibrator__speed--active'
+                        : 'london-scene-calibrator__speed'
+                    }
+                    onClick={() =>
+                      onAmbientChange({ ...ambient, playbackRate: rate })
+                    }
+                  >
+                    {rate}×
+                  </button>
+                ))}
+              </div>
+            </fieldset>
 
-          <p className="london-scene-calibrator__summary">{summary}</p>
-        </div>
-      ) : null}
+            {VEHICLE_IDS.map((id) => {
+              const v = values[id];
+              const layout = londonVehicleLayout[id];
+              const track = layout.track;
+              const display = vehicleDisplayWidth(layout, v.scale);
+              return (
+                <fieldset key={id} className="london-scene-calibrator__group">
+                  <legend>
+                    {id} · {track} · w≈{Math.round(display)}
+                  </legend>
+                  <label>
+                    X
+                    <input
+                      type="range"
+                      min={-Math.round(LONDON_SCENE.width)}
+                      max={LONDON_SCENE.width * 2}
+                      step={2}
+                      value={v.x}
+                      onChange={(e) =>
+                        setValues((prev) => ({
+                          ...prev,
+                          [id]: { ...prev[id], x: Number(e.target.value) },
+                        }))
+                      }
+                    />
+                    <span>{v.x}</span>
+                  </label>
+                  <label>
+                    Scale
+                    <input
+                      type="range"
+                      min={SCALE_MIN}
+                      max={SCALE_MAX}
+                      step={0.05}
+                      value={v.scale}
+                      onChange={(e) =>
+                        setValues((prev) => ({
+                          ...prev,
+                          [id]: { ...prev[id], scale: Number(e.target.value) },
+                        }))
+                      }
+                    />
+                    <span>{v.scale.toFixed(2)}</span>
+                  </label>
+                  <label>
+                    Y offset
+                    <input
+                      type="range"
+                      min={-80}
+                      max={80}
+                      step={1}
+                      value={v.baselineOffset}
+                      onChange={(e) =>
+                        setValues((prev) => ({
+                          ...prev,
+                          [id]: {
+                            ...prev[id],
+                            baselineOffset: Number(e.target.value),
+                          },
+                        }))
+                      }
+                    />
+                    <span>{v.baselineOffset}</span>
+                  </label>
+                </fieldset>
+              );
+            })}
+
+            <button
+              type="button"
+              className="london-scene-calibrator__reset"
+              onClick={() => {
+                const next = defaults();
+                setValues(next);
+                try {
+                  window.localStorage.removeItem(STORAGE_KEY);
+                } catch {
+                  // ignore
+                }
+              }}
+            >
+              Reset to code defaults
+            </button>
+
+            <p className="london-scene-calibrator__summary">{summary}</p>
+          </div>
+        ) : null}
       </aside>
     </HeroDevPortal>
   );

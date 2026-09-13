@@ -11,9 +11,9 @@ export const ContactSection = () => {
         <p className="contact-intro-kicker">Contact</p>
         <h2 className="contact-intro-title">Let&apos;s build something.</h2>
         <p className="contact-intro-copy">
-          I&apos;m open to software engineering opportunities, freelance projects
-          and technical collaborations. If you&apos;re working on something
-          interesting, I&apos;d love to hear about it.
+          I&apos;m open to software engineering opportunities, freelance
+          projects and technical collaborations. If you&apos;re working on
+          something interesting, I&apos;d love to hear about it.
         </p>
       </div>
 

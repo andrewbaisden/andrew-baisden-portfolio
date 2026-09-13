@@ -1,6 +1,6 @@
 .about-profile-image svg {
-	width: 50rem;
-	max-width: 50rem;
+  width: 50rem;
+  max-width: 50rem;
 }
 
 /* 
@@ -9,11 +9,11 @@
 */
 
 @media (min-width: 1281px) {
-	/* CSS */
-	.about-profile-image svg {
-		width: 50rem;
-		max-width: 50rem;
-	}
+  /* CSS */
+  .about-profile-image svg {
+    width: 50rem;
+    max-width: 50rem;
+  }
 }
 
 /* 
@@ -22,11 +22,11 @@
   */
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-	/* CSS */
-	.about-profile-image svg {
-		width: 30rem;
-		max-width: 30rem;
-	}
+  /* CSS */
+  .about-profile-image svg {
+    width: 30rem;
+    max-width: 30rem;
+  }
 }
 
 /* 
@@ -35,11 +35,11 @@
   */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-	/* CSS */
-	.about-profile-image svg {
-		width: 30rem;
-		max-width: 30rem;
-	}
+  /* CSS */
+  .about-profile-image svg {
+    width: 30rem;
+    max-width: 30rem;
+  }
 }
 
 /* 
@@ -48,11 +48,11 @@
   */
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-	/* CSS */
-	.about-profile-image svg {
-		width: 30rem;
-		max-width: 30rem;
-	}
+  /* CSS */
+  .about-profile-image svg {
+    width: 30rem;
+    max-width: 30rem;
+  }
 }
 
 /* 
@@ -61,11 +61,11 @@
   */
 
 @media (min-width: 481px) and (max-width: 767px) {
-	/* CSS */
-	.about-profile-image svg {
-		width: 30rem;
-		max-width: 30rem;
-	}
+  /* CSS */
+  .about-profile-image svg {
+    width: 30rem;
+    max-width: 30rem;
+  }
 }
 
 /* 
@@ -74,9 +74,9 @@
   */
 
 @media (max-width: 480px) {
-	/* CSS */
-	.about-profile-image svg {
-		width: min(20rem, 100%);
-		max-width: 100%;
-	}
+  /* CSS */
+  .about-profile-image svg {
+    width: min(20rem, 100%);
+    max-width: 100%;
+  }
 }

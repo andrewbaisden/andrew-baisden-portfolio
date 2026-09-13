@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useTheme } from '../../context/ThemeContext';
 
-interface NodeJSLogoProps {}
+type NodeJSLogoProps = {};
 
 export const NodeJSLogo = ({ ...props }: NodeJSLogoProps) => {
   const { activeTheme } = useTheme();

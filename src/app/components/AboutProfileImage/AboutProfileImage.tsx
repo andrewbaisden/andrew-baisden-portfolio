@@ -1,7 +1,6 @@
-import React from 'react';
 import './AboutProfileImage.css';
 
-interface AboutProfileImageProps {}
+type AboutProfileImageProps = {};
 
 export const AboutProfileImage = ({ ...props }: AboutProfileImageProps) => {
   return (

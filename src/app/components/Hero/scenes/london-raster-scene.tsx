@@ -7,22 +7,26 @@ import londonNightMaster from '../../../img/london-night-master.webp';
 import { useHeroAmbientActive } from '../animations/use-hero-ambient-active';
 import { useLondonTransportAnimation } from '../animations/use-london-transport-animation';
 import { useReducedMotion } from '../animations/use-reduced-motion';
+import {
+  type ArticulationDebugControls,
+  DEFAULT_ARTICULATION_DEBUG,
+} from '../animations/vehicle-articulation-config';
 import { RasterVehicle } from '../vehicles/raster-vehicle';
 import {
-  LondonEnvironment,
   type AmbientDebugFlags,
+  LondonEnvironment,
 } from './london-environment';
 import {
+  type CalibrationOverrides,
   LondonSceneCalibrator,
   LondonTrackGuides,
-  type CalibrationOverrides,
   type TrafficDebugControls,
 } from './london-scene-calibrator';
 import {
   LONDON_SCENE,
-  londonVehicleLayout,
   type LondonVehicleId,
   type LondonVehicleLayout,
+  londonVehicleLayout,
 } from './london-tracks';
 import './london-raster-scene.css';
 import './london-environment.css';
@@ -44,10 +48,9 @@ const DEFAULT_AMBIENT_DEBUG: AmbientDebugFlags = {
   playbackRate: 1,
 };
 
-function mergeLayouts(overrides: CalibrationOverrides): Record<
-  LondonVehicleId,
-  LondonVehicleLayout
-> {
+function mergeLayouts(
+  overrides: CalibrationOverrides,
+): Record<LondonVehicleId, LondonVehicleLayout> {
   return Object.fromEntries(
     VEHICLE_IDS.map((id) => {
       const base = londonVehicleLayout[id];
@@ -68,7 +71,6 @@ function mergeLayouts(overrides: CalibrationOverrides): Record<
   ) as Record<LondonVehicleId, LondonVehicleLayout>;
 }
 
-
 type LondonRasterSceneProps = Partial<HeroSceneProps>;
 
 export function LondonRasterScene({
@@ -80,8 +82,12 @@ export function LondonRasterScene({
   const [overrides, setOverrides] = useState<CalibrationOverrides>({});
   const [showGuides, setShowGuides] = useState(false);
   const [showLightAnchors, setShowLightAnchors] = useState(false);
-  const [ambientDebug, setAmbientDebug] =
-    useState<AmbientDebugFlags>(DEFAULT_AMBIENT_DEBUG);
+  const [articulation, setArticulation] = useState<ArticulationDebugControls>(
+    DEFAULT_ARTICULATION_DEBUG,
+  );
+  const [ambientDebug, setAmbientDebug] = useState<AmbientDebugFlags>(
+    DEFAULT_AMBIENT_DEBUG,
+  );
   const [traffic, setTraffic] = useState<TrafficDebugControls>({
     pause: false,
     playbackRate: 2,
@@ -147,8 +153,10 @@ export function LondonRasterScene({
         data-scene-width={LONDON_SCENE.width}
         data-scene-height={LONDON_SCENE.height}
         data-transport={transportEnabled ? 'animated' : 'static'}
+        data-transport-playing="false"
         data-force-night={ambientDebug.showNightLighting ? 'true' : 'false'}
         data-ambient-motion="paused"
+        style={{ ['--traffic-rate' as string]: String(traffic.playbackRate) }}
         aria-hidden="true"
       >
         <div ref={canvasRef} className="london-scene__canvas">
@@ -185,6 +193,7 @@ export function LondonRasterScene({
                 override={overrides[id]}
                 animated={transportEnabled}
                 showLightAnchors={isDev && showLightAnchors}
+                articulation={isDev ? articulation : DEFAULT_ARTICULATION_DEBUG}
               />
             ))}
           </div>
@@ -221,6 +230,8 @@ export function LondonRasterScene({
           onAmbientChange={setAmbientDebug}
           showLightAnchors={showLightAnchors}
           onShowLightAnchorsChange={setShowLightAnchors}
+          articulation={articulation}
+          onArticulationChange={setArticulation}
         />
       ) : null}
     </>

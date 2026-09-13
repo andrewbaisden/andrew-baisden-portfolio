@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useTheme } from '../../context/ThemeContext';
 
-interface TypeScriptLogoProps {}
+type TypeScriptLogoProps = {};
 
 export const TypeScriptLogo = ({ ...props }: TypeScriptLogoProps) => {
   const { activeTheme } = useTheme();

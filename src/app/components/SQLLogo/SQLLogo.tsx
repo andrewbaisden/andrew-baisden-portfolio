@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useTheme } from '../../context/ThemeContext';
 
-interface SQLLogoProps {}
+type SQLLogoProps = {};
 
 export const SQLLogo = ({ ...props }: SQLLogoProps) => {
   const { activeTheme } = useTheme();

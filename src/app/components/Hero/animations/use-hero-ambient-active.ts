@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, type RefObject } from 'react';
+import { type RefObject, useEffect } from 'react';
 
 type UseHeroAmbientActiveArgs = {
   sceneRef: RefObject<HTMLElement | null>;
@@ -29,8 +29,7 @@ export function useHeroAmbientActive({
     let pageVisible = !document.hidden;
 
     const sync = () => {
-      const active =
-        motionEnabled && heroVisible && pageVisible && !forcePause;
+      const active = motionEnabled && heroVisible && pageVisible && !forcePause;
       scene.dataset.ambientMotion = active ? 'running' : 'paused';
 
       // CSS layers use data-ambient-motion; SVG animateMotion needs the

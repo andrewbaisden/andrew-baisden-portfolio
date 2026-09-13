@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useTheme } from '../../context/ThemeContext';
 
-interface CSS3LogoProps {}
+type CSS3LogoProps = {};
 
 export const CSS3Logo = ({ ...props }: CSS3LogoProps) => {
   const { activeTheme } = useTheme();

@@ -29,7 +29,9 @@
   font-weight: 600;
   letter-spacing: 0.01em;
   text-shadow: 0 0.08rem 0.45rem rgba(15, 23, 42, 0.28);
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .header-desktop section nav a:hover {
@@ -121,7 +123,7 @@ header input:checked + label span:last-child {
   transform: rotate(-405deg);
 }
 header input ~ nav {
-  background: #7148FC;
+  background: #7148fc;
   position: fixed;
   top: 0;
   left: 0;

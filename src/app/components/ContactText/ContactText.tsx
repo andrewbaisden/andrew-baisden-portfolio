@@ -1,7 +1,6 @@
-import React from 'react';
 import './ContactText.css';
 
-interface ContactTextProps {}
+type ContactTextProps = {};
 
 export const ContactText = ({ ...props }: ContactTextProps) => {
   return (

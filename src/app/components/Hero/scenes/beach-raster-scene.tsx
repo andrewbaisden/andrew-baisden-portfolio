@@ -6,27 +6,20 @@ import beachDayMaster from '../../../img/beach-day-master.webp';
 import beachNightMaster from '../../../img/beach-night-master.webp';
 import { useHeroAmbientActive } from '../animations/use-hero-ambient-active';
 import type { BeachSailboatOverrides } from '../vehicles/beach-sailboat';
-import type { HeroSceneProps } from './hero-scene-types';
 import { BeachEnvironment } from './beach-environment';
 import {
   BeachSceneCalibrator,
   BeachTrackGuides,
 } from './beach-scene-calibrator';
-import {
-  BEACH_SCENE,
-  beachSailboatLayout,
-  beachTracks,
-} from './beach-tracks';
+import { BEACH_SCENE, beachSailboatLayout, beachTracks } from './beach-tracks';
+import type { HeroSceneProps } from './hero-scene-types';
 import './beach-raster-scene.css';
 import './beach-environment.css';
 
 /**
  * Beach hero — day/night raster masters + restrained tropical ambience.
  */
-export function BeachRasterScene({
-  motionEnabled,
-  isActive,
-}: HeroSceneProps) {
+export function BeachRasterScene({ motionEnabled, isActive }: HeroSceneProps) {
   const isDev = process.env.NODE_ENV === 'development';
   const sceneRef = useRef<HTMLDivElement>(null);
   const [sailboatOverrides, setSailboatOverrides] =
@@ -89,11 +82,7 @@ export function BeachRasterScene({
           />
 
           {isDev && showGuides ? (
-            <BeachTrackGuides
-              y={guideY}
-              startX={guideStart}
-              endX={guideEnd}
-            />
+            <BeachTrackGuides y={guideY} startX={guideStart} endX={guideEnd} />
           ) : null}
         </div>
       </div>

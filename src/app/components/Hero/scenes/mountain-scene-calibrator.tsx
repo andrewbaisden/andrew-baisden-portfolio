@@ -106,77 +106,77 @@ export function MountainSceneCalibrator({
           </button>
         </header>
 
-      <label>
-        Scale {v.scale?.toFixed(2)}
-        <input
-          type="range"
-          min={0.4}
-          max={2.2}
-          step={0.02}
-          value={v.scale}
-          onChange={(e) => set('scale', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        Yacht Y {Math.round(v.y ?? 0)}
-        <input
-          type="range"
-          min={760}
-          max={880}
-          step={1}
-          value={v.y}
-          onChange={(e) => set('y', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        Start X {Math.round(v.startX ?? 0)}
-        <input
-          type="range"
-          min={400}
-          max={900}
-          step={4}
-          value={v.startX}
-          onChange={(e) => set('startX', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        End X {Math.round(v.endX ?? 0)}
-        <input
-          type="range"
-          min={1100}
-          max={1800}
-          step={4}
-          value={v.endX}
-          onChange={(e) => set('endX', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        One-way s {v.durationSec?.toFixed(0)}
-        <input
-          type="range"
-          min={18}
-          max={48}
-          step={1}
-          value={v.durationSec}
-          onChange={(e) => set('durationSec', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        Wake opacity {v.wakeOpacity?.toFixed(2)}
-        <input
-          type="range"
-          min={0}
-          max={0.7}
-          step={0.02}
-          value={v.wakeOpacity}
-          onChange={(e) => set('wakeOpacity', Number(e.target.value))}
-        />
-      </label>
+        <label>
+          Scale {v.scale?.toFixed(2)}
+          <input
+            type="range"
+            min={0.4}
+            max={2.2}
+            step={0.02}
+            value={v.scale}
+            onChange={(e) => set('scale', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Yacht Y {Math.round(v.y ?? 0)}
+          <input
+            type="range"
+            min={760}
+            max={880}
+            step={1}
+            value={v.y}
+            onChange={(e) => set('y', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Start X {Math.round(v.startX ?? 0)}
+          <input
+            type="range"
+            min={400}
+            max={900}
+            step={4}
+            value={v.startX}
+            onChange={(e) => set('startX', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          End X {Math.round(v.endX ?? 0)}
+          <input
+            type="range"
+            min={1100}
+            max={1800}
+            step={4}
+            value={v.endX}
+            onChange={(e) => set('endX', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          One-way s {v.durationSec?.toFixed(0)}
+          <input
+            type="range"
+            min={18}
+            max={48}
+            step={1}
+            value={v.durationSec}
+            onChange={(e) => set('durationSec', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Wake opacity {v.wakeOpacity?.toFixed(2)}
+          <input
+            type="range"
+            min={0}
+            max={0.7}
+            step={0.02}
+            value={v.wakeOpacity}
+            onChange={(e) => set('wakeOpacity', Number(e.target.value))}
+          />
+        </label>
 
-      <p className="mountain-calibrator__meta">
-        Scene {MOUNTAIN_SCENE.width}×{MOUNTAIN_SCENE.height} · lake Y{' '}
-        {mountainLakeTrack.y} · round-trip {(v.durationSec ?? 32) * 2}s
-      </p>
+        <p className="mountain-calibrator__meta">
+          Scene {MOUNTAIN_SCENE.width}×{MOUNTAIN_SCENE.height} · lake Y{' '}
+          {mountainLakeTrack.y} · round-trip {(v.durationSec ?? 32) * 2}s
+        </p>
       </aside>
     </HeroDevPortal>
   );

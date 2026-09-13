@@ -1,6 +1,11 @@
 'use client';
 
-import { useEffect, useRef, type RefObject } from 'react';
+import { type RefObject, useEffect, useRef } from 'react';
+import {
+  LONDON_SCENE,
+  type LondonVehicleId,
+  type LondonVehicleLayout,
+} from '../scenes/london-tracks';
 import {
   getActiveTransportIds,
   LONDON_TRANSPORT_CYCLE_SEC,
@@ -8,11 +13,6 @@ import {
   resolveTransportPath,
   type TransportPath,
 } from './london-transport-config';
-import {
-  LONDON_SCENE,
-  type LondonVehicleId,
-  type LondonVehicleLayout,
-} from '../scenes/london-tracks';
 
 export type TransportLayoutMap = Record<LondonVehicleId, LondonVehicleLayout>;
 
@@ -30,13 +30,19 @@ function sceneXToPx(sceneX: number, canvasWidth: number): number {
   return (sceneX / LONDON_SCENE.width) * canvasWidth;
 }
 
-function buildTransform(xPx: number, flip: number, mobileScale: number): string {
+function buildTransform(
+  xPx: number,
+  flip: number,
+  mobileScale: number,
+): string {
   // xPx = centreline in canvas pixels; translate(-50%, -100%) anchors bottom-centre to the lane
   return `translate3d(${xPx}px, 0, 0) translate(-50%, -100%) scaleX(${flip}) scale(${mobileScale})`;
 }
 
 function readMobileScale(el: HTMLElement): number {
-  const raw = getComputedStyle(el).getPropertyValue('--vehicle-mobile-scale').trim();
+  const raw = getComputedStyle(el)
+    .getPropertyValue('--vehicle-mobile-scale')
+    .trim();
   const n = Number.parseFloat(raw);
   return Number.isFinite(n) && n > 0 ? n : 1;
 }
@@ -55,7 +61,11 @@ function buildCycleKeyframes(
   const push = (time: number, xPx: number) => {
     const t = Math.min(Math.max(time, 0), cycle);
     const last = frames[frames.length - 1];
-    if (last && Math.abs(last.time - t) < 0.001 && Math.abs(last.xPx - xPx) < 0.5) {
+    if (
+      last &&
+      Math.abs(last.time - t) < 0.001 &&
+      Math.abs(last.xPx - xPx) < 0.5
+    ) {
       return;
     }
     frames.push({ time: t, xPx });
@@ -130,6 +140,8 @@ export function useLondonTransportAnimation({
     const syncPlayState = () => {
       const shouldPlay =
         enabledRef.current && heroVisible && pageVisible && !pauseRef.current;
+      scene.dataset.transportPlaying = shouldPlay ? 'true' : 'false';
+      scene.style.setProperty('--traffic-rate', String(rateRef.current));
       for (const anim of animationsRef.current) {
         anim.playbackRate = rateRef.current;
         if (shouldPlay) {
@@ -248,11 +260,16 @@ export function useLondonTransportAnimation({
       document.removeEventListener('visibilitychange', onVisibility);
       io.disconnect();
       teardown();
+      scene.dataset.transportPlaying = 'false';
     };
   }, [canvasRef, sceneRef, vehicleRefs, enabled]);
 
   // Pause / rate without rebuilding paths
   useEffect(() => {
+    const scene = sceneRef.current;
+    if (scene) {
+      scene.style.setProperty('--traffic-rate', String(playbackRate));
+    }
     for (const anim of animationsRef.current) {
       anim.playbackRate = playbackRate;
       if (pause || !enabled) {
@@ -261,11 +278,22 @@ export function useLondonTransportAnimation({
         anim.play();
       }
     }
-  }, [pause, playbackRate, enabled]);
+    if (scene) {
+      const anyRunning = animationsRef.current.some(
+        (a) => a.playState === 'running',
+      );
+      scene.dataset.transportPlaying = anyRunning ? 'true' : 'false';
+    }
+  }, [pause, playbackRate, enabled, sceneRef]);
 
   // Rebuild when calibrated layouts change (spawn margins depend on width)
   const layoutSignature = JSON.stringify(
-    Object.values(layouts).map((v) => [v.id, v.x, v.scale, v.baselineOffset ?? 0]),
+    Object.values(layouts).map((v) => [
+      v.id,
+      v.x,
+      v.scale,
+      v.baselineOffset ?? 0,
+    ]),
   );
 
   useEffect(() => {

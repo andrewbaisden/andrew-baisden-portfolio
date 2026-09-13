@@ -1,9 +1,8 @@
-import React from 'react';
 import './HTML5Logo.css';
 
 import { useTheme } from '../../context/ThemeContext';
 
-interface HTML5LogoProps {}
+type HTML5LogoProps = {};
 
 export const HTML5Logo = ({ ...props }: HTML5LogoProps) => {
   const { activeTheme } = useTheme();

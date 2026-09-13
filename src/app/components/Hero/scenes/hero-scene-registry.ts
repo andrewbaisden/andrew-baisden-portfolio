@@ -38,9 +38,7 @@ export const enabledHeroSceneIds = enabledHeroScenes.map(
   (scene) => scene.id,
 ) as HeroSceneId[];
 
-export function isEnabledHeroSceneId(
-  value: unknown,
-): value is HeroSceneId {
+export function isEnabledHeroSceneId(value: unknown): value is HeroSceneId {
   return (
     typeof value === 'string' &&
     enabledHeroSceneIds.includes(value as HeroSceneId)

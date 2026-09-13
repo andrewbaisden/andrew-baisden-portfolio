@@ -40,7 +40,5 @@ export const contactSchema = z.object({
 export type ContactFormValues = z.infer<typeof contactSchema>;
 
 export function getReasonLabel(reason: ContactReason): string {
-  return (
-    contactReasons.find((item) => item.value === reason)?.label ?? reason
-  );
+  return contactReasons.find((item) => item.value === reason)?.label ?? reason;
 }

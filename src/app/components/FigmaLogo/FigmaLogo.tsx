@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useTheme } from '../../context/ThemeContext';
 
-interface FigmaLogoProps {}
+type FigmaLogoProps = {};
 
 export const FigmaLogo = ({ ...props }: FigmaLogoProps) => {
   const { activeTheme } = useTheme();

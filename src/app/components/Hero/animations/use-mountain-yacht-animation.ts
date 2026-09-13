@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, type RefObject } from 'react';
+import { type RefObject, useEffect } from 'react';
 import { MOUNTAIN_SCENE } from '../scenes/mountain-tracks';
 
 type UseMountainYachtAnimationArgs = {

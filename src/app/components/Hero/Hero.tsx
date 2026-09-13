@@ -3,7 +3,7 @@
 import './Hero.css';
 import { HeroSceneViewport } from './scenes/hero-scene-viewport';
 
-interface HeroProps {}
+type HeroProps = {};
 
 /**
  * Hero artwork shell — scene engine owns the active environment.

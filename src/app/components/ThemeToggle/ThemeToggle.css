@@ -1,63 +1,65 @@
 .theme-toggle-button {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	font-size: 1.5rem;
-	line-height: 1;
-	width: var(--toggle-width);
-	height: var(--toggle-height);
-	padding: var(--toggle-padding);
-	border: 0;
-	border-radius: calc(var(--toggle-width) / 2);
-	cursor: pointer;
-	background: var(--color-bg-toggle);
-	transition: background 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  line-height: 1;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  padding: var(--toggle-padding);
+  border: 0;
+  border-radius: calc(var(--toggle-width) / 2);
+  cursor: pointer;
+  background: var(--color-bg-toggle);
+  transition:
+    background 0.25s ease-in-out,
+    box-shadow 0.25s ease-in-out;
 }
 
 .theme-toggle-button:focus-visible {
-	outline: 2px solid #ffffff;
-	outline-offset: 3px;
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
 }
 
 .theme-toggle-button:hover {
-	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
 }
 
 /* Icon wrappers: kill inline baseline gap that pushes glyphs toward the top */
-.theme-toggle-button > span[aria-hidden='true'] {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	line-height: 0;
+.theme-toggle-button > span[aria-hidden="true"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
 }
 
 .theme-toggle-button svg {
-	display: block;
-	width: 0.85em;
-	height: 0.85em;
+  display: block;
+  width: 0.85em;
+  height: 0.85em;
 }
 
 .theme-toggle-thumb {
-	position: absolute;
-	top: var(--toggle-padding);
-	left: var(--toggle-padding);
-	width: calc(var(--toggle-height) - (var(--toggle-padding) * 2));
-	height: calc(var(--toggle-height) - (var(--toggle-padding) * 2));
-	border-radius: 50%;
-	background: white;
-	transition: transform 0.25s ease-in-out;
+  position: absolute;
+  top: var(--toggle-padding);
+  left: var(--toggle-padding);
+  width: calc(var(--toggle-height) - (var(--toggle-padding) * 2));
+  height: calc(var(--toggle-height) - (var(--toggle-padding) * 2));
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.25s ease-in-out;
 }
 
 @media (max-width: 1024px) {
-	.theme-toggle-button {
-		font-size: 1.05rem;
-	}
+  .theme-toggle-button {
+    font-size: 1.05rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.theme-toggle-button,
-	.theme-toggle-thumb {
-		transition: none;
-	}
+  .theme-toggle-button,
+  .theme-toggle-thumb {
+    transition: none;
+  }
 }

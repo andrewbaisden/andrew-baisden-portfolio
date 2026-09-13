@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useTheme } from '../../context/ThemeContext';
 
-interface PythonLogoProps {}
+type PythonLogoProps = {};
 
 export const PythonLogo = ({ ...props }: PythonLogoProps) => {
   const { activeTheme } = useTheme();

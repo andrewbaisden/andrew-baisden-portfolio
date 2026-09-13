@@ -107,9 +107,7 @@ export const FooterText = () => {
         </div>
 
         <div className="site-footer-utility">
-          <p className="site-footer-copyright">
-            &copy; {year} Andrew Baisden
-          </p>
+          <p className="site-footer-copyright">&copy; {year} Andrew Baisden</p>
           <p className="site-footer-location">London, UK</p>
           <a
             className="site-footer-badge-link"

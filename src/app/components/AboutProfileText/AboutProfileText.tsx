@@ -1,7 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import Image from 'next/image';
+import {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import profilePicture from '../../img/profile-picture.png';
 import './AboutProfileText.css';
 
@@ -160,7 +166,9 @@ const ToolingVisual = () => (
         <span className="about-visual-prompt">~/dev</span>
         <span className="about-visual-cmd"> cursor .</span>
         {'\n'}
-        <span className="about-visual-comment"># pick the model for the job</span>
+        <span className="about-visual-comment">
+          # pick the model for the job
+        </span>
         {'\n'}
         <span className="about-visual-prompt">→</span>
         <span className="about-visual-cmd"> claude · gpt · gemini</span>

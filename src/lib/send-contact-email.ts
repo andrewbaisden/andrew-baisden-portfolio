@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 import {
-  getReasonLabel,
   type ContactFormValues,
   type ContactReason,
+  getReasonLabel,
 } from './contact-schema';
 
 function escapeHtml(value: string): string {

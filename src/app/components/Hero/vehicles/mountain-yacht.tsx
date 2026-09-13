@@ -2,20 +2,20 @@
 
 import Image from 'next/image';
 import {
+  type CSSProperties,
   forwardRef,
   useImperativeHandle,
   useRef,
-  type CSSProperties,
 } from 'react';
 import { useMountainYachtAnimation } from '../animations/use-mountain-yacht-animation';
 import { useReducedMotion } from '../animations/use-reduced-motion';
 import {
   MOUNTAIN_SCENE,
+  type MountainYachtLayout,
   mountainLakeTrack,
   mountainPercentY,
   mountainYachtDisplayWidth,
   mountainYachtLayout,
-  type MountainYachtLayout,
 } from '../scenes/mountain-tracks';
 
 export type MountainYachtOverrides = {
@@ -41,12 +41,7 @@ type MountainYachtProps = {
  */
 export const MountainYacht = forwardRef<HTMLDivElement, MountainYachtProps>(
   function MountainYacht(
-    {
-      motionEnabled,
-      layout = mountainYachtLayout,
-      overrides,
-      className,
-    },
+    { motionEnabled, layout = mountainYachtLayout, overrides, className },
     ref,
   ) {
     const localRef = useRef<HTMLDivElement>(null);
@@ -77,9 +72,7 @@ export const MountainYacht = forwardRef<HTMLDivElement, MountainYachtProps>(
     const style = {
       top: mountainPercentY(baselineY),
       width: `${widthPercent}%`,
-      left: animate
-        ? '0%'
-        : `${(staticX / MOUNTAIN_SCENE.width) * 100}%`,
+      left: animate ? '0%' : `${(staticX / MOUNTAIN_SCENE.width) * 100}%`,
       ['--yacht-scale' as string]: String(scale),
       ['--wake-opacity' as string]: String(wakeOpacity),
       ...(animate

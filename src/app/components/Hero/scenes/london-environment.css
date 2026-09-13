@@ -27,7 +27,7 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
-html[data-theme='dark'] .london-env__clouds {
+html[data-theme="dark"] .london-env__clouds {
   color: rgba(160, 185, 210, 0.28);
 }
 
@@ -75,7 +75,7 @@ html[data-theme='dark'] .london-env__clouds {
   color: #5d7d92;
 }
 
-html[data-theme='dark'] .london-env__birds {
+html[data-theme="dark"] .london-env__birds {
   color: #8aa3b4;
 }
 
@@ -144,7 +144,7 @@ html[data-theme='dark'] .london-env__birds {
   color: #3f7a3a;
 }
 
-html[data-theme='dark'] .london-env__foliage {
+html[data-theme="dark"] .london-env__foliage {
   color: #2a5230;
   opacity: 0.55;
 }
@@ -215,7 +215,7 @@ html[data-theme='dark'] .london-env__foliage {
   animation-duration: calc(44s / var(--ambient-rate, 1));
 }
 
-html[data-theme='dark'] .london-env__river-shimmer {
+html[data-theme="dark"] .london-env__river-shimmer {
   opacity: 0.08;
   background: linear-gradient(
     90deg,
@@ -248,7 +248,7 @@ html[data-theme='dark'] .london-env__river-shimmer {
   transition: opacity 600ms ease-in-out;
 }
 
-html[data-theme='dark'] .london-env__river-night,
+html[data-theme="dark"] .london-env__river-night,
 .london-env--force-night .london-env__river-night {
   opacity: 1;
 }
@@ -326,7 +326,7 @@ html[data-theme='dark'] .london-env__river-night,
   z-index: 2;
 }
 
-html[data-theme='dark'] .london-env__night,
+html[data-theme="dark"] .london-env__night,
 .london-env--force-night .london-env__night {
   opacity: 1;
 }
@@ -434,7 +434,7 @@ html[data-theme='dark'] .london-env__night,
   mix-blend-mode: soft-light;
 }
 
-html[data-theme='dark'] .london-env__platform-pool {
+html[data-theme="dark"] .london-env__platform-pool {
   opacity: 0.85;
 }
 
@@ -453,7 +453,7 @@ html[data-theme='dark'] .london-env__platform-pool {
   transition: opacity 600ms ease-in-out;
 }
 
-html[data-theme='dark'] .london-env__tunnel-shade {
+html[data-theme="dark"] .london-env__tunnel-shade {
   opacity: 0.7;
 }
 
@@ -482,14 +482,14 @@ html[data-theme='dark'] .london-env__tunnel-shade {
 }
 
 /* Pause ambient when hero offscreen / tab hidden / reduced motion / debug */
-.london-scene[data-ambient-motion='paused'] .london-env__cloud,
-.london-scene[data-ambient-motion='paused'] .london-env__bird-flock,
-.london-scene[data-ambient-motion='paused'] .london-env__foliage-sway,
-.london-scene[data-ambient-motion='paused'] .london-env__river-shimmer,
-.london-scene[data-ambient-motion='paused'] .london-env__river-reflection,
-.london-scene[data-ambient-motion='paused'] .london-env__lamp-glow,
-.london-scene[data-ambient-motion='paused'] .london-env__window--soft,
-.london-scene[data-ambient-motion='paused'] .london-env__shelter-glow {
+.london-scene[data-ambient-motion="paused"] .london-env__cloud,
+.london-scene[data-ambient-motion="paused"] .london-env__bird-flock,
+.london-scene[data-ambient-motion="paused"] .london-env__foliage-sway,
+.london-scene[data-ambient-motion="paused"] .london-env__river-shimmer,
+.london-scene[data-ambient-motion="paused"] .london-env__river-reflection,
+.london-scene[data-ambient-motion="paused"] .london-env__lamp-glow,
+.london-scene[data-ambient-motion="paused"] .london-env__window--soft,
+.london-scene[data-ambient-motion="paused"] .london-env__shelter-glow {
   animation-play-state: paused;
 }
 

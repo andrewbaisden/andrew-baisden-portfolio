@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { ComponentType, CSSProperties } from 'react';
-import londonDay from '../../img/london-day-master.webp';
 import {
   BlackCab,
   CarOne,
@@ -11,6 +10,7 @@ import {
   TubeTrain,
   type VehicleProps,
 } from '../../components/Hero/vehicles';
+import londonDay from '../../img/london-day-master.webp';
 import styles from './vehicle-assets-preview.module.css';
 
 type PreviewAsset = {
@@ -43,7 +43,10 @@ export default function VehicleAssetsPreview() {
       <header className={styles.header}>
         <p className={styles.eyebrow}>Development-only visual QA</p>
         <h1>London vehicle assets</h1>
-        <p>Static SVG assets only. Lights, wheels, doors and movement are intentionally inactive.</p>
+        <p>
+          Static SVG assets only. Lights, wheels, doors and movement are
+          intentionally inactive.
+        </p>
       </header>
 
       <section className={styles.section}>
@@ -106,11 +109,15 @@ export default function VehicleAssetsPreview() {
             sizes="(max-width: 1000px) 100vw, 1200px"
             className={styles.londonImage}
           />
-          <DoubleDeckerBus className={`${styles.sceneVehicle} ${styles.sceneBus}`} />
+          <DoubleDeckerBus
+            className={`${styles.sceneVehicle} ${styles.sceneBus}`}
+          />
           <BlackCab className={`${styles.sceneVehicle} ${styles.sceneCab}`} />
           <CarOne className={`${styles.sceneVehicle} ${styles.sceneCarOne}`} />
           <CarTwo className={`${styles.sceneVehicle} ${styles.sceneCarTwo}`} />
-          <TubeTrain className={`${styles.sceneVehicle} ${styles.sceneTrain}`} />
+          <TubeTrain
+            className={`${styles.sceneVehicle} ${styles.sceneTrain}`}
+          />
         </div>
       </section>
     </main>

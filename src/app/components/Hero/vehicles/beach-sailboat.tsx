@@ -2,20 +2,20 @@
 
 import Image from 'next/image';
 import {
+  type CSSProperties,
   forwardRef,
   useImperativeHandle,
   useRef,
-  type CSSProperties,
 } from 'react';
 import { useBeachSailboatAnimation } from '../animations/use-beach-sailboat-animation';
 import { useReducedMotion } from '../animations/use-reduced-motion';
 import {
   BEACH_SCENE,
+  type BeachSailboatLayout,
   beachPercentY,
   beachSailboatDisplayWidth,
   beachSailboatLayout,
   beachTracks,
-  type BeachSailboatLayout,
 } from '../scenes/beach-tracks';
 
 export type BeachSailboatOverrides = {
@@ -42,12 +42,7 @@ type BeachSailboatProps = {
  */
 export const BeachSailboat = forwardRef<HTMLDivElement, BeachSailboatProps>(
   function BeachSailboat(
-    {
-      motionEnabled,
-      layout = beachSailboatLayout,
-      overrides,
-      className,
-    },
+    { motionEnabled, layout = beachSailboatLayout, overrides, className },
     ref,
   ) {
     const localRef = useRef<HTMLDivElement>(null);
@@ -78,9 +73,7 @@ export const BeachSailboat = forwardRef<HTMLDivElement, BeachSailboatProps>(
     const style = {
       top: beachPercentY(baselineY),
       width: `${widthPercent}%`,
-      left: animate
-        ? '0%'
-        : `${(staticX / BEACH_SCENE.width) * 100}%`,
+      left: animate ? '0%' : `${(staticX / BEACH_SCENE.width) * 100}%`,
       ['--sailboat-scale' as string]: String(scale),
       ['--wake-opacity' as string]: String(wakeOpacity),
       ...(animate

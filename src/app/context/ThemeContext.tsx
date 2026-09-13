@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState, createContext, useContext, useEffect, useRef } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 interface ThemeContextProps {
-	activeTheme: string;
-	setActiveTheme: any;
-	inactiveTheme: string;
+  activeTheme: string;
+  setActiveTheme: any;
+  inactiveTheme: string;
 }
 
 const ThemeContext = createContext({} as ThemeContextProps);
@@ -13,32 +13,36 @@ const ThemeContext = createContext({} as ThemeContextProps);
 export const useTheme = () => useContext(ThemeContext);
 
 function ThemeContextProvider(props: any): any {
-	const [activeTheme, setActiveTheme] = useState('light');
-	const inactiveTheme = activeTheme === 'light' ? 'dark' : 'light';
-	const didHydrate = useRef(false);
+  const [activeTheme, setActiveTheme] = useState('light');
+  const inactiveTheme = activeTheme === 'light' ? 'dark' : 'light';
+  const didHydrate = useRef(false);
 
-	useEffect(() => {
-		if (!didHydrate.current) {
-			didHydrate.current = true;
-			const savedTheme = window.localStorage.getItem('theme');
+  useEffect(() => {
+    if (!didHydrate.current) {
+      didHydrate.current = true;
+      const savedTheme = window.localStorage.getItem('theme');
 
-			if (
-				(savedTheme === 'light' || savedTheme === 'dark') &&
-				savedTheme !== activeTheme
-			) {
-				setActiveTheme(savedTheme);
-				return;
-			}
-		}
+      if (
+        (savedTheme === 'light' || savedTheme === 'dark') &&
+        savedTheme !== activeTheme
+      ) {
+        setActiveTheme(savedTheme);
+        return;
+      }
+    }
 
-		document.documentElement.dataset.theme = activeTheme;
-		document.body.dataset.theme = activeTheme;
-		window.localStorage.setItem('theme', activeTheme);
-	}, [activeTheme]);
+    document.documentElement.dataset.theme = activeTheme;
+    document.body.dataset.theme = activeTheme;
+    window.localStorage.setItem('theme', activeTheme);
+  }, [activeTheme]);
 
-	const value = { activeTheme, setActiveTheme, inactiveTheme };
+  const value = { activeTheme, setActiveTheme, inactiveTheme };
 
-	return <ThemeContext.Provider value={value}>{props.children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>
+      {props.children}
+    </ThemeContext.Provider>
+  );
 }
 
 export default ThemeContextProvider;

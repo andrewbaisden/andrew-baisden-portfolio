@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   turbopack: {
@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     root: __dirname,
   },
   images: {
-    formats: ["image/avif", "image/webp"],
+    formats: ['image/avif', 'image/webp'],
     qualities: [75, 90],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560, 3840],
   },
@@ -16,8 +16,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/.netlify/functions/contact",
-        destination: "/api/contact",
+        source: '/.netlify/functions/contact',
+        destination: '/api/contact',
       },
     ];
   },

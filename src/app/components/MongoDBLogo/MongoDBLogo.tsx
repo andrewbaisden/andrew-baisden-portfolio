@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useTheme } from '../../context/ThemeContext';
 
-interface MongoDBLogoProps {}
+type MongoDBLogoProps = {};
 
 export const MongoDBLogo = ({ ...props }: MongoDBLogoProps) => {
   const { activeTheme } = useTheme();

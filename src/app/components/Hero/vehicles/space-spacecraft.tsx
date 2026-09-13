@@ -2,21 +2,21 @@
 
 import Image from 'next/image';
 import {
+  type CSSProperties,
   forwardRef,
   useImperativeHandle,
   useRef,
-  type CSSProperties,
 } from 'react';
-import { useSpaceSpacecraftAnimation } from '../animations/use-space-spacecraft-animation';
 import { useReducedMotion } from '../animations/use-reduced-motion';
+import { useSpaceSpacecraftAnimation } from '../animations/use-space-spacecraft-animation';
 import {
   SPACE_SCENE,
+  type SpaceSpacecraftLayout,
   spacePercentX,
   spacePercentY,
   spaceSpacecraftDisplayWidth,
   spaceSpacecraftLayout,
   spaceTracks,
-  type SpaceSpacecraftLayout,
 } from '../scenes/space-tracks';
 
 export type SpaceSpacecraftOverrides = {
@@ -45,12 +45,7 @@ type SpaceSpacecraftProps = {
  */
 export const SpaceSpacecraft = forwardRef<HTMLDivElement, SpaceSpacecraftProps>(
   function SpaceSpacecraft(
-    {
-      motionEnabled,
-      layout = spaceSpacecraftLayout,
-      overrides,
-      className,
-    },
+    { motionEnabled, layout = spaceSpacecraftLayout, overrides, className },
     ref,
   ) {
     const localRef = useRef<HTMLDivElement>(null);

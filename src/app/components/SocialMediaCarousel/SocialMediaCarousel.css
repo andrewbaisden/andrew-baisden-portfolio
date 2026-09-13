@@ -17,7 +17,10 @@
   border: 1px solid rgba(47, 47, 58, 0.06);
   border-radius: 1.25rem;
   box-shadow: 0 0.75rem 2rem rgba(47, 47, 58, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .social-card:hover {
@@ -178,7 +181,11 @@
 
 .social-visual-github {
   background:
-    radial-gradient(circle at 12% 12%, rgba(113, 72, 252, 0.14), transparent 40%),
+    radial-gradient(
+      circle at 12% 12%,
+      rgba(113, 72, 252, 0.14),
+      transparent 40%
+    ),
     #f6f8fc;
 }
 
@@ -217,39 +224,39 @@
   font-weight: 700;
 }
 
-body[data-theme='dark'] .social-card {
+body[data-theme="dark"] .social-card {
   background: #3a3a48;
   color: var(--brand-color-white);
   border-color: rgba(250, 250, 250, 0.06);
   box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.28);
 }
 
-body[data-theme='dark'] .social-card-top h2,
-body[data-theme='dark'] .social-card-copy strong,
-body[data-theme='dark'] .social-visual-repo p,
-body[data-theme='dark'] .social-visual-profile p {
+body[data-theme="dark"] .social-card-top h2,
+body[data-theme="dark"] .social-card-copy strong,
+body[data-theme="dark"] .social-visual-repo p,
+body[data-theme="dark"] .social-visual-profile p {
   color: var(--brand-color-white);
 }
 
-body[data-theme='dark'] .social-card-category,
-body[data-theme='dark'] .social-card-copy,
-body[data-theme='dark'] .social-visual-chrome p,
-body[data-theme='dark'] .social-visual-repo span,
-body[data-theme='dark'] .social-visual-profile span {
+body[data-theme="dark"] .social-card-category,
+body[data-theme="dark"] .social-card-copy,
+body[data-theme="dark"] .social-visual-chrome p,
+body[data-theme="dark"] .social-visual-repo span,
+body[data-theme="dark"] .social-visual-profile span {
   color: #c5c9d4;
 }
 
-body[data-theme='dark'] .social-card-external {
+body[data-theme="dark"] .social-card-external {
   color: #a8adb8;
 }
 
-body[data-theme='dark'] .social-visual,
-body[data-theme='dark'] .social-visual-linkedin {
+body[data-theme="dark"] .social-visual,
+body[data-theme="dark"] .social-visual-linkedin {
   background: #323240;
 }
 
-body[data-theme='dark'] .social-visual-window,
-body[data-theme='dark'] .social-visual-repo {
+body[data-theme="dark"] .social-visual-window,
+body[data-theme="dark"] .social-visual-repo {
   background: #2c2c38;
   border-color: rgba(250, 250, 250, 0.08);
 }

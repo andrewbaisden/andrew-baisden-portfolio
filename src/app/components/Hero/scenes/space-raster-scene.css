@@ -25,14 +25,14 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('/hero/space/space-day-master.webp');
+  background-image: url("/hero/space/space-day-master.webp");
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-html[data-theme='dark'] .space-scene__background {
-  background-image: url('/hero/space/space-night-master.webp');
+html[data-theme="dark"] .space-scene__background {
+  background-image: url("/hero/space/space-night-master.webp");
   background-color: #050812;
 }
 
@@ -50,11 +50,11 @@ html[data-theme='dark'] .space-scene__background {
   opacity: 0;
 }
 
-html[data-theme='dark'] .space-scene__image--day {
+html[data-theme="dark"] .space-scene__image--day {
   opacity: 0;
 }
 
-html[data-theme='dark'] .space-scene__image--night {
+html[data-theme="dark"] .space-scene__image--night {
   opacity: 1;
 }
 

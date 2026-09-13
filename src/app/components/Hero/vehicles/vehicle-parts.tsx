@@ -36,7 +36,12 @@ export function VehicleWheel({
   return (
     <g id={id} className="vehicle-wheel">
       <circle cx={cx} cy={cy} r={radius} className="vehicle-wheel__tyre" />
-      <circle cx={cx} cy={cy} r={radius * 0.56} className="vehicle-wheel__rim" />
+      <circle
+        cx={cx}
+        cy={cy}
+        r={radius * 0.56}
+        className="vehicle-wheel__rim"
+      />
       <circle cx={cx} cy={cy} r={radius * 0.2} className="vehicle-wheel__hub" />
       <path
         d={`M ${cx - radius * 0.42} ${cy} H ${cx + radius * 0.42} M ${cx} ${

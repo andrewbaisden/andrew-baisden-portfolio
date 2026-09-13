@@ -105,88 +105,88 @@ export function SpaceSceneCalibrator({
           </button>
         </header>
 
-      <label>
-        Scale {v.scale?.toFixed(2)}
-        <input
-          type="range"
-          min={0.4}
-          max={2}
-          step={0.02}
-          value={v.scale}
-          onChange={(e) => set('scale', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        Start Y {Math.round(v.startY ?? 0)}
-        <input
-          type="range"
-          min={180}
-          max={480}
-          step={2}
-          value={v.startY}
-          onChange={(e) => set('startY', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        End Y {Math.round(v.endY ?? 0)}
-        <input
-          type="range"
-          min={140}
-          max={440}
-          step={2}
-          value={v.endY}
-          onChange={(e) => set('endY', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        Start X {Math.round(v.startX ?? 0)}
-        <input
-          type="range"
-          min={-220}
-          max={200}
-          step={4}
-          value={v.startX}
-          onChange={(e) => set('startX', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        End X {Math.round(v.endX ?? 0)}
-        <input
-          type="range"
-          min={1900}
-          max={2300}
-          step={4}
-          value={v.endX}
-          onChange={(e) => set('endX', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        Duration s {v.durationSec?.toFixed(0)}
-        <input
-          type="range"
-          min={16}
-          max={36}
-          step={1}
-          value={v.durationSec}
-          onChange={(e) => set('durationSec', Number(e.target.value))}
-        />
-      </label>
-      <label>
-        Engine glow {v.engineGlowOpacity?.toFixed(2)}
-        <input
-          type="range"
-          min={0}
-          max={1}
-          step={0.02}
-          value={v.engineGlowOpacity}
-          onChange={(e) => set('engineGlowOpacity', Number(e.target.value))}
-        />
-      </label>
+        <label>
+          Scale {v.scale?.toFixed(2)}
+          <input
+            type="range"
+            min={0.4}
+            max={2}
+            step={0.02}
+            value={v.scale}
+            onChange={(e) => set('scale', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Start Y {Math.round(v.startY ?? 0)}
+          <input
+            type="range"
+            min={180}
+            max={480}
+            step={2}
+            value={v.startY}
+            onChange={(e) => set('startY', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          End Y {Math.round(v.endY ?? 0)}
+          <input
+            type="range"
+            min={140}
+            max={440}
+            step={2}
+            value={v.endY}
+            onChange={(e) => set('endY', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Start X {Math.round(v.startX ?? 0)}
+          <input
+            type="range"
+            min={-220}
+            max={200}
+            step={4}
+            value={v.startX}
+            onChange={(e) => set('startX', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          End X {Math.round(v.endX ?? 0)}
+          <input
+            type="range"
+            min={1900}
+            max={2300}
+            step={4}
+            value={v.endX}
+            onChange={(e) => set('endX', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Duration s {v.durationSec?.toFixed(0)}
+          <input
+            type="range"
+            min={16}
+            max={36}
+            step={1}
+            value={v.durationSec}
+            onChange={(e) => set('durationSec', Number(e.target.value))}
+          />
+        </label>
+        <label>
+          Engine glow {v.engineGlowOpacity?.toFixed(2)}
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.02}
+            value={v.engineGlowOpacity}
+            onChange={(e) => set('engineGlowOpacity', Number(e.target.value))}
+          />
+        </label>
 
-      <p className="space-calibrator__meta">
-        Scene {SPACE_SCENE.width}×{SPACE_SCENE.height} · flight{' '}
-        {v.durationSec ?? 24}s · endY {Math.round(v.endY ?? 0)}
-      </p>
+        <p className="space-calibrator__meta">
+          Scene {SPACE_SCENE.width}×{SPACE_SCENE.height} · flight{' '}
+          {v.durationSec ?? 24}s · endY {Math.round(v.endY ?? 0)}
+        </p>
       </aside>
     </HeroDevPortal>
   );

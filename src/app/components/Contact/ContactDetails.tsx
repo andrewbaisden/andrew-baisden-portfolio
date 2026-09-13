@@ -4,12 +4,17 @@ import CopyEmailButton from './CopyEmailButton';
 
 export const ContactDetails = () => {
   return (
-    <aside className="contact-details" aria-labelledby="contact-details-heading">
+    <aside
+      className="contact-details"
+      aria-labelledby="contact-details-heading"
+    >
       <p className="contact-details-kicker">Get in touch</p>
-      <h3 id="contact-details-heading">Have a role, project or collaboration in mind?</h3>
+      <h3 id="contact-details-heading">
+        Have a role, project or collaboration in mind?
+      </h3>
       <p className="contact-details-copy">
-        Feel free to send me a message. I read every enquiry and usually reply as
-        soon as I can.
+        Feel free to send me a message. I read every enquiry and usually reply
+        as soon as I can.
       </p>
 
       <div className="contact-details-block">

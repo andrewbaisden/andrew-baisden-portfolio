@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 *,
 *::before,
@@ -9,10 +9,10 @@
 }
 
 :root {
-  --main-font-family: 'Quicksand', sans-serif;
+  --main-font-family: "Quicksand", sans-serif;
   --main-font-color: #2f2f3a;
   --main-font-size: 16px;
-  --brand-color-blue-main: #7148FC;
+  --brand-color-blue-main: #7148fc;
   --brand-color-red: #ef2f4c;
   --brand-color-blue: #09d8ff;
   --brand-color-green: #11ef75;
@@ -30,13 +30,13 @@ html {
 }
 
 body,
-body[data-theme='light'] {
+body[data-theme="light"] {
   --color-text-primary: var(--main-font-color);
   --color-bg-primary: var(--brand-color-grey);
   --color-bg-toggle: var(--brand-color-blue);
 }
 
-body[data-theme='dark'] {
+body[data-theme="dark"] {
   --color-text-primary: var(--brand-color-white);
   --color-bg-primary: var(--main-font-color);
   --color-bg-toggle: var(--main-font-color);
@@ -133,7 +133,6 @@ main {
 .social-media-section {
   max-width: 100%;
 }
-
 
 /* 
   ##Device = Desktops

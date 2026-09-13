@@ -3,13 +3,13 @@
 import {
   createContext,
   createElement,
+  type ReactNode,
   useCallback,
   useContext,
   useEffect,
   useLayoutEffect,
   useMemo,
   useState,
-  type ReactNode,
 } from 'react';
 import { useReducedMotion } from '../animations/use-reduced-motion';
 import {

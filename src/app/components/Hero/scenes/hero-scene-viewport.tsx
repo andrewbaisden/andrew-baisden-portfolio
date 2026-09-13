@@ -8,8 +8,8 @@ import {
   useHeroScenePreferences,
 } from '../hooks/use-hero-scene-preferences';
 import { resolveHeroSceneId } from './hero-scene-registry';
-import { LondonRasterScene } from './london-raster-scene';
 import type { HeroSceneId, HeroTheme } from './hero-scene-types';
+import { LondonRasterScene } from './london-raster-scene';
 import './hero-scene-viewport.css';
 
 const MountainRasterScene = dynamic(
@@ -28,11 +28,7 @@ const SpaceRasterScene = dynamic(
   { ssr: false },
 );
 
-const LAZY_SCENES: readonly HeroSceneId[] = [
-  'mountain',
-  'beach',
-  'space',
-];
+const LAZY_SCENES: readonly HeroSceneId[] = ['mountain', 'beach', 'space'];
 
 function readEagerScene(): HeroSceneId {
   if (typeof document === 'undefined') {

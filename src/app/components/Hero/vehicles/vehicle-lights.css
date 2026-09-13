@@ -9,8 +9,8 @@
   z-index: 2;
 }
 
-html[data-theme='dark'] .vehicle-light-overlay,
-.london-scene[data-force-night='true'] .vehicle-light-overlay {
+html[data-theme="dark"] .vehicle-light-overlay,
+.london-scene[data-force-night="true"] .vehicle-light-overlay {
   opacity: 1;
 }
 

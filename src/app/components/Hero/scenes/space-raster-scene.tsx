@@ -23,10 +23,7 @@ import './space-environment.css';
 /**
  * Space hero — day/night raster masters + restrained celestial ambience.
  */
-export function SpaceRasterScene({
-  motionEnabled,
-  isActive,
-}: HeroSceneProps) {
+export function SpaceRasterScene({ motionEnabled, isActive }: HeroSceneProps) {
   const isDev = process.env.NODE_ENV === 'development';
   const sceneRef = useRef<HTMLDivElement>(null);
   const [craftOverrides, setCraftOverrides] =
@@ -44,10 +41,8 @@ export function SpaceRasterScene({
     motionEnabled: animate,
   });
 
-  const guideStartX =
-    craftOverrides.startX ?? spaceTracks.spacecraft.startX;
-  const guideStartY =
-    craftOverrides.startY ?? spaceTracks.spacecraft.startY;
+  const guideStartX = craftOverrides.startX ?? spaceTracks.spacecraft.startX;
+  const guideStartY = craftOverrides.startY ?? spaceTracks.spacecraft.startY;
   const guideEndX = craftOverrides.endX ?? spaceTracks.spacecraft.endX;
   const guideEndY = craftOverrides.endY ?? spaceTracks.spacecraft.endY;
 
