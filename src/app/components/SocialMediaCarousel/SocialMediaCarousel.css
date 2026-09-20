@@ -1,13 +1,17 @@
 .social-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .social-card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
   min-height: 100%;
   padding: 1.35rem 1.4rem 1.5rem;
   background: #ffffff;
@@ -176,11 +180,12 @@
 
 .social-visual-repos {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
+  min-width: 0;
 }
 
 .social-visual-repo {
@@ -365,7 +370,7 @@ body[data-theme="dark"] .social-visual-repo {
 
 @media (max-width: 767px) {
   .social-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .social-card-featured,
@@ -379,10 +384,11 @@ body[data-theme="dark"] .social-visual-repo {
 
   .social-visual {
     min-height: 11rem;
+    min-width: 0;
   }
 
   .social-visual-repos {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

@@ -75,4 +75,19 @@ test.describe('home', () => {
     await expect(page.getByText('Please enter your name')).toBeVisible();
     expect(contactCalls).toBe(0);
   });
+
+  test('does not create horizontal page overflow on mobile', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openHome(page);
+    await page.locator('#socialmedia').scrollIntoViewIfNeeded();
+
+    const metrics = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+
+    expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+  });
 });
