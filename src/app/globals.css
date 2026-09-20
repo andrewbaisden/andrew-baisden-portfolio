@@ -27,6 +27,8 @@
 
 html {
   font-size: var(--main-font-size);
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body,
@@ -48,7 +50,15 @@ body {
   color: var(--color-text-primary);
   font-family: var(--main-font-family);
   transition: background 0.25s ease-in-out;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
 }
 
 .hero-container {
@@ -73,6 +83,8 @@ body {
 
 main {
   padding: 2rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .about-section {
@@ -132,6 +144,8 @@ main {
 
 .social-media-section {
   max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
 }
 
 /* 
