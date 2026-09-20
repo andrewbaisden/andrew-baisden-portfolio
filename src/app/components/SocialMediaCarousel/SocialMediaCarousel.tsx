@@ -1,5 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import type { ReactNode } from 'react';
+import {
+  GITHUB_USERNAME,
+  type GitHubRepository,
+  getRepositoryDisplayName,
+} from '@/lib/github-shared';
 import profilePicture from '../../img/profile-picture.png';
 import './SocialMediaCarousel.css';
 
@@ -13,6 +20,10 @@ type SocialProfile = {
   accent: string;
   icon: ReactNode;
   visual?: ReactNode;
+};
+
+type SocialMediaCarouselProps = {
+  pinnedRepositories: GitHubRepository[];
 };
 
 const ExternalIcon = () => (
@@ -106,23 +117,73 @@ const ThreadsIcon = () => (
   </svg>
 );
 
-const GitHubVisual = () => (
+const StarIcon = () => (
+  <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+    <path d="M8 1.5 9.8 5.7l4.5.4-3.4 3 1 4.4L8 11.4l-3.9 2.1 1-4.4-3.4-3 4.5-.4L8 1.5Z" />
+  </svg>
+);
+
+type GitHubVisualProps = {
+  repositories: GitHubRepository[];
+};
+
+const GitHubVisual = ({ repositories }: GitHubVisualProps) => (
   <div className="social-visual social-visual-github">
     <div className="social-visual-window">
       <div className="social-visual-chrome">
         <span />
         <span />
         <span />
-        <p>github.com/andrewbaisden</p>
+        <p>github.com/{GITHUB_USERNAME}</p>
       </div>
-      <div className="social-visual-repo">
-        <p>andrew-baisden-portfolio-2022</p>
-        <span>Next.js · TypeScript · Public</span>
-      </div>
-      <div className="social-visual-repo">
-        <p>production apps & experiments</p>
-        <span>React · Node · Python · Public</span>
-      </div>
+      {repositories.length > 0 ? (
+        <ul className="social-visual-repos">
+          {repositories.map((repository) => {
+            const language = repository.primaryLanguage;
+            const displayName = getRepositoryDisplayName(repository);
+
+            return (
+              <li key={repository.id}>
+                <a
+                  className="social-visual-repo social-visual-repo-link"
+                  href={repository.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p>{displayName}</p>
+                  {repository.description ? (
+                    <span className="social-visual-repo-desc">
+                      {repository.description}
+                    </span>
+                  ) : null}
+                  <span className="social-visual-repo-meta">
+                    {language ? (
+                      <span className="social-visual-lang">
+                        <i
+                          style={{ backgroundColor: language.color }}
+                          aria-hidden="true"
+                        />
+                        {language.name}
+                      </span>
+                    ) : null}
+                    {repository.stargazerCount > 0 ? (
+                      <span className="social-visual-stars">
+                        <StarIcon />
+                        {repository.stargazerCount}
+                      </span>
+                    ) : null}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <div className="social-visual-repo social-visual-repo-fallback">
+          <p>Pinned repositories</p>
+          <span>View my latest work on GitHub</span>
+        </div>
+      )}
     </div>
   </div>
 );
@@ -156,11 +217,10 @@ const profiles: SocialProfile[] = [
     featured: true,
     name: 'GitHub',
     category: 'Code & Projects',
-    href: 'https://github.com/andrewbaisden',
+    href: `https://github.com/${GITHUB_USERNAME}`,
     copy: "Where I build in public and share the applications, experiments, and technical projects I'm working on. Explore my latest repositories, production projects, open-source work, and the technologies I'm currently using.",
     accent: '#2f2f3a',
     icon: <GitHubIcon />,
-    visual: <GitHubVisual />,
   },
   {
     id: 'linkedin',
@@ -229,51 +289,86 @@ const profiles: SocialProfile[] = [
   },
 ];
 
-export const SocialMediaCarousel = () => {
+function CardCopy({ profile }: { profile: SocialProfile }) {
+  if (profile.id === 'substack') {
+    return (
+      <p className="social-card-copy">
+        Home of <strong>The Level Up Mindset</strong>, where I publish
+        longer-form thoughts on software development, technology, career growth,
+        productivity, and continuous learning.
+      </p>
+    );
+  }
+
+  return <p className="social-card-copy">{profile.copy}</p>;
+}
+
+function CardHeader({ profile }: { profile: SocialProfile }) {
+  return (
+    <div className="social-card-top">
+      <div className="social-card-identity">
+        <span
+          className="social-card-icon"
+          style={{ background: profile.accent }}
+        >
+          {profile.icon}
+        </span>
+        <div>
+          <h2>{profile.name}</h2>
+          <p className="social-card-category">{profile.category}</p>
+        </div>
+      </div>
+      <ExternalIcon />
+    </div>
+  );
+}
+
+export const SocialMediaCarousel = ({
+  pinnedRepositories,
+}: SocialMediaCarouselProps) => {
   return (
     <div className="social-grid">
-      {profiles.map((profile) => (
-        <a
-          key={profile.id}
-          className={
-            profile.featured
-              ? 'social-card social-card-featured'
-              : 'social-card'
-          }
-          href={profile.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${profile.name}, ${profile.category}`}
-        >
-          <div className="social-card-top">
-            <div className="social-card-identity">
-              <span
-                className="social-card-icon"
-                style={{ background: profile.accent }}
+      {profiles.map((profile) => {
+        if (profile.id === 'github') {
+          return (
+            <article
+              key={profile.id}
+              className="social-card social-card-featured social-card-github"
+            >
+              <a
+                className="social-card-profile-link"
+                href={profile.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${profile.name}, ${profile.category}`}
               >
-                {profile.icon}
-              </span>
-              <div>
-                <h2>{profile.name}</h2>
-                <p className="social-card-category">{profile.category}</p>
-              </div>
-            </div>
-            <ExternalIcon />
-          </div>
-          <p className="social-card-copy">
-            {profile.id === 'substack' ? (
-              <>
-                Home of <strong>The Level Up Mindset</strong>, where I publish
-                longer-form thoughts on software development, technology, career
-                growth, productivity, and continuous learning.
-              </>
-            ) : (
-              profile.copy
-            )}
-          </p>
-          {profile.visual}
-        </a>
-      ))}
+                <CardHeader profile={profile} />
+              </a>
+              <CardCopy profile={profile} />
+              <GitHubVisual repositories={pinnedRepositories} />
+            </article>
+          );
+        }
+
+        return (
+          <a
+            key={profile.id}
+            className={
+              profile.featured
+                ? 'social-card social-card-featured'
+                : 'social-card'
+            }
+            href={profile.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${profile.name}, ${profile.category}`}
+          >
+            <CardHeader profile={profile} />
+            <CardCopy profile={profile} />
+            {profile.visual}
+          </a>
+        );
+      })}
     </div>
   );
 };

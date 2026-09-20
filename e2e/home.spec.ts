@@ -18,6 +18,16 @@ test.describe('home', () => {
     ).toBeVisible();
   });
 
+  test('shows the GitHub social card', async ({ page }) => {
+    await openHome(page);
+
+    await page.locator('#socialmedia').scrollIntoViewIfNeeded();
+    await expect(
+      page.getByRole('heading', { name: 'GitHub', exact: true }),
+    ).toBeVisible();
+    await expect(page.getByText('github.com/andrewbaisden')).toBeVisible();
+  });
+
   test('theme toggle flips data-theme', async ({ page }) => {
     await openHome(page);
 
