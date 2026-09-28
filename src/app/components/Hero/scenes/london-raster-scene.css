@@ -253,7 +253,8 @@ html[data-theme="dark"]
 .london-scene-calibrator {
   position: fixed;
   right: 12px;
-  bottom: 12px;
+  /* Sit above the IssueRelay support launcher (bottom-right, 52px tall). */
+  bottom: 88px;
   z-index: 10000;
   pointer-events: auto;
   max-width: min(340px, calc(100vw - 24px));

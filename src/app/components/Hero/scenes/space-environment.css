@@ -240,7 +240,8 @@ html[data-theme="dark"] .space-spacecraft__engine-glow {
 .space-calibrator {
   position: fixed;
   right: 12px;
-  bottom: 12px;
+  /* Sit above the IssueRelay support launcher (bottom-right, 52px tall). */
+  bottom: 88px;
   z-index: 10000;
   width: min(280px, calc(100vw - 24px));
   padding: 10px 12px;
