@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
+    "@issuerelay/widget": "^0.1.0",
     "next": "16.1.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

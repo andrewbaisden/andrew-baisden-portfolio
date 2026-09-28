@@ -91,3 +91,49 @@ test.describe('home', () => {
     expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
   });
 });
+
+test('support widget sends a bug report to IssueRelay', async ({ page }) => {
+  // Stub the public ticket API: CI and local runs never create real tickets.
+  const cors = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'content-type',
+  };
+  const submissions: Array<Record<string, unknown>> = [];
+  await page.route(
+    'https://issuerelay-web.vercel.app/api/v1/support/tickets**',
+    async (route) => {
+      if (route.request().method() === 'OPTIONS') {
+        await route.fulfill({ status: 204, headers: cors });
+        return;
+      }
+      submissions.push(route.request().postDataJSON());
+      await route.fulfill({
+        status: 201,
+        headers: { ...cors, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticketReference: 'SUP-42', status: 'received' }),
+      });
+    },
+  );
+  await openHome(page);
+
+  await page.getByRole('button', { name: 'Open support' }).click();
+  // Scope to the widget: the page's contact form also has a Message field.
+  const widget = page.getByRole('dialog', { name: 'How can I help?' });
+  await expect(widget).toBeVisible();
+  await widget.getByRole('button', { name: /Report a bug/ }).click();
+  await widget
+    .getByRole('textbox', { name: 'Message' })
+    .fill('The London scene stutters when switching to dark mode in Safari.');
+  await widget.getByRole('button', { name: 'Send message' }).click();
+
+  await expect(widget.getByText('Message received')).toBeVisible();
+  await expect(widget.getByText('SUP-42')).toBeVisible();
+  expect(submissions).toHaveLength(1);
+  expect(submissions[0]).toMatchObject({
+    projectKey: 'pk_NjcY2qluhQFMLa2OYhR23YCuytsIxOSx',
+    category: 'bug',
+    message: 'The London scene stutters when switching to dark mode in Safari.',
+  });
+  expect(submissions[0]).not.toHaveProperty('contact');
+});

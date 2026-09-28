@@ -2,4 +2,6 @@ allowBuilds:
   esbuild: true
   sharp: true
 autoInstallPeers: true
+minimumReleaseAgeExclude:
+  - '@issuerelay/widget@0.1.0'
 strictPeerDependencies: false

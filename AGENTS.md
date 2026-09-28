@@ -85,6 +85,8 @@ Realtime updates must **update or invalidate** Query caches deliberately rather 
 | `src/app/components/Hero/` | Scene engine, tracks, vehicles, controls, prefs |
 | `src/app/components/Hero/scenes/hero-scene-registry.ts` | Enabled scenes and id resolution |
 | `src/app/context/ThemeContext.tsx` | Light / dark theme |
+| `src/app/components/SupportWidget/` | IssueRelay support widget (`@issuerelay/widget`), mounted once in `layout.tsx`; follows the site theme |
+| `src/lib/support-widget-config.ts` | Public IssueRelay API URL and project key (env-overridable) |
 | `src/app/api/contact/route.ts` | Contact POST (local / Next). Rate limit + honeypot |
 | `netlify/functions/contact.ts` | Same contract for Netlify production |
 | `src/lib/contact-schema.ts` | Shared Zod schema |
@@ -127,6 +129,7 @@ Also:
 - CI on GitHub Actions must be green. Do not merge with skipped or failing tests.
 - New behaviour needs a test at the **cheapest layer** that would catch a regression: schema / unit first, component next, e2e last.
 - Mock `sendContactEmail` / stub `/.netlify/functions/contact` in tests. Never send real email from CI or unit tests.
+- Stub the IssueRelay ticket API (`page.route`) in e2e. Never create real support tickets from CI or tests.
 - Do not snapshot the whole hero canvas. Assert prefs, schema, HTTP contracts, and a few accessible controls instead.
 
 ## Dependency policy
@@ -164,6 +167,7 @@ Keep commits **logically scoped**. Do not bundle a hero animation change with a 
 | Variable | Where | Notes |
 | --- | --- | --- |
 | `RESEND_API_KEY` | Netlify env / local `.env.local` | Required to deliver contact mail. Placeholder in `.env.example` only. |
+| `NEXT_PUBLIC_ISSUERELAY_API_URL`, `NEXT_PUBLIC_ISSUERELAY_PROJECT_KEY` | Optional, local `.env.local` | Point the support widget at another IssueRelay platform. Production defaults live in `src/lib/support-widget-config.ts`; both values are public, not secrets. |
 
 Copy `.env.example` to `.env.local` for local API sends. Never put a real key in `.env.example`.
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import SupportWidget from './components/SupportWidget/SupportWidget';
 import ThemeContextProvider from './context/ThemeContext';
 
 export const metadata: Metadata = {
@@ -116,7 +117,10 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
-        <ThemeContextProvider>{children}</ThemeContextProvider>
+        <ThemeContextProvider>
+          {children}
+          <SupportWidget />
+        </ThemeContextProvider>
       </body>
     </html>
   );
